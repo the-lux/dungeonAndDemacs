@@ -29,10 +29,10 @@ public class RoomPanel extends JPanel {
         g.setFont(new Font("Arial", Font.BOLD, 10));
         if(room.isStart()){
             g.setColor(Color.red);
-            g.fillRect(3,3,60,60);
+            g.fillRect(3,3,58,58);
         } else if (room.isEnd()) {
             g.setColor(Color.blue);
-            g.fillRect(3,3,60,60);
+            g.fillRect(3,3,58,58);
         }
         paintClosedRoom(g);
         paintOpenRoom(g);
@@ -40,12 +40,12 @@ public class RoomPanel extends JPanel {
     protected void paintOpenRoom(Graphics g){
         int[][] gapPos = new int[][]{ //x,y,w,h
             {27,1,12,3},//up
-            {62,27,3,12},//right
-            {27,62,12,3},//below
+            {61,27,3,12},//right
+            {27,61,12,3},//below
             {1,27,3,12}};//left
         g.setColor(Color.white);
         for(int i=0; i<4;i++){
-            if(room.getType()[i]){
+            if(room.getDoors()[i]){
                 g.fillRect(gapPos[i][0],gapPos[i][1],gapPos[i][2],gapPos[i][3]);
             }
         }
@@ -53,9 +53,9 @@ public class RoomPanel extends JPanel {
     protected void paintClosedRoom(Graphics g){
         g.setColor(Color.black);
         g.fillRect(1,1,64,3);//upper
-        g.fillRect(1,62,64,3);//lower
+        g.fillRect(1,61,64,4);//lower
         g.fillRect(1,1,3,64);//left
-        g.fillRect(62,1,3,64);//right
+        g.fillRect(61,1,4,64);//right
         g.setColor(Color.black);
         g.drawString(String.valueOf(n),30,30);
     }

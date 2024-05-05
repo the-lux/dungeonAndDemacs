@@ -19,7 +19,7 @@ public class MainFrameController {
                     f.newGen(m.genMap(10));
                     System.out.println(m.getRoot().toString());
                 }
-                if(e.getKeyCode() == KeyEvent.VK_P){
+                if(e.getKeyCode() == KeyEvent.VK_P){//Se si preme p stampa il collegamento raw sulla consolle
 
                 }
             }
