@@ -14,7 +14,7 @@ public class MapGen {
         map[15][15].setStart(true);
         int p = (int) (nRoom*0.40);
         clearPathGen(p);
-        genMoreRoom(nRoom-p,map[15][15]);
+        //genMoreRoom(nRoom-p,map[15][15]);
         return this.map[15][15];
     }
     private void clearPathGen(int nRoom){
