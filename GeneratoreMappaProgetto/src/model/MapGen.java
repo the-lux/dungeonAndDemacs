@@ -41,8 +41,8 @@ public class MapGen {
                 }
             }while (map[next.x][next.y]!=null); //while per evitare di creare una stanza in una posizione già occupata
             map[next.x][next.y]=new Room();
-            map[current.x][current.y].setDoor(dir,true,map[next.x][next.y]);
-            map[next.x][next.y].setDoor(dir,true,map[current.x][current.y]);
+            map[current.x][current.y].setIndexDoor(dir,true,map[next.x][next.y]);
+            map[next.x][next.y].setIndexDoor(((dir + 2) % 4),true,map[current.x][current.y]);//correggere dir
             /*switch (dir){//direction: 0 up 1 right 2 below 3 left
                 case 0:
                     map[current.x][current.y].setUp(true,map[next.x][next.y]);
@@ -67,7 +67,7 @@ public class MapGen {
     }
     //metodo ricorsivo per generare le stanze aggiuntive
     private void genMoreRoom(int nRoom,Room r){
-        if(r.isEmpty()||nRoom==0||r.getnDoor()==4) return;
+        if(r.isEmpty()||nRoom==0||r.getNDoor()==4) return;
         int a =rN.nextInt(3);
         Cordinate current = new Cordinate(r.getPosition());
         if(a==1){//una sola stanza aggiuntiva

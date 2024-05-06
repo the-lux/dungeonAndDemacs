@@ -32,13 +32,13 @@ public class mainFrame extends JFrame {
     }
     //funzione ricorsiva per generare la mappa come se fosse un albero
     private void generateMapPanel(Room r,GridBagConstraints c, int come){ //l'intero come serve per sapere da dove arriva per saltare la porta. 0 up 1 right 2 below 3 left
-        if (r.isEmpty()){
-            System.out.println("is empty");
-            return;
-        }
         RoomPanel roomPanel = new RoomPanel(r,n++);
         roomPanel.repaint();
         getContentPane().add(roomPanel, c);
+        if (r.getIndexDoors(come)&&r.getNDoor()==1){
+            System.out.println("tappo");
+            return;
+        }
         if(r.isUp()&&come!=0){
 
             c.gridy--;

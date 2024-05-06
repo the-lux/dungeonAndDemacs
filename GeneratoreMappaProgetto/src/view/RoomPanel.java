@@ -24,7 +24,7 @@ public class RoomPanel extends JPanel {
     }
     //barr = width 26 height 3
     //gap = 12 x 3
-    protected void paintComponent(Graphics g) { //Attenzione al nome del metodo!
+    protected void paintComponent(Graphics g) {
         super.paintComponent(g);
         g.setFont(new Font("Arial", Font.BOLD, 10));
         if(room.isStart()){
