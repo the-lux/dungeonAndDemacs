@@ -1,4 +1,4 @@
-package controller;
+package application.controller;
 
 import model.MapGen;
 import view.mainFrame;
@@ -16,11 +16,12 @@ public class MainFrameController {
                     //f.removeAll();
                     f.getContentPane().removeAll();
                     f.setN(0);
-                    f.setN(10);
                     f.newGen(m.genMap(10));
                     System.out.println(m.getRoot().toString());
                 }
+                if(e.getKeyCode() == KeyEvent.VK_P){//Se si preme p stampa il collegamento raw sulla consolle
 
+                }
             }
         });
     }

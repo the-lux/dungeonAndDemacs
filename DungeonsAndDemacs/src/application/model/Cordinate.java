@@ -1,4 +1,4 @@
-package model;
+package application.model;
 
 public class Cordinate {
     public int x;//rig
@@ -8,11 +8,11 @@ public class Cordinate {
         this.x=x;
         this.y=y;
     }
-    public Cordinate(Cordinate c){
+    public Cordinate(model.Cordinate c){
         this.x=c.x;
         this.y=c.y;
     }
-    public boolean isGreaterThan(Cordinate c){
+    public boolean isGreaterThan(model.Cordinate c){
         return this.x > c.x || this.y > c.y;
     }
 }

@@ -1,4 +1,4 @@
-import controller.MainFrameController;
+package application;
 import controller.MainFrameController;
 import model.MapGen;
 import view.*;
