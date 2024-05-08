@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/DungeonsAndDemacs/DungeonsAndDemacs.iml" filepath="$PROJECT_DIR$/DungeonsAndDemacs/DungeonsAndDemacs.iml" />
+      <module fileurl="file://$PROJECT_DIR$/GeneratoreMappaProgetto/GeneratoreMappaProgetto.iml" filepath="$PROJECT_DIR$/GeneratoreMappaProgetto/GeneratoreMappaProgetto.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/dungeonAndDemacs.iml" filepath="$PROJECT_DIR$/.idea/dungeonAndDemacs.iml" />
+    </modules>
+  </component>
+</project>

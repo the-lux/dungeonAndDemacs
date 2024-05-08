@@ -14,16 +14,42 @@ public  class Room {
     private int nDoor;
     private final boolean[] doors;//0 up 1 right 2 below 3 left
     private final Room[]roomLink;
-    protected Cordinate position;
+    private Cordinate position;
+    protected Cordinate[]relativeRoomCordinate;
 
     public Room() {
-        this.roomLink = new Room[4];
-        this.doors = new boolean[4];
+        this.roomLink = new Room[3];
+        this.doors = new boolean[3];
+        relativeRoomCordinate= new Cordinate[3];
         this.isEnd=false;
         this.isStart = false;
         this.nDoor = 0;
     }
-
+    public void setDirRelativeCord(int dir,Cordinate c){
+        try {
+            // Controllo se il valore è nel range desiderato
+            if (dir < 0 || dir > 3) {
+                // Se non è nel range, solleva un'eccezione
+                throw new IllegalArgumentException("Il valore non è compreso tra 0 e 3");
+            }
+            // Se è nel range, restituisco
+            relativeRoomCordinate[dir]=c;
+        } catch (IllegalArgumentException e) {
+        }
+    }
+    public Cordinate getDirRelativeCord(int dir){
+        try {
+            // Controllo se il valore è nel range desiderato
+            if (dir < 0 || dir > 3) {
+                // Se non è nel range, solleva un'eccezione
+                throw new IllegalArgumentException("Il valore non è compreso tra 0 e 3");
+            }
+            // Se è nel range, restituisco
+            return relativeRoomCordinate[dir];
+        } catch (IllegalArgumentException e) {
+            return null;
+        }
+    }
     public Cordinate getPosition() {
         return position;
     }

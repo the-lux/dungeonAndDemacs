@@ -3,9 +3,9 @@ package application.model;
 //import javax.swing.text.Position;
 import model.Cordinate;
 import model.Room;
-
-import java.util.Arrays;
 import java.util.Random;
+import java.util.Queue;
+import java.util.LinkedList;
 
 public class MapGen {
     private model.Room[][] map = new model.Room[28][28];
@@ -101,13 +101,6 @@ public class MapGen {
         return map[15][15];
     }
 
-    @Override
-    public String toString() {
-
-        return "MapGen{" +
-                "map=" + Arrays.toString(map) +
-                '}';
-    }
 
     /*private Cordinate genExit(){
         Random r = new Random();
