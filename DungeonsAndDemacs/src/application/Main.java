@@ -1,7 +1,7 @@
 package application;
-import controller.MainFrameController;
-import model.MapGen;
-import view.*;
+import application.controller.MainFrameController;
+import application.model.MapGen;
+import application.view.*;
 
 //import java.awt.event.KeyEvent;
 //import java.awt.event.KeyListener;

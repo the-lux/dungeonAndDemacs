@@ -1,32 +1,29 @@
 package application.model;
-//import java.util.ArrayList;
-//import javax.swing.text.Position;
-import model.Cordinate;
-import model.Room;
+import java.util.ArrayList;
 import java.util.Random;
-import java.util.Queue;
-import java.util.LinkedList;
 
 public class MapGen {
-    private model.Room[][] map = new model.Room[28][28];
+    private Room[][] map = new Room[28][28];
+    private ArrayList<Cordinate> queue;
     Random rN = new Random();
-    public model.Room genMap(int nRoom){//max840
-        map = new model.Room[28][28];
-        map[15][15] = new model.Room();
+    public Room genMap(int nRoom){//max840
+        map = new Room[28][28];
+        map[15][15] = new Room();
         map[15][15].setStart(true);
+        queue = new ArrayList<Cordinate>();
         int p = (int) (nRoom*0.40);
         clearPathGen(p);
-        //genMoreRoom(nRoom-p,map[15][15]);
+        genMoreRoom(nRoom-p);
         return this.map[15][15];
     }
     private void clearPathGen(int nRoom){
-        model.Cordinate current = new model.Cordinate(15,15);
-        model.Cordinate next;
+        Cordinate current = new Cordinate(15,15);
+        Cordinate next;
         for (int i=0; i<nRoom;i++){
             int dir;
             //Choice a direction
             do{
-                next = new model.Cordinate(current);
+                next = new Cordinate(current);
                 dir = rN.nextInt(4);
                 switch (dir){//direction: 0 up 1 right 2 below 3 left
                     case 0:
@@ -42,36 +39,31 @@ public class MapGen {
                         next.y --;
                 }
             }while (map[next.x][next.y]!=null); //while per evitare di creare una stanza in una posizione già occupata
-            map[next.x][next.y]=new model.Room();
-            map[current.x][current.y].setIndexDoor(dir,true,map[next.x][next.y]);
-            map[next.x][next.y].setIndexDoor(((dir + 2) % 4),true,map[current.x][current.y]);//correggere dir
-            /*switch (dir){//direction: 0 up 1 right 2 below 3 left
-                case 0:
-                    map[current.x][current.y].setUp(true,map[next.x][next.y]);
-                    map[next.x][next.y].setBelow(true,map[current.x][current.y]);
-                    break;
-                case 1:
-                    map[current.x][current.y].setRight(true,map[next.x][next.y]);
-                    map[next.x][next.y].setLeft(true,map[current.x][current.y]);
-                    break;
-                case 2:
-                    map[current.x][current.y].setBelow(true,map[next.x][next.y]);
-                    map[next.x][next.y].setUp(true,map[current.x][current.y]);
-                    break;
-                case 3:
-                    map[current.x][current.y].setLeft(true,map[next.x][next.y]);
-                    map[next.x][next.y].setRight(true,map[current.x][current.y]);
-            }*/
-            map[current.x][current.y].setPosition(current.x,current.y);
-            current = new model.Cordinate(next);
+            setSonRoom(next,current,dir);
+            queue.add(current);//aggiunge alla coda le stanze principali
+            current = new Cordinate(next);
         }
         map[current.x][current.y].setEnd(true);
     }
+    private void genMoreRoom(int nRoom){
+        while (nRoom>0){
+            Cordinate current = queue.getFirst();
+            int randomNRoom = rN.nextInt(4-map[current.x][current.y].getNDoor())+1;
+            for (int i = 0; i < 4 && randomNRoom>0; i++) {
+                //TODO c'è un while true
+                if(map[current.x][current.y]==null){
+                    setSonRoom(current,i);
+                    queue.add(current);
+                    randomNRoom --;
+                }
+            }
+        }
+    }
     //metodo ricorsivo per generare le stanze aggiuntive
-    private void genMoreRoom(int nRoom, model.Room r){
+    private void genMoreRoom(int nRoom,Room r){
         if(r.isEmpty()||nRoom==0||r.getNDoor()==4) return;
         int a =rN.nextInt(3);
-        model.Cordinate current = new Cordinate(r.getPosition());
+        Cordinate current = new Cordinate(r.getPosition());
         if(a==1){//una sola stanza aggiuntiva
             if(map[current.x--][current.y]==null){//sopra
 
@@ -96,7 +88,19 @@ public class MapGen {
         }
         //altrimenti nessuna
     }
-
+    private void setSonRoom(Cordinate son,Cordinate father,int dir){
+        map[son.x][son.y]=new Room();//crea una nuova stanza
+        map[father.x][father.y].setIndexDoor(dir,true,map[son.x][son.y]);//collega la stanza corrente alla nuova
+        map[son.x][son.y].setIndexDoor(((dir + 2) % 4),true,map[father.x][father.y]);//collega la nuova stanza
+        map[son.x][son.y].setPosition(son.x,son.y);
+    }
+    private void setSonRoom(Cordinate father,int dir){
+        Cordinate son = new Cordinate(map[father.x][father.y].getDirRelativeCord(dir));
+        map[son.x][son.y]=new Room();//crea una nuova stanza
+        map[father.x][father.y].setIndexDoor(dir,true,map[son.x][son.y]);//collega la stanza corrente alla nuova
+        map[son.x][son.y].setIndexDoor(((dir + 2) % 4),true,map[father.x][father.y]);//collega la nuova stanza
+        map[son.x][son.y].setPosition(son.x,son.y);
+    }
     public Room getRoot(){
         return map[15][15];
     }

@@ -8,11 +8,11 @@ public class Cordinate {
         this.x=x;
         this.y=y;
     }
-    public Cordinate(model.Cordinate c){
+    public Cordinate(Cordinate c){
         this.x=c.x;
         this.y=c.y;
     }
-    public boolean isGreaterThan(model.Cordinate c){
+    public boolean isGreaterThan(Cordinate c){
         return this.x > c.x || this.y > c.y;
     }
 }
