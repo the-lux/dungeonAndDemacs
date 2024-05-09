@@ -15,17 +15,15 @@ public  class Room {
     private final boolean[] doors;//0 up 1 right 2 below 3 left
     private final Room[]roomLink;
     private Cordinate position;
-    protected Cordinate[]relativeRoomCordinate;
 
     public Room() {
         this.roomLink = new Room[4];
         this.doors = new boolean[4];
-        this.relativeRoomCordinate= new Cordinate[4];
         this.isEnd=false;
         this.isStart = false;
         this.nDoor = 0;
     }
-    public void setDirRelativeCord(int dir,Cordinate c){
+    /*public void setDirRelativeCord(int dir,Cordinate c){
         try {
             // Controllo se il valore è nel range desiderato
             if (dir < 0 || dir > 3) {
@@ -36,16 +34,27 @@ public  class Room {
             relativeRoomCordinate[dir]=c;
         } catch (IllegalArgumentException e) {
         }
-    }
+    }*/
     public Cordinate getDirRelativeCord(int dir){
         try {
-            // Controllo se il valore è nel range desiderato
-            if (dir < 0 || dir > 3) {
-                // Se non è nel range, solleva un'eccezione
-                throw new IllegalArgumentException("Il valore non è compreso tra 0 e 3");
+            Cordinate next = new Cordinate(this.position);
+            switch (dir){
+                case 0:
+                    next.x --;
+                    break;
+                case 1:
+                    next.y ++;
+                    break;
+                case 2:
+                    next.x ++;
+                    break;
+                case 3:
+                    next.y --;
+
+                default:
+                    throw new IllegalArgumentException("Il valore non è compreso tra 0 e 3");
             }
-            // Se è nel range, restituisco
-            return relativeRoomCordinate[dir];
+            return next;
         } catch (IllegalArgumentException e) {
             return null;
         }
@@ -194,7 +203,7 @@ public  class Room {
                 nDoor --;
             }
         } catch (IllegalArgumentException e) {
-
+            return;
         }
 
     }

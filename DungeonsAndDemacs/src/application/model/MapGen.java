@@ -10,7 +10,7 @@ public class MapGen {
         map = new Room[28][28];
         map[15][15] = new Room();
         map[15][15].setStart(true);
-        queue = new ArrayList<Cordinate>();
+        queue = new ArrayList<>();
         int p = (int) (nRoom*0.40);
         clearPathGen(p);
         genMoreRoom(nRoom-p);
@@ -48,13 +48,16 @@ public class MapGen {
     private void genMoreRoom(int nRoom){
         while (nRoom>0){
             Cordinate current = queue.getFirst();
+            Cordinate next;
             int randomNRoom = rN.nextInt(4-map[current.x][current.y].getNDoor())+1;
             for (int i = 0; i < 4 && randomNRoom>0; i++) {
                 //TODO c'è un while true
-                if(map[current.x][current.y]==null){
+                next = map[current.x][current.y].getDirRelativeCord(i);
+                if(map[next.x][next.y]==null){
                     setSonRoom(current,i);
                     queue.add(current);
                     randomNRoom --;
+                    nRoom--;
                 }
             }
         }
