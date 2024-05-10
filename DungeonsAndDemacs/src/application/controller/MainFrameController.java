@@ -1,7 +1,7 @@
 package application.controller;
 
-import model.MapGen;
-import view.mainFrame;
+import application.model.MapGen;
+import application.view.mainFrame;
 
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
