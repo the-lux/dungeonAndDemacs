@@ -50,12 +50,13 @@ public  class Room {
                     break;
                 case 3:
                     next.y --;
-
+                    break;
                 default:
                     throw new IllegalArgumentException("Il valore non è compreso tra 0 e 3");
             }
             return next;
         } catch (IllegalArgumentException e) {
+            System.out.println("Valore non compreso");
             return null;
         }
     }
