@@ -1,7 +1,6 @@
 package application.model;
 import java.util.ArrayList;
 import java.util.Random;
-
 public class MapGen {
     private Room[][] map = new Room[28][28];
     private ArrayList<Cordinate> queue;
@@ -52,7 +51,6 @@ public class MapGen {
             Cordinate next;
             int randomNRoom = rN.nextInt(5-map[current.x][current.y].getNDoor());
             for (int i = 0; i < 4 && randomNRoom>0; i++) {
-                //TODO c'è un while true
                 next = map[current.x][current.y].getDirRelativeCord(i);
                 if(map[next.x][next.y]==null){
                     setSonRoom(current,i);
