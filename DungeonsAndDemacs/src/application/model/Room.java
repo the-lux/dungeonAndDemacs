@@ -1,20 +1,22 @@
 package application.model;
 
 public  class Room {
-    /*private boolean up=false;
-    private boolean below=false;//below
-    private boolean left=false; //left
-    private boolean right=false;//right
-    private Room upLink;
-    private Room belowLink;
-    private Room leftLink;
-    private Room rightLink;*/
     private boolean isStart;//Is first room
     private boolean isEnd;//Is Exit room
     private int nDoor;
     private final boolean[] doors;//0 up 1 right 2 below 3 left
     private final Room[]roomLink;
     private Cordinate position;
+    private int type;
+    /*
+    -1 empty
+    0 Ianni
+    1 feduli
+    2 Van Bon
+    3 loot
+    4 minion
+    5 mercante
+    */
 
     public Room() {
         this.roomLink = new Room[4];
@@ -22,19 +24,8 @@ public  class Room {
         this.isEnd=false;
         this.isStart = false;
         this.nDoor = 0;
+        this.type = -1;
     }
-    /*public void setDirRelativeCord(int dir,Cordinate c){
-        try {
-            // Controllo se il valore è nel range desiderato
-            if (dir < 0 || dir > 3) {
-                // Se non è nel range, solleva un'eccezione
-                throw new IllegalArgumentException("Il valore non è compreso tra 0 e 3");
-            }
-            // Se è nel range, restituisco
-            relativeRoomCordinate[dir]=c;
-        } catch (IllegalArgumentException e) {
-        }
-    }*/
     public Cordinate getDirRelativeCord(int dir){
         try {
             Cordinate next = new Cordinate(this.position);
@@ -194,12 +185,12 @@ public  class Room {
             }
             // Se è nel range
             if(bool){
-                doors[dir]=true;
+                this.doors[dir]=true;
                 this.roomLink[dir]=roomLink;
                 nDoor ++;
             }
             else{
-                doors[dir]=false;
+                this.doors[dir]=false;
                 this.roomLink[dir]=null;
                 nDoor --;
             }
@@ -224,5 +215,13 @@ public  class Room {
             // Se viene sollevata un'eccezione, restituisco false
             return false;
         }
+    }
+
+    public int getType() {
+        return type;
+    }
+
+    public void setType(int type) {
+        this.type = type;
     }
 }

@@ -47,7 +47,7 @@ public class MapGen {
         map[current.x][current.y].setEnd(true);
     }
     private void genMoreRoom(int nRoom){
-        while (nRoom>0){
+        while (nRoom>0&& !queue.isEmpty()){
             Cordinate current = queue.removeLast();
             Cordinate next;
             int randomNRoom = rN.nextInt(5-map[current.x][current.y].getNDoor());
