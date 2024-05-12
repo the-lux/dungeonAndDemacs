@@ -1,59 +1,63 @@
 package application.model;
 
 public  class Room {
-    /*private boolean up=false;
-    private boolean below=false;//below
-    private boolean left=false; //left
-    private boolean right=false;//right
-    private Room upLink;
-    private Room belowLink;
-    private Room leftLink;
-    private Room rightLink;*/
     private boolean isStart;//Is first room
     private boolean isEnd;//Is Exit room
     private int nDoor;
     private final boolean[] doors;//0 up 1 right 2 below 3 left
     private final Room[]roomLink;
     private Cordinate position;
-    protected Cordinate[]relativeRoomCordinate;
+    private int type;
+    /*
+    -1 empty
+    0 Ianni
+    1 feduli
+    2 Van Bon
+    3 loot
+    4 minion
+    5 mercante
+    */
 
     public Room() {
-        this.roomLink = new Room[3];
-        this.doors = new boolean[3];
-        relativeRoomCordinate= new Cordinate[3];
+        this.roomLink = new Room[4];
+        this.doors = new boolean[4];
         this.isEnd=false;
         this.isStart = false;
         this.nDoor = 0;
-    }
-    public void setDirRelativeCord(int dir,Cordinate c){
-        try {
-            // Controllo se il valore è nel range desiderato
-            if (dir < 0 || dir > 3) {
-                // Se non è nel range, solleva un'eccezione
-                throw new IllegalArgumentException("Il valore non è compreso tra 0 e 3");
-            }
-            // Se è nel range, restituisco
-            relativeRoomCordinate[dir]=c;
-        } catch (IllegalArgumentException e) {
-        }
+        this.type = -1;
     }
     public Cordinate getDirRelativeCord(int dir){
         try {
-            // Controllo se il valore è nel range desiderato
-            if (dir < 0 || dir > 3) {
-                // Se non è nel range, solleva un'eccezione
-                throw new IllegalArgumentException("Il valore non è compreso tra 0 e 3");
+            Cordinate next = new Cordinate(this.position);
+            switch (dir){
+                case 0:
+                    next.x --;
+                    break;
+                case 1:
+                    next.y ++;
+                    break;
+                case 2:
+                    next.x ++;
+                    break;
+                case 3:
+                    next.y --;
+                    break;
+                default:
+                    throw new IllegalArgumentException("Il valore non è compreso tra 0 e 3");
             }
-            // Se è nel range, restituisco
-            return relativeRoomCordinate[dir];
+            return next;
         } catch (IllegalArgumentException e) {
+            System.out.println("Valore non compreso");
             return null;
         }
     }
     public Cordinate getPosition() {
         return position;
     }
-
+    //TODO creare un nuovo metodo di overload per setIndexDoor che accetta anche le cord
+    public void setPosition(Cordinate c) {
+        this.position = new Cordinate(c);
+    }
     public void setPosition(int x,int y) {
         this.position = new Cordinate(x,y);
     }
@@ -173,16 +177,27 @@ public  class Room {
                 '}';
     }
     public void setIndexDoor(int dir, boolean bool, Room roomLink){
-        if(bool){
-            doors[dir]=true;
-            this.roomLink[dir]=roomLink;
-            nDoor ++;
+        try {
+            // Controllo se il valore è nel range desiderato
+            if (dir < 0 || dir > 3) {
+                // Se non è nel range, solleva un'eccezione
+                throw new IllegalArgumentException("Il valore non è compreso tra 0 e 3");
+            }
+            // Se è nel range
+            if(bool){
+                this.doors[dir]=true;
+                this.roomLink[dir]=roomLink;
+                nDoor ++;
+            }
+            else{
+                this.doors[dir]=false;
+                this.roomLink[dir]=null;
+                nDoor --;
+            }
+        } catch (IllegalArgumentException e) {
+            return;
         }
-        else{
-            doors[dir]=false;
-            this.roomLink[dir]=null;
-            nDoor --;
-        }
+
     }
     public boolean getIndexDoors(int dir){//dir must be an integer dir>=0 && dir<=3
         try {
@@ -200,5 +215,13 @@ public  class Room {
             // Se viene sollevata un'eccezione, restituisco false
             return false;
         }
+    }
+
+    public int getType() {
+        return type;
+    }
+
+    public void setType(int type) {
+        this.type = type;
     }
 }
