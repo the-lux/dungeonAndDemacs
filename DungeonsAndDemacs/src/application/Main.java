@@ -1,19 +1,6 @@
 package application;
-import application.controller.MainFrameController;
-import application.model.MapGen;
-import application.view.*;
 
-//import java.awt.event.KeyEvent;
-//import java.awt.event.KeyListener;
-
+import application.view.MainWindow;
 public class Main {
-    public static void main(String[] args) {
-        MapGen m = new MapGen();
-        m.genMap(10);
-        mainFrame f = new mainFrame();
-        f.newGen(m.getRoot());
-        MainFrameController fC = new MainFrameController(f,m);
-
-        f.setVisible(true);
-    }
+    public static void main(String[] args) {MainWindow.launch();}
 }
