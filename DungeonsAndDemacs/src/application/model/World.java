@@ -7,7 +7,7 @@ import java.util.Random;
 
     public class World {
 
-        private enum Block { EMPTY, WALL, ENEMY_RED, ENEMY_YELLOW, ENEMY_BLUE}
+        private enum Block { EMPTY, WALL, ENEMY_RED, ENEMY_YELLOW, ENEMY_BLUE, CHARACTER}
         private final Block[][] blocks;
         private final Enemy[] enemies;
 
@@ -26,14 +26,17 @@ import java.util.Random;
 
             }
             Random r=new Random();
+            Position playerPosition;
+            playerPosition= new Position (r.nextInt(1,blocks.length-1),r.nextInt(1,blocks.length-1));
+            blocks[playerPosition.x()][playerPosition.y()]=Block.CHARACTER;
             enemyNumber=r.nextInt(1,10);
             enemies=new Enemy[enemyNumber];
             for (int i=0; i<enemyNumber; i++){
                 Position enemyPosition;
                 do {
-                    enemyPosition = new Position(r.nextInt(blocks.length), r.nextInt(blocks.length));
-                }while (isWall(enemyPosition));
-                //sfrutto il do while per evitare che mi generi il nemico sul muro
+                    enemyPosition = new Position(r.nextInt(1,blocks.length-1), r.nextInt(1,blocks.length-1));
+                }while (isCharacter(enemyPosition));
+                //sfrutto il do while per evitare che mi generi il nemico sovrascrivendo il personaggio
                 int type=r.nextInt(1,4);
                 enemies[i]= new Enemy (enemyPosition, type,i);
                 switch (type){
@@ -50,7 +53,6 @@ import java.util.Random;
                         throw new IllegalArgumentException("Tipo non valido");
                 };
             }
-
 
         }
         private boolean isType(Position p, Block block) {
@@ -74,6 +76,7 @@ import java.util.Random;
         public boolean isRedEnemy(Position p){return isType(p,Block.ENEMY_RED);}
         public boolean isYellowEnemy(Position p){return isType(p,Block.ENEMY_YELLOW);}
         public boolean isBlueEnemy(Position p){return isType(p,Block.ENEMY_BLUE);}
+        public boolean isCharacter(Position p){return isType(p,Block.CHARACTER);}
         private boolean isInvalidPosition(Position p) {
             return (p.x() < 0 || p.x() >= blocks.length || p.y() < 0 || p.y() >= blocks.length);
         }

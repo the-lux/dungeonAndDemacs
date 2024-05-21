@@ -46,9 +46,14 @@ public class EnemyPanel extends JPanel {
                 else if (world.isRedEnemy(p) ){ c=Color.RED;}
                 else if (world.isBlueEnemy(p)) {c=Color.BLUE;}
                 else if (world.isYellowEnemy(p)) {c=Color.YELLOW;}
+                else if (world.isCharacter(p)) {c=Color.GREEN;}
                 g.setColor(c);
-                g.fillRect(i * Settings.BLOCK_SIZE, j * Settings.BLOCK_SIZE, Settings.BLOCK_SIZE,
+                if (!world.isCharacter(p)) {
+                    g.fillRect(i * Settings.BLOCK_SIZE, j * Settings.BLOCK_SIZE, Settings.BLOCK_SIZE,
                             Settings.BLOCK_SIZE);
+                } else {
+                    g.fillOval(i*Settings.BLOCK_SIZE, j*Settings.BLOCK_SIZE, Settings.BLOCK_SIZE,Settings.BLOCK_SIZE);
+                }
             }
         }
 
