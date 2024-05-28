@@ -1,6 +1,6 @@
 package Luca.application.view;
 
-import Luca.application.model.Room;
+import application.model.Room;
 
 import javax.swing.*;
 import java.awt.*;

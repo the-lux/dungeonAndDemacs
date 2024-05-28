@@ -1,11 +1,10 @@
-package Luca.application.model;
+package application.model;
 //import java.util.ArrayList;
 //import javax.swing.text.Position;
+
 import Luca.application.model.Cordinate;
-import Luca.application.model.Room;
+
 import java.util.Random;
-import java.util.Queue;
-import java.util.LinkedList;
 
 public class MapGen {
     private Room[][] map = new Room[28][28];

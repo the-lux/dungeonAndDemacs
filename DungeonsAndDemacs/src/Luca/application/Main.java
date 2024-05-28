@@ -1,6 +1,6 @@
 package Luca.application;
 import Luca.application.controller.MainFrameController;
-import Luca.application.model.MapGen;
+import application.model.MapGen;
 import Luca.application.view.*;
 
 //import java.awt.event.KeyEvent;

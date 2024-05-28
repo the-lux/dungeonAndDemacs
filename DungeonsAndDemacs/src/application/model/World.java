@@ -7,7 +7,7 @@ import java.util.Random;
 
     public class World {
 
-        private enum Block { EMPTY, WALL, ENEMY_RED, ENEMY_YELLOW, ENEMY_BLUE, CHARACTER}
+        private enum Block { EMPTY, WALL, ENEMY_RED, ENEMY_YELLOW, ENEMY_BLUE, CHARACTER,DOOR};
         private final Block[][] blocks;
         private final Enemy[] enemies;
 
@@ -32,29 +32,29 @@ import java.util.Random;
 
             }
             Random r=new Random();
-            Position playerPosition;
-            playerPosition= new Position (r.nextInt(1,blocks.length-1),r.nextInt(1,blocks.length-1));
-            character= new Character(playerPosition);
-            blocks[playerPosition.x()][playerPosition.y()]=Block.CHARACTER;
+            Cordinate playerCordinate;
+            playerCordinate = new Cordinate(r.nextInt(1,blocks.length-1),r.nextInt(1,blocks.length-1));
+            character= new Character(playerCordinate);
+            blocks[playerCordinate.getX()][playerCordinate.getY()]=Block.CHARACTER;
             enemyNumber=r.nextInt(1,10);
             enemies=new Enemy[enemyNumber];
             for (int i=0; i<enemyNumber; i++){
-                Position enemyPosition;
+                Cordinate enemyCordinate;
                 do {
-                    enemyPosition = new Position(r.nextInt(1,blocks.length-1), r.nextInt(1,blocks.length-1));
-                }while (isCharacter(enemyPosition));
+                    enemyCordinate = new Cordinate(r.nextInt(1,blocks.length-1), r.nextInt(1,blocks.length-1));
+                }while (isCharacter(enemyCordinate));
                 //sfrutto il do while per evitare che mi generi il nemico sovrascrivendo il personaggio
                 int type=r.nextInt(1,4);
-                enemies[i]= new Enemy (enemyPosition, type,i);
+                enemies[i]= new Enemy (enemyCordinate, type,i);
                 switch (type){
                     case 1:
-                        blocks[enemyPosition.x()][enemyPosition.y()]=Block.ENEMY_RED;
+                        blocks[enemyCordinate.getX()][enemyCordinate.getY()]=Block.ENEMY_RED;
                         break;
                     case 2:
-                        blocks[enemyPosition.x()][enemyPosition.y()]=Block.ENEMY_YELLOW;
+                        blocks[enemyCordinate.getX()][enemyCordinate.getY()]=Block.ENEMY_YELLOW;
                         break;
                     case 3:
-                        blocks[enemyPosition.x()][enemyPosition.y()]=Block.ENEMY_BLUE;
+                        blocks[enemyCordinate.getX()][enemyCordinate.getY()]=Block.ENEMY_BLUE;
                         break;
                     default:
                         throw new IllegalArgumentException("Tipo non valido");
@@ -62,33 +62,33 @@ import java.util.Random;
             }
 
         }
-        private boolean isType(Position p, Block block) {
+        private boolean isType(Cordinate p, Block block) {
             if(isInvalidPosition(p))
                 throw new IllegalArgumentException("Invalid position " + p);
-            return blocks[p.x()][p.y()] == block;
+            return blocks[p.getX()][p.getY()] == block;
         }
 
-        private void setType(Position p, Block type) {
+        private void setType(Cordinate p, Block type) {
             if(isInvalidPosition(p))
                 throw new IllegalArgumentException("Invalid position " + p);
-            blocks[p.x()][p.y()] = type;
+            blocks[p.getX()][p.getY()] = type;
         }
-        public boolean isWall(Position p) {
+        public boolean isWall(Cordinate p) {
             return isType(p, Block.WALL);
         }
 
-        public boolean isEmpty(Position p) {
+        public boolean isEmpty(Cordinate p) {
             return isType(p, Block.EMPTY);
         }
-        public boolean isRedEnemy(Position p){return isType(p,Block.ENEMY_RED);}
-        public boolean isYellowEnemy(Position p){return isType(p,Block.ENEMY_YELLOW);}
-        public boolean isBlueEnemy(Position p){return isType(p,Block.ENEMY_BLUE);}
-        public boolean isCharacter(Position p){return isType(p,Block.CHARACTER);}
-        public boolean isEnemy(Position p){
+        public boolean isRedEnemy(Cordinate p){return isType(p,Block.ENEMY_RED);}
+        public boolean isYellowEnemy(Cordinate p){return isType(p,Block.ENEMY_YELLOW);}
+        public boolean isBlueEnemy(Cordinate p){return isType(p,Block.ENEMY_BLUE);}
+        public boolean isCharacter(Cordinate p){return isType(p,Block.CHARACTER);}
+        public boolean isEnemy(Cordinate p){
             return isYellowEnemy(p) || isBlueEnemy(p) || isRedEnemy(p);
         }
-        private boolean isInvalidPosition(Position p) {
-            return (p.x() < 0 || p.x() >= blocks.length || p.y() < 0 || p.y() >= blocks.length);
+        private boolean isInvalidPosition(Cordinate p) {
+            return (p.getX() < 0 || p.getX() >= blocks.length || p.getY() < 0 || p.getY() >= blocks.length);
         }
         public int getSize() {
             return blocks.length;
@@ -107,7 +107,7 @@ import java.util.Random;
         public boolean roomCleaned(){
             return enemyKilled == enemyNumber;
         }
-        public void moveCharacter(Position p){
+        public void moveCharacter(Cordinate p){
             //controllo che la posizione sia valida, e se è così lo faccio muovere
             if (!isInvalidPosition(p) && !isWall(p) ){
                 setType(character.getPlace(),Block.EMPTY);
@@ -116,7 +116,7 @@ import java.util.Random;
             }
 
         }
-        public void killEnemy(Position target){
+        public void killEnemy(Cordinate target){
             if (isEnemy(target)){
                 setType(target,Block.EMPTY);
                 enemyKilled++;

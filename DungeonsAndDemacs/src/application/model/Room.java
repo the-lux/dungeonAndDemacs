@@ -1,4 +1,6 @@
-package Luca.application.model;
+package application.model;
+
+import Luca.application.model.Cordinate;
 
 public  class Room {
     /*private boolean up=false;

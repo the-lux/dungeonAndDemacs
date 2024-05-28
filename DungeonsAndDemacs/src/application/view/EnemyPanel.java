@@ -2,7 +2,7 @@ package application.view;
 
 import application.config.Settings;
 import application.model.Game;
-import application.model.Position;
+import application.model.Cordinate;
 import application.model.World;
 
 import javax.swing.*;
@@ -40,7 +40,7 @@ public class EnemyPanel extends JPanel {
         World world = game.getWorld();
         for (int i = 0; i < world.getSize(); i++) {
             for (int j = 0; j < world.getSize(); j++) {
-                Position p = new Position(i, j);
+                Cordinate p = new Cordinate(i, j);
                 if(world.isEmpty(p))
                     continue;
                 Color c = Color.BLACK;

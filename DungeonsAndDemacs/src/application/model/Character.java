@@ -1,15 +1,15 @@
 package application.model;
 
 public class Character {
-    private Position place;
+    private Cordinate place;
     private boolean alive=true;
-    public Character (Position p){
+    public Character (Cordinate p){
         place=p;
     }
-    public void changePosition(Position p){
+    public void changePosition(Cordinate p){
         place=p;
     }
-    public Position getPlace(){
+    public Cordinate getPlace(){
         return place;
     }
     public void killCharacter(){

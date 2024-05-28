@@ -39,11 +39,11 @@ public class Game {
         }
         public boolean isAlive() {return world.getCharacter().isAlive();}
         public void move(int direction){
-            Position newP = switch (direction) {
-                case MOVE_RIGHT -> new Position(world.getCharacter().getPlace().x() + 1, world.getCharacter().getPlace().y());
-                case MOVE_LEFT -> new Position(world.getCharacter().getPlace().x() - 1, world.getCharacter().getPlace().y());
-                case MOVE_UP -> new Position(world.getCharacter().getPlace().x() , world.getCharacter().getPlace().y()-1);
-                case MOVE_DOWN ->new Position(world.getCharacter().getPlace().x() , world.getCharacter().getPlace().y()+1);
+            Cordinate newP = switch (direction) {
+                case MOVE_RIGHT -> new Cordinate(world.getCharacter().getPlace().getX() + 1, world.getCharacter().getPlace().getY());
+                case MOVE_LEFT -> new Cordinate(world.getCharacter().getPlace().getX() - 1, world.getCharacter().getPlace().getY());
+                case MOVE_UP -> new Cordinate(world.getCharacter().getPlace().getX() , world.getCharacter().getPlace().getY()-1);
+                case MOVE_DOWN ->new Cordinate(world.getCharacter().getPlace().getX() , world.getCharacter().getPlace().getY()+1);
                 default -> null;
             };
             //if per evitare comportamenti anomali della funzione
@@ -64,12 +64,12 @@ public class Game {
             }
         }
         public void meleeAttack() {
-            Position target=world.getCharacter().getPlace(); //ricavo la posizione dell'attacco
+            Cordinate target=world.getCharacter().getPlace(); //ricavo la posizione dell'attacco
             switch(facing){
-                case MOVE_RIGHT->target=new Position(target.x()+1, target.y());
-                case MOVE_LEFT ->target=new Position(target.x()-1, target.y());
-                case MOVE_DOWN ->target=new Position(target.x(), target.y()+1);
-                case MOVE_UP ->target=new Position(target.x(), target.y()-1);
+                case MOVE_RIGHT->target=new Cordinate(target.getX()+1, target.getY());
+                case MOVE_LEFT ->target=new Cordinate(target.getX()-1, target.getY());
+                case MOVE_DOWN ->target=new Cordinate(target.getX(), target.getY()+1);
+                case MOVE_UP ->target=new Cordinate(target.getX(), target.getY()-1);
                 default-> target=null;
             }
             world.killEnemy(target);
