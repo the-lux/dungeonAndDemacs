@@ -8,7 +8,7 @@ public class Cordinate {
         this.x=x;
         this.y=y;
     }
-    public Cordinate(Luca.application.model.Cordinate c){
+    public Cordinate(Cordinate c){
         this.x=c.x;
         this.y=c.y;
     }
@@ -17,19 +17,18 @@ public class Cordinate {
         return x;
     }
 
-    public void setX(int x) {
-        this.x = x;
-    }
-
     public int getY() {
         return y;
     }
 
-    public void setY(int y) {
-        this.y = y;
+    public void increaseX(int val){
+        this.x=x+val;
+    }
+    public void increaseY(int val){
+        this.y=y+val;
     }
 
-    public boolean isGreaterThan(Luca.application.model.Cordinate c){
+    public boolean isGreaterThan(Cordinate c){
         return this.x > c.x || this.y > c.y;
     }
 }
