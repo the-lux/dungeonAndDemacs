@@ -26,14 +26,16 @@ public class EnemyPanel extends JPanel {
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
         Game game=Game.getGame();
-        /* if (!game.isAlive()) {
-            drawEnd(g, "Game over! Press n to start a new game");
-            return;
+        String message;
+         if (!game.isAlive()) {
+             message="Bocciato :)"+" premi n per riprovare!";
+             drawEnd(g, message);
+             return;
         } else if (game.win()) {
-            drawEnd(g, "You win! Press n to start a new game");
+            drawEnd(g, "Ti sei laureato! Premi n per ricominciare");
             return;
         }
-         */
+
 
         World world = game.getWorld();
         for (int i = 0; i < world.getSize(); i++) {

@@ -11,7 +11,13 @@ import java.util.Random;
         private final Block[][] blocks;
         private final Enemy[] enemies;
 
+        private final Character character;
+
         private final int enemyNumber;
+
+        private int enemyKilled=0;
+
+
 
         public World() {
             blocks = new Block[Settings.WORLD_SIZE][Settings.WORLD_SIZE]; //Matrice che rappresenta
@@ -28,6 +34,7 @@ import java.util.Random;
             Random r=new Random();
             Position playerPosition;
             playerPosition= new Position (r.nextInt(1,blocks.length-1),r.nextInt(1,blocks.length-1));
+            character= new Character(playerPosition);
             blocks[playerPosition.x()][playerPosition.y()]=Block.CHARACTER;
             enemyNumber=r.nextInt(1,10);
             enemies=new Enemy[enemyNumber];
@@ -51,7 +58,7 @@ import java.util.Random;
                         break;
                     default:
                         throw new IllegalArgumentException("Tipo non valido");
-                };
+                }
             }
 
         }
@@ -77,6 +84,9 @@ import java.util.Random;
         public boolean isYellowEnemy(Position p){return isType(p,Block.ENEMY_YELLOW);}
         public boolean isBlueEnemy(Position p){return isType(p,Block.ENEMY_BLUE);}
         public boolean isCharacter(Position p){return isType(p,Block.CHARACTER);}
+        public boolean isEnemy(Position p){
+            return isYellowEnemy(p) || isBlueEnemy(p) || isRedEnemy(p);
+        }
         private boolean isInvalidPosition(Position p) {
             return (p.x() < 0 || p.x() >= blocks.length || p.y() < 0 || p.y() >= blocks.length);
         }
@@ -84,10 +94,38 @@ import java.util.Random;
             return blocks.length;
         }
 
-        public int getEnemyNumber() {
+        /*public int getEnemyNumber() {
             return enemyNumber;
         }
+         */
 
         public Enemy getEnemy(int id) {
                 return enemies[id];}
+        public Character getCharacter (){
+            return character;
+        }
+        public boolean roomCleaned(){
+            return enemyKilled == enemyNumber;
+        }
+        public void moveCharacter(Position p){
+            //controllo che la posizione sia valida, e se è così lo faccio muovere
+            if (!isInvalidPosition(p) && !isWall(p) ){
+                setType(character.getPlace(),Block.EMPTY);
+                character.changePosition(p);
+                setType(character.getPlace(),Block.CHARACTER);
+            }
+
+        }
+        public void killEnemy(Position target){
+            if (isEnemy(target)){
+                setType(target,Block.EMPTY);
+                enemyKilled++;
+            }
+        }
+        public void eliminatePlayer(){
+            //il personaggio non esiste più sulla mappa
+            character.killCharacter();
+            setType(character.getPlace(),Block.EMPTY);
+
+        }
     }
