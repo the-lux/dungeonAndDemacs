@@ -18,8 +18,8 @@ public class MapGen {
     }
     private void clearPathGen(int nRoom){
         Cordinate current = new Cordinate(15,15);
-        Cordinate next;
-        for (int i=0; i<nRoom;i++){
+        Cordinate next = null;
+        for (int i=0; i<nRoom-1;i++){
             int dir;
             //Choice a direction
             do{
@@ -43,9 +43,11 @@ public class MapGen {
             queue.add(current);//aggiunge alla coda le stanze principali
             current = new Cordinate(next);
         }
+        queue.add(next);
         map[current.x][current.y].setEnd(true);
     }
     private void genMoreRoom(int nRoom){
+        nRoom--;
         while (nRoom>0&& !queue.isEmpty()){
             Cordinate current = queue.removeLast();
             Cordinate next;
@@ -61,7 +63,7 @@ public class MapGen {
             }
         }
     }
-    //metodo ricorsivo per generare le stanze aggiuntive
+    /*metodo ricorsivo per generare le stanze aggiuntive
     private void genMoreRoom(int nRoom,Room r){
         if(r.isEmpty()||nRoom==0||r.getNDoor()==4) return;
         int a =rN.nextInt(3);
@@ -83,13 +85,13 @@ public class MapGen {
                 if(!r.getDoors()[i]){
                     map[r.getPosition().x][r.getPosition().y]
                 }
-            }*/
+            }
         }
-        else if (a==2){//due stanze aggiuntive
+        else if (a==2){due stanze aggiuntive
 
         }
-        //altrimenti nessuna
-    }
+        altrimenti nessuna
+    }*/
     private void setSonRoom(Cordinate son,Cordinate father,int dir){
         map[son.x][son.y]=new Room();//crea una nuova stanza
         map[father.x][father.y].setIndexDoor(dir,true,map[son.x][son.y]);//collega la stanza corrente alla nuova
