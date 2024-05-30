@@ -110,6 +110,9 @@ public class MapGen {
         return map[15][15];
     }
 
+    public Room getCordRoom(Cordinate c){
+        return map[c.getX()][c.getY()];
+    }
 
     /*private Cordinate genExit(){
         Random r = new Random();

@@ -27,10 +27,10 @@ public class EnemyPanel extends JPanel {
         super.paintComponent(g);
         Game game=Game.getGame();
         String message;
-         if (!game.isAlive()) {
-             message="Bocciato :)"+" premi n per riprovare!";
-             drawEnd(g, message);
-             return;
+        if (!game.isAlive()) {
+            message="Bocciato :)"+" Premi n per riprovare!";
+            drawEnd(g, message);
+            return;
         } else if (game.win()) {
             drawEnd(g, "Ti sei laureato! Premi n per ricominciare");
             return;
@@ -45,6 +45,7 @@ public class EnemyPanel extends JPanel {
                     continue;
                 Color c = Color.BLACK;
                 if(world.isWall(p)) c = Color.DARK_GRAY;
+                else if (world.isDoor(p)) c= Color.MAGENTA;
                 else if (world.isRedEnemy(p) ){ c=Color.RED;}
                 else if (world.isBlueEnemy(p)) {c=Color.BLUE;}
                 else if (world.isYellowEnemy(p)) {c=Color.YELLOW;}

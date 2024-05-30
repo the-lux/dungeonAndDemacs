@@ -11,7 +11,7 @@ public  class Room {
     /*
     -1 empty
     0 Ianni
-    1 feduli
+    1 fuduli
     2 Van Bon
     3 loot
     4 minion
