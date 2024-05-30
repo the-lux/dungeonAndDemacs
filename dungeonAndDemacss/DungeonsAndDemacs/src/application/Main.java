@@ -7,6 +7,5 @@ public class Main {
         MainWindow.launch();
         MapGen m = new MapGen();
         m.genMap(10);
-        System.out.println("asaasd");
     }
 }
