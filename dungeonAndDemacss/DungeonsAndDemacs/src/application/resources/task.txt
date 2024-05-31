@@ -7,7 +7,7 @@
 7.Implementare Menù -L
 8.Aggiungere armi da lancio/fuoco -S
 9. Logica completamento stanze e vittoria finale da re-implementare
+10. Implementazione sprite e tracce audio
 
 ---------------------------------------------------------------
-1.Cercare Audio per nemici, boss, sottofondo, effetti -M
 2.Progettare HUD (barra vita, minimappa, ecc,)-S
