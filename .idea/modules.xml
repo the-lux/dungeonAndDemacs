@@ -4,7 +4,7 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/DungeonsAndDemacs/DungeonsAndDemacs.iml" filepath="$PROJECT_DIR$/DungeonsAndDemacs/DungeonsAndDemacs.iml" />
       <module fileurl="file://$PROJECT_DIR$/GeneratoreMappaProgetto/GeneratoreMappaProgetto.iml" filepath="$PROJECT_DIR$/GeneratoreMappaProgetto/GeneratoreMappaProgetto.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/dungeonAndDemacs.iml" filepath="$PROJECT_DIR$/.idea/dungeonAndDemacs.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/dungeonAndDemacss.iml" filepath="$PROJECT_DIR$/.idea/dungeonAndDemacss.iml" />
     </modules>
   </component>
 </project>

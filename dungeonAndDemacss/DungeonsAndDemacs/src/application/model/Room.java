@@ -199,24 +199,20 @@ public  class Room {
         }
 
     }
-    public boolean getIndexDoors(int dir){//dir must be an integer dir>=0 && dir<=3
+    public Room getIndexRoom(int dir){//dir must be an integer dir>=0 && dir<=3
         try {
             // Controllo se il valore è nel range desiderato
             if (dir < 0 || dir > 3) {
                 // Se non è nel range, solleva un'eccezione
-                if(dir==-1)
-                    return false;
-                else
-                    throw new IllegalArgumentException("Il valore non è compreso tra 0 e 3");
+                throw new IllegalArgumentException("Il valore non è compreso tra 0 e 3");
             }
             // Se è nel range, restituisco true
-            return doors[dir];
+            return roomLink[dir];
         } catch (IllegalArgumentException e) {
-            // Se viene sollevata un'eccezione, restituisco false
-            return false;
+            // Se viene sollevata un'eccezione, restituisco null
+            return null;
         }
     }
-
     public int getType() {
         return type;
     }

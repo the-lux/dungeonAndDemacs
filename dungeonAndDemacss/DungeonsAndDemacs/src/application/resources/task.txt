@@ -6,7 +6,7 @@
 6.Logica power UP -M
 7.Implementare Menù -L
 8.Aggiungere armi da lancio/fuoco -S
-
+9. Logica completamento stanze e vittoria finale da re-implementare
 
 ---------------------------------------------------------------
 1.Cercare Audio per nemici, boss, sottofondo, effetti -M
