@@ -28,4 +28,12 @@ public class Enemy {
         if (enemyType>=1 && enemyType<3)
             this.enemyType = enemyType;
     }
+
+    public Cordinate getPlace() {
+        return place;
+    }
+
+    public void setPlace(Cordinate place) {
+        this.place = place;
+    }
 }
