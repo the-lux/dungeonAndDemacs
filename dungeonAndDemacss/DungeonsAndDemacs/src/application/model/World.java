@@ -12,6 +12,8 @@ public class World {
 
     private Character character;
 
+    private int enemyNumber;
+
     private int enemyKilled=0;
 
     private MapGen m=new MapGen();
