@@ -7,13 +7,10 @@ import java.util.Random;
 
 public class World {
 
-    private enum Block { EMPTY, WALL, ENEMY, CHARACTER,DOOR_UP,DOOR_DOWN,
-        DOOR_LEFT, DOOR_RIGHT};
+    private enum Block { EMPTY, WALL, ENEMY, CHARACTER,DOOR_UP,DOOR_DOWN, DOOR_LEFT, DOOR_RIGHT};
     private Block[][] blocks;
 
     private Character character;
-
-    private int enemyNumber;
 
     private int enemyKilled=0;
 

@@ -5,7 +5,7 @@ public class MapGen {
     private Room[][] map = new Room[28][28];
     private ArrayList<Cordinate> queue;
     Random rN = new Random();
-    public Room genMap(int nRoom){//max840
+    public Room genMap(int nRoom){//max840 ritorna la root
         map = new Room[28][28];
         //crea la stanza iniziale
         map[15][15] = new Room();
