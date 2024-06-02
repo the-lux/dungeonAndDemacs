@@ -1,4 +1,6 @@
 package application.model;
+import java.util.ArrayList;
+import java.util.Random;
 
 public  class Room {
     private boolean isStart;//Is first room
@@ -7,7 +9,7 @@ public  class Room {
     private final boolean[] doors;//0 up 1 right 2 below 3 left
     private final Room[]roomLink;
     private Cordinate position;
-    private int type;
+    private ArrayList<Enemy> enemyArrayList;
     /*
     -1 empty
     0 Ianni
@@ -24,7 +26,7 @@ public  class Room {
         this.isEnd=false;
         this.isStart = false;
         this.nDoor = 0;
-        this.type = -1;
+        this.enemyArrayList = new ArrayList<>();
     }
     public Cordinate getDirRelativeCord(int dir){
         try {
@@ -50,6 +52,22 @@ public  class Room {
             System.out.println("Valore non compreso");
             return null;
         }
+    }
+
+    public ArrayList<Enemy> getEnemyArrayList() {
+        return enemyArrayList;
+    }
+
+    public void setEnemyArrayList(ArrayList<Enemy> enemyArrayList) {
+        this.enemyArrayList = enemyArrayList;
+    }
+
+    public void addEnemy(Enemy e){
+        enemyArrayList.add(e);
+    }
+
+    public int getSizeEnemyArrayList(){
+        return enemyArrayList.size();
     }
     public Cordinate getPosition() {
         return position;
@@ -212,12 +230,5 @@ public  class Room {
             // Se viene sollevata un'eccezione, restituisco null
             return null;
         }
-    }
-    public int getType() {
-        return type;
-    }
-
-    public void setType(int type) {
-        this.type = type;
     }
 }

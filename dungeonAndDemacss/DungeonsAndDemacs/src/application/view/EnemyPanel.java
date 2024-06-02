@@ -46,9 +46,7 @@ public class EnemyPanel extends JPanel {
                 Color c = Color.BLACK;
                 if(world.isWall(p)) c = Color.DARK_GRAY;
                 else if (world.isDoor(p)) c= Color.MAGENTA;
-                else if (world.isRedEnemy(p) ){ c=Color.RED;}
-                else if (world.isBlueEnemy(p)) {c=Color.BLUE;}
-                else if (world.isYellowEnemy(p)) {c=Color.YELLOW;}
+                else if (world.isEnemy(p) ){ c=Color.RED;}
                 else if (world.isCharacter(p)) {c=Color.GREEN;}
                 g.setColor(c);
                 if (!world.isCharacter(p)) {

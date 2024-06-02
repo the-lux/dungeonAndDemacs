@@ -5,8 +5,9 @@ public class MapGen {
     private Room[][] map = new Room[28][28];
     private ArrayList<Cordinate> queue;
     Random rN = new Random();
-    public Room genMap(int nRoom){//max840
+    public Room genMap(int nRoom){//max840 ritorna la root
         map = new Room[28][28];
+        //crea la stanza iniziale
         map[15][15] = new Room();
         map[15][15].setStart(true);
         map[15][15].setPosition(15,15);
@@ -41,11 +42,14 @@ public class MapGen {
             }while (map[next.getX()][next.getY()]!=null); //while per evitare di creare una stanza in una posizione già occupata
             setSonRoom(next,current,dir);
             queue.add(current);//aggiunge alla coda le stanze principali
+            //TODO inserisce delle stanze alternate tra: stanze con molti minion, un miniboss(or prof depotenziato),
             current = new Cordinate(next);
         }
         queue.add(next);
-        map[current.getX()][current.getY()].setEnd(true);
+        map[current.getX()][current.getY()].setEnd(true);//setta la stanza finale
+        //TODO inserisce il boss finale
     }
+
     private void genMoreRoom(int nRoom){
         while (nRoom>0&& !queue.isEmpty()){
             Cordinate current = queue.removeFirst();//ho sbagliato con remove last va messo removeFirst
@@ -57,12 +61,16 @@ public class MapGen {
                     if(map[next.getX()][next.getY()]==null){
                         setSonRoom(current,i);
                         queue.add(current);
+                        //TODO aggiunge stanze tra: un miniboss(or prof depotenziato) 50/50 con stanza molti minion,
+                        // stanze tesoro (prob più bassa)
+
                         randomNRoom --;
                         nRoom--;
                     }
                 }
             }
         }
+        //aggiunge alla fine una stanza del tesoro sicura
     }
     /*metodo ricorsivo per generare le stanze aggiuntive
     private void genMoreRoom(int nRoom,Room r){
@@ -97,7 +105,7 @@ public class MapGen {
         map[son.getX()][son.getY()]=new Room();//crea una nuova stanza
         map[father.getX()][father.getY()].setIndexDoor(dir,true,map[son.getX()][son.getY()]);//collega la stanza corrente alla nuova
         map[son.getX()][son.getY()].setIndexDoor(((dir + 2) % 4),true,map[father.getX()][father.getY()]);//collega la nuova stanza
-        map[son.getX()][son.getY()].setPosition(son.getX(),son.getY());
+        map[son.getX()][son.getY()].setPosition(son.getX(),son.getY());//setta la posizione del figlio
     }
     private void setSonRoom(Cordinate father,int dir){
         Cordinate son = new Cordinate(map[father.getX()][father.getY()].getDirRelativeCord(dir));
@@ -106,6 +114,7 @@ public class MapGen {
         map[son.getX()][son.getY()].setIndexDoor(((dir + 2) % 4),true,map[father.getX()][father.getY()]);//collega la nuova stanza
         map[son.getX()][son.getY()].setPosition(son.getX(),son.getY());
     }
+
     public Room getRoot(){
         return map[15][15];
     }
