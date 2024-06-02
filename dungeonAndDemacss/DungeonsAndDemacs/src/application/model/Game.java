@@ -52,11 +52,13 @@ public class Game {
         if (world.isEnemy(newP)){
             world.eliminatePlayer();
         }
+        facing=direction;
+        //aggiorno qui per non perdere il facing corretto se cambio stanza
         if (world.isDoor(newP)){
             world.changeRoom(newP);
             return;
         }
-        facing=direction;
+
         if (world.getCharacter().isAlive()) {
             world.moveCharacter(newP);
         }
