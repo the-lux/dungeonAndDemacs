@@ -1,15 +1,15 @@
 package application.controller;
 
 import application.model.Game;
-import application.view.EnemyPanel;
+import application.view.WorldPanel;
 
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 
 public class CharacterListener extends KeyAdapter {
-    private final EnemyPanel enemyPanel;
-    public CharacterListener(EnemyPanel eP){
-        this.enemyPanel=eP;
+    private final WorldPanel worldPanel;
+    public CharacterListener(WorldPanel eP){
+        this.worldPanel =eP;
     }
 
     @Override
@@ -22,7 +22,7 @@ public class CharacterListener extends KeyAdapter {
 
         if(e.getKeyCode() == KeyEvent.VK_N) {
             Game.restartGame();
-            enemyPanel.reset();
+            worldPanel.reset();
             //enemyPanel.repaint(); superfluo perché in codice attuale la repaint viene SEMPRE chiamata alla fine
            //return;
         }
@@ -32,7 +32,7 @@ public class CharacterListener extends KeyAdapter {
             case KeyEvent.VK_DOWN -> Game.getGame().move(Game.MOVE_DOWN);
             case KeyEvent.VK_UP -> Game.getGame().move(Game.MOVE_UP);
         }
-        enemyPanel.repaint();
+        worldPanel.repaint();
 
     }
 }
