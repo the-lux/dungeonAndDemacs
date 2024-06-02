@@ -1,8 +1,9 @@
 package application.model;
 
 public class Character {
-    private Cordinate place;
+    private Cordinate place=new Cordinate(19,19);
     private boolean alive=true;
+    public Character(){};
     public Character (Cordinate p){
         place=p;
     }
@@ -15,7 +16,6 @@ public class Character {
     public void killCharacter(){
         alive=false;
     }
-
     public boolean isAlive() {
         return alive;
     }

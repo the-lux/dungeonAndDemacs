@@ -10,7 +10,7 @@ public class World {
     private enum Block { EMPTY, WALL, ENEMY, CHARACTER,DOOR_UP,DOOR_DOWN, DOOR_LEFT, DOOR_RIGHT};
     private Block[][] blocks;
 
-    private Character character;
+    private Character character=new Character();
 
     private int enemyNumber;
 
@@ -19,6 +19,8 @@ public class World {
     private MapGen m=new MapGen();
 
     private Room room; //stanza corrente
+
+
 
 
     public World() {
@@ -44,27 +46,24 @@ public class World {
             if (b){
                 switch (direzione){
                     case 0: for(int i=15; i<25; i++){
-                        blocks[0][i]=Block.DOOR_UP;
+                        blocks[i][0]=Block.DOOR_UP;
                     } break;
                     case 1: for (int i=15; i<25; i++){
-                        blocks[i][blocks.length-1]=Block.DOOR_RIGHT;
+                        blocks[blocks.length-1][i]=Block.DOOR_RIGHT;
                     } break;
                     case 2: for (int i=15; i<25; i++){
-                        blocks[blocks.length-1][i]=Block.DOOR_DOWN;
+                        blocks[i][blocks.length-1]=Block.DOOR_DOWN;
                     } break;
                     case 3: for (int i=15; i<25; i++){
-                        blocks[i][0]=Block.DOOR_LEFT;
+                        blocks[0][i]=Block.DOOR_LEFT;
                     } break;
                 }
             }
             direzione++;
         }
         //crea il PG
-        Random random=new Random();
-        Cordinate playerCordinate;
-        playerCordinate = new Cordinate(random.nextInt(1,blocks.length-1),random.nextInt(1,blocks.length-1));
-        character= new Character(playerCordinate);
-        blocks[playerCordinate.getX()][playerCordinate.getY()]=Block.CHARACTER;
+        Random random=new Random(); //mi servirà per la generazione dei nemici
+        blocks[character.getPlace().getX()][character.getPlace().getY()]=Block.CHARACTER;
         //crea i nemici
         if(room.getSizeEnemyArrayList()>0){
             for (Enemy e : room.getEnemyArrayList()){
@@ -93,12 +92,16 @@ public class World {
     public void changeRoom(Cordinate p){
         if (isUpDoor(p)){
             room=room.getIndexRoom(0);
+            character.changePosition(new Cordinate(p.getX(),blocks.length-2));
         } else if (isRightDoor(p)){
             room=room.getIndexRoom(1);
+            character.changePosition(new Cordinate(1,p.getY()));
         } else if (isDownDoor(p)){
             room=room.getIndexRoom(2);
+            character.changePosition(new Cordinate(p.getX(),1));
         } else if (isLeftDoor(p)){
             room=room.getIndexRoom(3);
+            character.changePosition(new Cordinate(blocks.length-2,p.getY()));
         }
         genWorld(room);
     }

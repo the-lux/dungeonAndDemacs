@@ -54,6 +54,7 @@ public class Game {
         }
         if (world.isDoor(newP)){
             world.changeRoom(newP);
+            return;
         }
         facing=direction;
         if (world.getCharacter().isAlive()) {

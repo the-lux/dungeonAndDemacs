@@ -1,5 +1,4 @@
-1.Implementare il pg che esce dalla porta in da cui arriva -M
-2.Implementare dentro MapGen la creazione dei nemici che viene memorizzata in Room -L
+2.Implementare dentro MapGen la creazione dei nemici che viene memorizzata in Room -L FATTO
 3.Logica nemici (Aggiungere i valori di Vita, e danni) -M
 4.Logia pg (danni e vita) -L
 5.Logica oggetti (un solo oggetto)-S
