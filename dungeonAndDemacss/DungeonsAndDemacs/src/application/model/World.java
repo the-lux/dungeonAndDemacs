@@ -63,6 +63,7 @@ public class World {
                 blocks[c.getX()][c.getY()]=Block.ENEMY;
             }
         }
+
     }
     /* Stanze
     -1 empty
