@@ -1,6 +1,5 @@
 package application.model;
 import java.util.ArrayList;
-import java.util.Random;
 
 public  class Room {
     private boolean isStart;//Is first room
@@ -27,7 +26,7 @@ public  class Room {
         this.isEnd=false;
         this.isStart = false;
         this.nDoor = 0;
-        this.enemyArrayList = new ArrayList<>();
+        this.enemyArrayList = new ArrayList<>();// se ci sono delle stanze senza nemici non sarebbe meglio mettere una condizione?
         this.roomType = -1;
     }
     public Cordinate getDirRelativeCord(int dir){
@@ -240,5 +239,12 @@ public  class Room {
 
     public void setRoomType(int roomType) {
         this.roomType = roomType;
+    }
+
+    public boolean isAllDefeated() {
+        return enemyArrayList.isEmpty();
+    }
+    public boolean removeEnemy(Enemy e){
+        return enemyArrayList.remove(e);
     }
 }

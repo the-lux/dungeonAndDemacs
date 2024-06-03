@@ -9,15 +9,8 @@ public class World {
 
     private enum Block { EMPTY, WALL, ENEMY, CHARACTER,DOOR_UP,DOOR_DOWN, DOOR_LEFT, DOOR_RIGHT};
     private Block[][] blocks;
-
     private Character character=new Character();
-
-    private int enemyNumber;
-
-    private int enemyKilled=0;
-
     private MapGen m=new MapGen();
-
     private Room room; //stanza corrente
 
 
@@ -64,15 +57,11 @@ public class World {
         //crea il PG
         Random random=new Random(); //mi servirà per la generazione dei nemici
         blocks[character.getPlace().getX()][character.getPlace().getY()]=Block.CHARACTER;
-        //crea i nemici
-        if(room.getEnemyArrayList().isEmpty()){//TODO bisogna stare attenti in futuro pk se sconfiggiamo tutti i nemici potrebbe ricrearli se li togliamo dalla lista
+        if(room.getRoomType()>=0&&room.getRoomType()<=3&&!room.isAllDefeated()){
             for (Enemy e : room.getEnemyArrayList()){
                 Cordinate c = e.getPlace();
                 blocks[c.getX()][c.getY()]=Block.ENEMY;
             }
-        }
-        else {
-            genEnemy(room.getRoomType());
         }
     }
     /* Stanze
@@ -91,7 +80,7 @@ public class World {
     3 Torpedine
     4 Associazioni
     */
-    private void genEnemy(int type){
+    private void genEnemy(int type){//TODO trasferire nel MapGen
         Random random=new Random();
         if(type==3){
             for (int i=0; i<random.nextInt(10,15); i++){
@@ -178,7 +167,7 @@ public class World {
         return character;
     }
     public boolean roomCleaned(){
-        return enemyKilled == enemyNumber;
+        return room.isAllDefeated();
     }
     public void moveCharacter(Cordinate p){
         //controllo che la posizione sia valida, e se è così lo faccio muovere
@@ -192,13 +181,14 @@ public class World {
     public void killEnemy(Cordinate target){
         if (isEnemy(target)){
             setType(target,Block.EMPTY);
-            enemyKilled++;
+            //enemyKilled++;
+            //room.removeEnemy()
+            //TODO implementare come capisce quale eliminare
         }
     }
     public void eliminatePlayer(){
         //il personaggio non esiste più sulla mappa
         character.killCharacter();
         setType(character.getPlace(),Block.EMPTY);
-
     }
 }
