@@ -1,0 +1,15 @@
+2.Implementare dentro MapGen la creazione dei nemici che viene memorizzata in Room -L FATTO
+3.Logica nemici (Aggiungere i valori di Vita, e danni) -M
+4.Logica pg (danni e vita) -L
+5.Logica oggetti (un solo oggetto)-S
+6.Logica power UP -M
+7.Implementare Menù -L
+8.Aggiungere armi da lancio/fuoco -S
+9. Logica completamento stanze e vittoria finale da re-implementare
+10. Implementazione sprite e tracce audio
+11.Implementare lettura file per mappa
+12.implementare come capisce quale eliminare
+
+
+---------------------------------------------------------------
+2.Progettare HUD (barra vita, minimappa, ecc,)-S
