@@ -65,27 +65,51 @@ public class World {
         Random random=new Random(); //mi servirà per la generazione dei nemici
         blocks[character.getPlace().getX()][character.getPlace().getY()]=Block.CHARACTER;
         //crea i nemici
-        if(room.getSizeEnemyArrayList()>0){
+        if(room.getEnemyArrayList().isEmpty()){//TODO bisogna stare attenti in futuro pk se sconfiggiamo tutti i nemici potrebbe ricrearli se li togliamo dalla lista
             for (Enemy e : room.getEnemyArrayList()){
                 Cordinate c = e.getPlace();
                 blocks[c.getX()][c.getY()]=Block.ENEMY;
             }
         }
         else {
-            genEnemy(random.nextInt(10));
+            genEnemy(room.getRoomType());
         }
-
     }
-    private void genEnemy(int enemyNumber){
+    /* Stanze
+    -1 empty
+    0 Ianni
+    1 fuduli
+    2 Van Bon
+    3 minion torpedine e associazione
+    4 loot
+    5 mercante
+    */
+    /* Nemici
+    0 Ianni
+    1 fuduli
+    2 Van Bon
+    3 Torpedine
+    4 Associazioni
+    */
+    private void genEnemy(int type){
         Random random=new Random();
-        for (int i=0; i<enemyNumber; i++){
+        if(type==3){
+            for (int i=0; i<random.nextInt(10,15); i++){
+                Cordinate enemyCordinate;
+                do {
+                    enemyCordinate = new Cordinate(random.nextInt(1,blocks.length-1), random.nextInt(1,blocks.length-1));
+                }while (!isEmpty(enemyCordinate));
+                //sfrutto il do while per evitare che mi generi il nemico sovrascrivendo il personaggio
+                room.addEnemy(new Enemy (enemyCordinate, random.nextInt(3,5),i));
+                blocks[enemyCordinate.getX()][enemyCordinate.getY()]=Block.ENEMY;
+            }
+        } else if (type>=0 && type<=2) {
             Cordinate enemyCordinate;
             do {
                 enemyCordinate = new Cordinate(random.nextInt(1,blocks.length-1), random.nextInt(1,blocks.length-1));
             }while (!isEmpty(enemyCordinate));
             //sfrutto il do while per evitare che mi generi il nemico sovrascrivendo il personaggio
-            int type=random.nextInt(1,4);
-            room.addEnemy(new Enemy (enemyCordinate, type,i));
+            room.addEnemy(new Enemy (enemyCordinate, type,0));
             blocks[enemyCordinate.getX()][enemyCordinate.getY()]=Block.ENEMY;
         }
     }

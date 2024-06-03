@@ -49,7 +49,15 @@ public class MapGen {
         map[current.getX()][current.getY()].setEnd(true);//setta la stanza finale
         //TODO inserisce il boss finale
     }
-
+    /*
+    -1 empty
+    0 Ianni
+    1 fuduli
+    2 Van Bon
+    3 minion
+    4 loot
+    5 mercante
+    */
     private void genMoreRoom(int nRoom){
         while (nRoom>0&& !queue.isEmpty()){
             Cordinate current = queue.removeFirst();//ho sbagliato con remove last va messo removeFirst

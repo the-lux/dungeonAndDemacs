@@ -10,13 +10,14 @@ public  class Room {
     private final Room[]roomLink;
     private Cordinate position;
     private ArrayList<Enemy> enemyArrayList;
-    /*
+    private int roomType;
+    /* Stanze
     -1 empty
     0 Ianni
     1 fuduli
     2 Van Bon
-    3 loot
-    4 minion
+    3 minion torpedine e associazione
+    4 loot
     5 mercante
     */
 
@@ -27,6 +28,7 @@ public  class Room {
         this.isStart = false;
         this.nDoor = 0;
         this.enemyArrayList = new ArrayList<>();
+        this.roomType = -1;
     }
     public Cordinate getDirRelativeCord(int dir){
         try {
@@ -230,5 +232,13 @@ public  class Room {
             // Se viene sollevata un'eccezione, restituisco null
             return null;
         }
+    }
+
+    public int getRoomType() {
+        return roomType;
+    }
+
+    public void setRoomType(int roomType) {
+        this.roomType = roomType;
     }
 }

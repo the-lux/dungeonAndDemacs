@@ -12,6 +12,13 @@ public class Enemy {
     private int health;
     private int damage;
     private int enemyType; //ogni nemico sarà di uno specifico tipo
+    /* Nemici
+    0 Ianni
+    1 fuduli
+    2 Van Bon
+    3 Torpedine
+    4 Associazioni
+    */
     private final int reference; //id che uso per riferirmi a quello specifico nemico in un gruppo di nemici;
 
     public Enemy(Cordinate p, int type, int i){
