@@ -10,7 +10,6 @@ public  class Room {
     private Cordinate position;
     private ArrayList<Enemy> enemyArrayList;
     private int roomType;
-    int aaa;
     /* Stanze
     -1 empty
     0 Ianni
