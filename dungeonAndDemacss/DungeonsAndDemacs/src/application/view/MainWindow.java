@@ -26,7 +26,7 @@ public class MainWindow {
 
     }
     public static void gameHub(){
-
+        int a = 0;
     }
     public static void menuHub(){
 
