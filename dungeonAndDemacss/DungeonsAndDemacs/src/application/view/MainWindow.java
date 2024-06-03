@@ -7,7 +7,7 @@ import javax.swing.*;
 import java.awt.*;
 
 public class MainWindow {
-    public static void launch(){
+    /*public static void launch(){
         JFrame f=new JFrame();
         f.setSize(Settings.WINDOW_SIZE, Settings.WINDOW_SIZE);
         Dimension dim=Toolkit.getDefaultToolkit().getScreenSize();
@@ -21,5 +21,23 @@ public class MainWindow {
         worldPanel.addKeyListener(new CharacterListener(worldPanel));
         f.setVisible(true);
         f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    }*/
+    public static void launch(){
+
+    }
+    public static void gameHub(){
+
+    }
+    public static void menuHub(){
+
+    }
+    public static void optionHub(){
+
+    }
+    public static void exitHub(){
+
+    }
+    public static void creditsHub(){
+
     }
 }
