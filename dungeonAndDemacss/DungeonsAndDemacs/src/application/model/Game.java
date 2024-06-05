@@ -54,6 +54,9 @@ public class Game {
         }
         facing=direction;
         //aggiorno qui per non perdere il facing corretto se cambio stanza
+        if (world.isPowerUp(newP)){
+            world.usePowerUp();
+        }
         if (world.isDoor(newP)){
             world.changeRoom(newP);
             return;

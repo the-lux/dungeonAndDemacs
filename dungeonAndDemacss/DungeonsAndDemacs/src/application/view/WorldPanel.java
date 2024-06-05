@@ -48,6 +48,7 @@ public class WorldPanel extends JPanel {
                 else if (world.isDoor(p)) c= Color.MAGENTA;
                 else if (world.isEnemy(p) ){ c=Color.RED;}
                 else if (world.isCharacter(p)) {c=Color.GREEN;}
+                else if (world.isPowerUp(p)) {c=Color.CYAN;}
                 g.setColor(c);
                 if (!world.isCharacter(p)) {
                     g.fillRect(i * Settings.BLOCK_SIZE, j * Settings.BLOCK_SIZE, Settings.BLOCK_SIZE,
