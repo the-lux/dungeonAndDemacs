@@ -11,11 +11,6 @@ public class World {
     private Block[][] blocks;
 
     private Character character=new Character();
-
-    private int enemyNumber;
-
-    private int enemyKilled=0;
-
     private MapGen m=new MapGen();
 
     private Room room; //stanza corrente
@@ -193,7 +188,7 @@ public class World {
         return character;
     }
     public boolean roomCleaned(){
-        return enemyKilled == enemyNumber;
+        return room.isAllDefeated();
     }
     public void moveCharacter(Cordinate p){
         //controllo che la posizione sia valida, e se è così lo faccio muovere
@@ -207,7 +202,7 @@ public class World {
     public void killEnemy(Cordinate target){
         if (isEnemy(target)){
             setType(target,Block.EMPTY);
-            enemyKilled++;
+            room.removeEnemy(target);
         }
     }
     public void eliminatePlayer(){

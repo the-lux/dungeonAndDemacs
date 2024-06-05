@@ -254,7 +254,13 @@ public  class Room {
         return this.enemyArrayList.isEmpty();
     }
 
-    public boolean removeEnemy(Enemy e) {
-        return this.enemyArrayList.remove(e);
+    public boolean removeEnemy(Cordinate c) {
+        for (Enemy r : enemyArrayList){
+            if(r.getPlace()==c){
+                enemyArrayList.remove(r);
+                return true;
+            }
+        }
+        return false;
     }
 }
