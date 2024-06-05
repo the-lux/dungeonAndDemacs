@@ -2,7 +2,7 @@
 3.Logica nemici (Aggiungere i valori di Vita, e danni) -M
 4.Logica pg (danni e vita) -L
 5.Logica oggetti (un solo oggetto)-S
-6.Logica power UP eeeeee -M
+6.Logica power UP -M
 7.Implementare Menù -L
 8.Aggiungere armi da lancio/fuoco -S
 9. Logica completamento stanze e vittoria finale da re-implementare
