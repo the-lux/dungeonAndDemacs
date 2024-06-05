@@ -11,6 +11,7 @@ public  class Room {
     private Cordinate position;
     private ArrayList<Enemy> enemyArrayList;
     private int roomType;
+    private PowerUp pUp;
     /* Stanze
     -1 empty
     0 Ianni
@@ -240,5 +241,13 @@ public  class Room {
 
     public void setRoomType(int roomType) {
         this.roomType = roomType;
+    }
+
+    public PowerUp getpUp() {
+        return pUp;
+    }
+
+    public void setpUp(PowerUp pUp) {
+        this.pUp = pUp;
     }
 }
