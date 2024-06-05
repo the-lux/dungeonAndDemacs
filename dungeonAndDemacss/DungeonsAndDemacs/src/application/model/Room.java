@@ -250,4 +250,11 @@ public  class Room {
     public void setpUp(PowerUp pUp) {
         this.pUp = pUp;
     }
+    public boolean isAllDefeated() {
+        return this.enemyArrayList.isEmpty();
+    }
+
+    public boolean removeEnemy(Enemy e) {
+        return this.enemyArrayList.remove(e);
+    }
 }
