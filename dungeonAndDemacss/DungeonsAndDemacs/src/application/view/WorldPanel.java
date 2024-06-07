@@ -31,11 +31,13 @@ public class WorldPanel extends JPanel {
             message="Bocciato :)"+" Premi n per riprovare!";
             drawEnd(g, message);
             return;
+
         } else if (game.win()) {
+            /*
             drawEnd(g, "Ti sei laureato! Premi n per ricominciare");
             return;
+            */
         }
-
 
         World world = game.getWorld();
         for (int i = 0; i < world.getSize(); i++) {
