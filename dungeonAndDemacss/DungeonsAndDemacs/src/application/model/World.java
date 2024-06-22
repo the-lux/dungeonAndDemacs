@@ -7,10 +7,12 @@ import java.util.Random;
 
 public class World {
 
-    private enum Block { EMPTY, WALL, ENEMY, CHARACTER,DOOR_UP,DOOR_DOWN, DOOR_LEFT, DOOR_RIGHT};
+    private enum Block { EMPTY, WALL, ENEMY, CHARACTER,DOOR_UP,DOOR_DOWN, DOOR_LEFT, DOOR_RIGHT, POWERUP};
     private Block[][] blocks;
+
     private Character character=new Character();
     private MapGen m=new MapGen();
+
     private Room room; //stanza corrente
 
 
@@ -55,15 +57,28 @@ public class World {
             direzione++;
         }
         //crea il PG
-        Random random=new Random(); //mi servirà per la generazione dei nemici
         blocks[character.getPlace().getX()][character.getPlace().getY()]=Block.CHARACTER;
-        if(room.getRoomType()>=0&&room.getRoomType()<=3&&!room.isAllDefeated()){
+        //crea i nemici
+        if(room.getEnemyArrayList().isEmpty()){//TODO bisogna stare attenti in futuro pk se sconfiggiamo tutti i nemici potrebbe ricrearli se li togliamo dalla lista
             for (Enemy e : room.getEnemyArrayList()){
                 Cordinate c = e.getPlace();
                 blocks[c.getX()][c.getY()]=Block.ENEMY;
             }
         }
-
+        else {
+            genEnemy(room.getRoomType());
+        }
+        Random rand=new Random();
+        int chance=rand.nextInt(0,100); //simulo una probabilità del 10%
+        if (chance < 10){
+            Cordinate powerUpPlace;
+            do {
+                powerUpPlace= new Cordinate(rand.nextInt(1, blocks.length-1),rand.nextInt(1, blocks.length-1));
+            } while (isOccupied(powerUpPlace));
+            int type=rand.nextInt(1,4);
+            r.setpUp(new PowerUp(type));
+            blocks [powerUpPlace.getX()][powerUpPlace.getY()]=Block.POWERUP;
+        }
     }
     /* Stanze
     -1 empty
@@ -81,7 +96,7 @@ public class World {
     3 Torpedine
     4 Associazioni
     */
-    private void genEnemy(int type){//TODO trasferire nel MapGen
+    private void genEnemy(int type){
         Random random=new Random();
         if(type==3){
             for (int i=0; i<random.nextInt(10,15); i++){
@@ -147,6 +162,7 @@ public class World {
     public boolean isLeftDoor(Cordinate p) {return isType(p,Block.DOOR_LEFT);}
     public boolean isUpDoor (Cordinate p) {return isType(p,Block.DOOR_UP);}
     public boolean isDownDoor(Cordinate p) {return isType(p,Block.DOOR_DOWN);}
+    public boolean isPowerUp (Cordinate p) {return isType(p,Block.POWERUP);}
     public boolean isDoor(Cordinate p){
         return (isRightDoor(p)|| isUpDoor(p) || isDownDoor(p)||isLeftDoor(p));
     }
@@ -154,6 +170,10 @@ public class World {
 
     private boolean isInvalidPosition(Cordinate p) {
         return (p.getX() < 0 || p.getX() >= blocks.length || p.getY() < 0 || p.getY() >= blocks.length);
+    }
+    public boolean isOccupied(Cordinate p){
+        //viene usata dalla generazione dei powerup
+        return isCharacter(p) || isDoor (p) || isEnemy(p) || isWall(p);
     }
     public int getSize() {
         return blocks.length;
@@ -182,14 +202,16 @@ public class World {
     public void killEnemy(Cordinate target){
         if (isEnemy(target)){
             setType(target,Block.EMPTY);
-            //enemyKilled++;
-            //room.removeEnemy()
-            //TODO implementare come capisce quale eliminare
+            room.removeEnemy(target);
         }
     }
     public void eliminatePlayer(){
         //il personaggio non esiste più sulla mappa
         character.killCharacter();
         setType(character.getPlace(),Block.EMPTY);
+
+    }
+    public void usePowerUp(){
+        room.getpUp().effect();
     }
 }

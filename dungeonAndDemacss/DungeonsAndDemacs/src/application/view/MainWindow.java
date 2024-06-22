@@ -16,8 +16,8 @@ public class MainWindow {
         f.add(worldPanel);
         f.setUndecorated(true);
         worldPanel.setFocusable(true);
-        JOptionPane.showMessageDialog(f, "Press n to start a new game"+System.lineSeparator()+ "Press q to quit"+System.lineSeparator()+"Move with arrows"
-                +System.lineSeparator()+"Press a to attack(melee)", "Istruzioni", JOptionPane.INFORMATION_MESSAGE);
+        JOptionPane.showMessageDialog(f, "Press n to start a new game"+System.lineSeparator()+ "Press q to quit"+System.lineSeparator()+"Move with WASD"
+                +System.lineSeparator()+"Press a to attack(melee)"+System.lineSeparator()+"Change facing direction with arrows", "Istruzioni", JOptionPane.INFORMATION_MESSAGE);
         worldPanel.addKeyListener(new CharacterListener(worldPanel));
         f.setVisible(true);
         f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

@@ -7,8 +7,6 @@ public class Game {
     public final static int MOVE_UP = 2;
     public final static int MOVE_DOWN = 3;
 
-    private int facing=0;
-
     private static Game game = null;
 
     private boolean win;
@@ -38,6 +36,10 @@ public class Game {
         return win;
     }
     public boolean isAlive() {return world.getCharacter().isAlive();}
+    public void updateFacing(int direction){
+        //System.out.println("Sto cambiando direzione in:"+ direction); stampa provvisoria per debug
+        world.getCharacter().changeFacing(direction);
+    }
     public void move(int direction){
         Cordinate newP = switch (direction) {
             case MOVE_RIGHT -> new Cordinate(world.getCharacter().getPlace().getX() + 1, world.getCharacter().getPlace().getY());
@@ -52,8 +54,10 @@ public class Game {
         if (world.isEnemy(newP)){
             world.eliminatePlayer();
         }
-        facing=direction;
         //aggiorno qui per non perdere il facing corretto se cambio stanza
+        if (world.isPowerUp(newP)){
+            world.usePowerUp();
+        }
         if (world.isDoor(newP)){
             world.changeRoom(newP);
             return;
@@ -65,7 +69,7 @@ public class Game {
     }
     public void meleeAttack() {
         Cordinate target=world.getCharacter().getPlace(); //ricavo la posizione dell'attacco
-        switch(facing){
+        switch(world.getCharacter().getFacing()){
             case MOVE_RIGHT->target=new Cordinate(target.getX()+1, target.getY());
             case MOVE_LEFT ->target=new Cordinate(target.getX()-1, target.getY());
             case MOVE_DOWN ->target=new Cordinate(target.getX(), target.getY()+1);
