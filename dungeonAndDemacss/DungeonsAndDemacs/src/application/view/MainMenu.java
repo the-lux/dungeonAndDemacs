@@ -10,7 +10,7 @@ public class MainMenu extends JFrame {
         this.setSize(Settings.WINDOW_SIZE, Settings.WINDOW_SIZE);
         Dimension dim=Toolkit.getDefaultToolkit().getScreenSize();
         this.setLocation(dim.width/2-getSize().width/2, dim.height/2-getSize().height/2);
-        optionPanel m = new optionPanel();
+        optionAudioPanel m = new optionAudioPanel();
         add(m);
         setUndecorated(true);
         m.setFocusable(true);
