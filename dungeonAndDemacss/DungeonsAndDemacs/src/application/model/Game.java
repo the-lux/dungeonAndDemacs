@@ -6,6 +6,7 @@ public class Game {
     public final static int MOVE_LEFT = 1;
     public final static int MOVE_UP = 2;
     public final static int MOVE_DOWN = 3;
+    public int speed = 1;
 
     private static Game game = null;
 
@@ -42,10 +43,10 @@ public class Game {
     }
     public void move(int direction){
         Cordinate newP = switch (direction) {
-            case MOVE_RIGHT -> new Cordinate(world.getCharacter().getPlace().getX() + 1, world.getCharacter().getPlace().getY());
-            case MOVE_LEFT -> new Cordinate(world.getCharacter().getPlace().getX() - 1, world.getCharacter().getPlace().getY());
-            case MOVE_UP -> new Cordinate(world.getCharacter().getPlace().getX() , world.getCharacter().getPlace().getY()-1);
-            case MOVE_DOWN ->new Cordinate(world.getCharacter().getPlace().getX() , world.getCharacter().getPlace().getY()+1);
+            case MOVE_RIGHT -> new Cordinate(world.getCharacter().getPlace().getX() + speed, world.getCharacter().getPlace().getY());
+            case MOVE_LEFT -> new Cordinate(world.getCharacter().getPlace().getX() - speed, world.getCharacter().getPlace().getY());
+            case MOVE_UP -> new Cordinate(world.getCharacter().getPlace().getX() , world.getCharacter().getPlace().getY()-speed);
+            case MOVE_DOWN ->new Cordinate(world.getCharacter().getPlace().getX() , world.getCharacter().getPlace().getY()+speed);
             default -> null;
         };
         //if per evitare comportamenti anomali della funzione
