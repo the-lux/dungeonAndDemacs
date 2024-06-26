@@ -14,7 +14,8 @@ public class CharacterListener extends KeyAdapter {
 
     @Override
     public void keyPressed(KeyEvent e) {
-        if(e.getKeyCode()== KeyEvent.VK_A){
+        if(e.getKeyCode()== KeyEvent.VK_SPACE){
+            System.out.println("Sto attaccando");
             Game.getGame().meleeAttack();
         }
         if(e.getKeyCode() == KeyEvent.VK_Q)
@@ -26,11 +27,19 @@ public class CharacterListener extends KeyAdapter {
             //enemyPanel.repaint(); superfluo perché in codice attuale la repaint viene SEMPRE chiamata alla fine
            //return;
         }
+
         switch(e.getKeyCode()) {
-            case KeyEvent.VK_LEFT -> Game.getGame().move(Game.MOVE_LEFT);
-            case KeyEvent.VK_RIGHT -> Game.getGame().move(Game.MOVE_RIGHT);
-            case KeyEvent.VK_DOWN -> Game.getGame().move(Game.MOVE_DOWN);
-            case KeyEvent.VK_UP -> Game.getGame().move(Game.MOVE_UP);
+            case KeyEvent.VK_LEFT -> Game.getGame().updateFacing(Game.MOVE_LEFT);
+            case KeyEvent.VK_RIGHT -> Game.getGame().updateFacing(Game.MOVE_RIGHT);
+            case KeyEvent.VK_DOWN -> Game.getGame().updateFacing(Game.MOVE_DOWN);
+            case KeyEvent.VK_UP -> Game.getGame().updateFacing(Game.MOVE_UP);
+        }
+
+        switch(e.getKeyCode()){
+            case KeyEvent.VK_W ->Game.getGame().move(Game.MOVE_UP);
+            case KeyEvent.VK_A ->Game.getGame().move(Game.MOVE_LEFT);
+            case KeyEvent.VK_S ->Game.getGame().move(Game.MOVE_DOWN);
+            case KeyEvent.VK_D ->Game.getGame().move(Game.MOVE_RIGHT);
         }
         worldPanel.repaint();
 

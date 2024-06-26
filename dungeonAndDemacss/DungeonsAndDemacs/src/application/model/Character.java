@@ -5,6 +5,7 @@ public class Character {
     private boolean alive=true;
     private int health;
     private int damage;
+    private int facing=0; //la direzione a cui è rivolto
     public Character(){};
     public Character (Cordinate p){
         place=p;
@@ -15,13 +16,18 @@ public class Character {
     public Cordinate getPlace(){
         return place;
     }
+    public int getFacing() {
+        return facing;
+    }
     public void killCharacter(){
         alive=false;
     }
     public boolean isAlive() {
         return alive;
     }
-
+    public void changeFacing(int direction){
+        facing=direction;
+    }
     public int getDamage() {
         return damage;
     }
