@@ -14,7 +14,7 @@ public class CharacterListener extends KeyAdapter {
 
     @Override
     public void keyPressed(KeyEvent e) {
-        if(e.getKeyCode()== KeyEvent.VK_A){
+        if(e.getKeyCode()== KeyEvent.VK_V){
             Game.getGame().meleeAttack();
         }
         if(e.getKeyCode() == KeyEvent.VK_Q)
