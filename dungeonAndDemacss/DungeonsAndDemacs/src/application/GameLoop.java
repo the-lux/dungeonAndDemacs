@@ -19,7 +19,6 @@ public class GameLoop {
             return;
         executorService = Executors.newSingleThreadScheduledExecutor();
         executorService.scheduleAtFixedRate(controller::update, 0, 800, TimeUnit.MILLISECONDS);
-        //TODO: bug quando nemico incontra il player
         //TODO: bug su multipli nemici (si rigenerano)
     }
 }

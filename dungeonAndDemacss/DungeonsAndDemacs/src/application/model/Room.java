@@ -29,7 +29,7 @@ public  class Room {
         this.isStart = false;
         this.nDoor = 0;
         this.enemyArrayList = new ArrayList<>();
-        this.roomType = 3;
+        this.roomType = 2;
     }
     public Cordinate getDirRelativeCord(int dir){
         try {

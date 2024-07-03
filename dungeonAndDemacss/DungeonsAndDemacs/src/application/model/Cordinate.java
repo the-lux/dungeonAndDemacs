@@ -38,4 +38,17 @@ public class Cordinate {
     public boolean isGreaterThan(Cordinate c){
         return this.x > c.x || this.y > c.y;
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == this) {
+            return true;
+        }
+        if (!(obj instanceof Cordinate)) {
+            return false;
+        }
+        Cordinate cord2=(Cordinate) obj;
+        return this.x==cord2.getX() && this.y==cord2.getY();
+    }
+    //TODO: Override dell'hash code?
 }

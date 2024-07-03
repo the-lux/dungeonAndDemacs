@@ -208,10 +208,12 @@ public class World {
     }
     public void manageEnemy(){
         ArrayList<Enemy> list=room.getEnemyArrayList();
+        //System.out.println("Posizione del player x"+character.getPlace().getX()+"y:"+character.getPlace().getY());
         for (Enemy e: list){
             Cordinate posizione=e.getPlace();
-            if (posizione==character.getPlace()){
-                eliminatePlayer();
+            //System.out.println("Posizione del nemico x:"+posizione.getX()+"y:"+posizione.getY());
+            if (posizione.equals(character.getPlace())){
+                this.eliminatePlayer();
             }
             else if (isEnemy(posizione)||isDoor(posizione)||isWall(posizione)||isPowerUp(posizione)){
                 e.undoMove();
