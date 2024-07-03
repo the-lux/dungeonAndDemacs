@@ -1,4 +1,5 @@
 package application.view;
+import application.GameLoop;
 import application.config.Settings;
 import application.controller.CharacterListener;
 
@@ -15,8 +16,11 @@ public class MainMenu extends JFrame {
         add(m);
         setUndecorated(true);
         m.setFocusable(true);
-        m.addKeyListener(new CharacterListener(m));
+        CharacterListener controller=new CharacterListener(m);
+        m.addKeyListener(controller);
         setVisible(true);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        GameLoop gameLoop = new GameLoop(controller);
+        gameLoop.startGame();
     }
 }

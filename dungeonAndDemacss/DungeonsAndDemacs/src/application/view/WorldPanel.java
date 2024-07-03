@@ -62,4 +62,7 @@ public class WorldPanel extends JPanel {
         }
 
     }
+    public void update(){
+        this.repaint();
+    }
 }

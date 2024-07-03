@@ -263,4 +263,9 @@ public  class Room {
         }
         return false;
     }
+    public void moveEnemy(){
+        for (Enemy e: enemyArrayList){
+            e.move();
+        }
+    }
 }
