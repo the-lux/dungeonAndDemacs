@@ -15,7 +15,7 @@ public class CharacterListener extends KeyAdapter {
     @Override
     public void keyPressed(KeyEvent e) {
         if(e.getKeyCode()== KeyEvent.VK_SPACE){
-            System.out.println("Sto attaccando");
+            //System.out.println("Sto attaccando"); stampa di debug
             Game.getGame().meleeAttack();
         }
         if(e.getKeyCode() == KeyEvent.VK_Q)

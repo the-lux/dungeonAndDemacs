@@ -59,7 +59,7 @@ public class World {
         //crea il PG
         blocks[character.getPlace().getX()][character.getPlace().getY()]=Block.CHARACTER;
         //crea i nemici
-        if(room.getEnemyArrayList().isEmpty()){//TODO bisogna stare attenti in futuro pk se sconfiggiamo tutti i nemici potrebbe ricrearli se li togliamo dalla lista
+        if(!room.getEnemyArrayList().isEmpty()){//TODO bisogna stare attenti in futuro pk se sconfiggiamo tutti i nemici potrebbe ricrearli se li togliamo dalla lista
             for (Enemy e : room.getEnemyArrayList()){
                 Cordinate c = e.getPlace();
                 blocks[c.getX()][c.getY()]=Block.ENEMY;
