@@ -78,12 +78,12 @@ public class Game {
             default-> target=null;
         }
         world.killEnemy(target);
+        //TODO: Condizione non valida, da aggiornare.
         if (world.roomCleaned()){
             win=true;
         }
     }
     public void update(){
-        world.getRoom().moveEnemy();
-        world.manageEnemy();
+        world.enemyMovement();
     }
 }

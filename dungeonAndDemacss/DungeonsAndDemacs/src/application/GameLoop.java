@@ -1,7 +1,6 @@
 package application;
 
 import application.controller.CharacterListener;
-import application.model.Character;
 
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
@@ -19,6 +18,5 @@ public class GameLoop {
             return;
         executorService = Executors.newSingleThreadScheduledExecutor();
         executorService.scheduleAtFixedRate(controller::update, 0, 800, TimeUnit.MILLISECONDS);
-        //TODO: bug su multipli nemici (si rigenerano)
     }
 }

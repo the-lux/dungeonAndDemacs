@@ -6,7 +6,6 @@ import java.util.Random;
 TODO: Ogni tipo di nemico una classe che estende Enemy
 TODO: Enemy classe astratta? (Potrebbe non convenire)
 TODO: Implementare logica dei nemici
-TODO: Assai probabile che il movimento e il comportamento dei nemici dipenda da un Thread
  */
 public class Enemy {
     private Cordinate oldPlace; //la utilizzo per salvare la vecchia posizione e annullare il movimento se questo non dovesse essere valido
@@ -57,7 +56,8 @@ public class Enemy {
     public void setPlace(Cordinate place) {
         this.place = place;
     }
-    public void move(){
+
+    public void standardMove(){
         oldPlace=place;
         Random random=new Random();
         int direction=random.nextInt(0,3);
@@ -75,6 +75,16 @@ public class Enemy {
                 this.setPlace(new Cordinate(place.getX()-1,place.getY()));
                 break;
         }
+    }
+    public void smartMove(boolean found){
+        if (found){
+            oldPlace=place;
+            System.out.println("Movimento in fase di implementazione :D");
+            //TODO:move towards player
+        } else {
+            standardMove();
+        }
+
     }
     public void undoMove(){
         place=oldPlace;

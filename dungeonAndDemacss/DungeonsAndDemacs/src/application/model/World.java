@@ -112,7 +112,7 @@ public class World {
                 enemyCordinate = new Cordinate(random.nextInt(1,blocks.length-1), random.nextInt(1,blocks.length-1));
             }while (!isEmpty(enemyCordinate));
             //sfrutto il do while per evitare che mi generi il nemico sovrascrivendo il personaggio
-            room.addEnemy(new Enemy (enemyCordinate, type,0));
+            room.addEnemy(new Enemy (enemyCordinate, 2,0));
             blocks[enemyCordinate.getX()][enemyCordinate.getY()]=Block.ENEMY;
         }
     }
@@ -199,6 +199,29 @@ public class World {
             setType(character.getPlace(),Block.CHARACTER);
         }
 
+    }
+    public void enemyMovement(){
+        ArrayList<Enemy> list=room.getEnemyArrayList();
+        for (Enemy e: list){
+            int type=e.getEnemyType();
+            if (type==1){
+                e.standardMove();
+            } else{
+                e.smartMove(checkForPlayer(e.getPlace()));
+            }
+        }
+        manageEnemy();
+    }
+    public boolean checkForPlayer(Cordinate enemyPosition){
+        //La funzione verifica che nei dintorni del nemico (un quadrato di raggio 1) ci sia il player
+        //TODO: RAGGIO DIVERSO?
+        //TODO: Probabilmente da risolvere la visione attraverso i muri
+        for (int x=enemyPosition.getX()-1; x<enemyPosition.getX()+2; x++){
+            for (int y=enemyPosition.getY()-1; y<enemyPosition.getY()+2; y++){
+                if (isCharacter(new Cordinate (x,y))) return true;
+            }
+        }
+        return false;
     }
     public void killEnemy(Cordinate target){
         if (isEnemy(target)){

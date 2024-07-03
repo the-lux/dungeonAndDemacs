@@ -9,8 +9,8 @@ import java.awt.event.KeyEvent;
 
 public class CharacterListener extends KeyAdapter {
     private final WorldPanel worldPanel;
-    public CharacterListener(WorldPanel eP){
-        this.worldPanel =eP;
+    public CharacterListener(WorldPanel wP){
+        this.worldPanel =wP;
     }
 
     @Override

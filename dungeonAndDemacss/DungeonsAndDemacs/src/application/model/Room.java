@@ -256,16 +256,11 @@ public  class Room {
 
     public boolean removeEnemy(Cordinate c) {
         for (Enemy r : enemyArrayList){
-            if(r.getPlace()==c){
+            if(r.getPlace().equals(c)){
                 enemyArrayList.remove(r);
                 return true;
             }
         }
         return false;
-    }
-    public void moveEnemy(){
-        for (Enemy e: enemyArrayList){
-            e.move();
-        }
     }
 }
