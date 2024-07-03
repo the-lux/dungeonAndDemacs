@@ -58,6 +58,7 @@ public class MapGen {
     4 loot
     5 mercante
     */
+
     private void genMoreRoom(int nRoom){
         while (nRoom>0&& !queue.isEmpty()){
             Cordinate current = queue.removeFirst();//ho sbagliato con remove last va messo removeFirst

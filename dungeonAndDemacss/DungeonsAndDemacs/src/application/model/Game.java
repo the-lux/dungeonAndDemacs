@@ -82,5 +82,8 @@ public class Game {
             win=true;
         }
     }
-
+    public void update(){
+        world.getRoom().moveEnemy();
+        world.manageEnemy();
+    }
 }

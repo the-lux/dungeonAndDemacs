@@ -1,6 +1,7 @@
 package application.controller;
 
 import application.model.Game;
+import application.model.Room;
 import application.view.WorldPanel;
 
 import java.awt.event.KeyAdapter;
@@ -15,8 +16,9 @@ public class CharacterListener extends KeyAdapter {
     @Override
     public void keyPressed(KeyEvent e) {
         if(e.getKeyCode()== KeyEvent.VK_SPACE){
-            System.out.println("Sto attaccando");
+            //System.out.println("Sto attaccando"); stampa di debug
             Game.getGame().meleeAttack();
+            //worldPanel.repaint();
         }
         if(e.getKeyCode() == KeyEvent.VK_Q)
             System.exit(0);
@@ -24,7 +26,7 @@ public class CharacterListener extends KeyAdapter {
         if(e.getKeyCode() == KeyEvent.VK_N) {
             Game.restartGame();
             worldPanel.reset();
-            //enemyPanel.repaint(); superfluo perché in codice attuale la repaint viene SEMPRE chiamata alla fine
+            //worldPanel.repaint();
            //return;
         }
 
@@ -33,6 +35,7 @@ public class CharacterListener extends KeyAdapter {
             case KeyEvent.VK_RIGHT -> Game.getGame().updateFacing(Game.MOVE_RIGHT);
             case KeyEvent.VK_DOWN -> Game.getGame().updateFacing(Game.MOVE_DOWN);
             case KeyEvent.VK_UP -> Game.getGame().updateFacing(Game.MOVE_UP);
+
         }
 
         switch(e.getKeyCode()){
@@ -41,7 +44,11 @@ public class CharacterListener extends KeyAdapter {
             case KeyEvent.VK_S ->Game.getGame().move(Game.MOVE_DOWN);
             case KeyEvent.VK_D ->Game.getGame().move(Game.MOVE_RIGHT);
         }
-        worldPanel.repaint();
+        worldPanel.repaint(); //sebbene sia chiamata in update, la chiamo anche qui per rendere più fluidi i movimenti
 
+    }
+    public void update(){
+        Game.getGame().update(); //update logico dello stato del gioco
+        worldPanel.update(); //update grafico
     }
 }

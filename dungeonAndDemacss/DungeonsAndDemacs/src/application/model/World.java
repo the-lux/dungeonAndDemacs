@@ -3,6 +3,7 @@ package application.model;
 
 import application.config.Settings;
 
+import java.util.ArrayList;
 import java.util.Random;
 
 public class World {
@@ -14,9 +15,6 @@ public class World {
     private MapGen m=new MapGen();
 
     private Room room; //stanza corrente
-
-
-
 
     public World() {
         room=m.genMap(10); //creo la mappa, carico la root nella room
@@ -59,7 +57,7 @@ public class World {
         //crea il PG
         blocks[character.getPlace().getX()][character.getPlace().getY()]=Block.CHARACTER;
         //crea i nemici
-        if(room.getEnemyArrayList().isEmpty()){//TODO bisogna stare attenti in futuro pk se sconfiggiamo tutti i nemici potrebbe ricrearli se li togliamo dalla lista
+        if(!room.getEnemyArrayList().isEmpty()){//TODO bisogna stare attenti in futuro pk se sconfiggiamo tutti i nemici potrebbe ricrearli se li togliamo dalla lista
             for (Enemy e : room.getEnemyArrayList()){
                 Cordinate c = e.getPlace();
                 blocks[c.getX()][c.getY()]=Block.ENEMY;
@@ -187,6 +185,9 @@ public class World {
     public Character getCharacter (){
         return character;
     }
+    public Room getRoom() {
+        return room;
+    }
     public boolean roomCleaned(){
         return room.isAllDefeated();
     }
@@ -203,6 +204,22 @@ public class World {
         if (isEnemy(target)){
             setType(target,Block.EMPTY);
             room.removeEnemy(target);
+        }
+    }
+    public void manageEnemy(){
+        ArrayList<Enemy> list=room.getEnemyArrayList();
+        for (Enemy e: list){
+            Cordinate posizione=e.getPlace();
+            if (posizione==character.getPlace()){
+                eliminatePlayer();
+            }
+            else if (isEnemy(posizione)||isDoor(posizione)||isWall(posizione)||isPowerUp(posizione)){
+                e.undoMove();
+            }
+            //qui metto la posizione vecchia a empty e la nuova a enemy: se il movimento risulta essere non valido
+            //oldPlace e place avranno lo stesso valore
+            setType(e.getOldPlace(),Block.EMPTY);
+            setType(e.getPlace(),Block.ENEMY);
         }
     }
     public void eliminatePlayer(){
