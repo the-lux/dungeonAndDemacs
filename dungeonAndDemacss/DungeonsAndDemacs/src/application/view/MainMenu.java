@@ -11,11 +11,12 @@ public class MainMenu extends JFrame {
         this.setSize(Settings.WINDOW_SIZE, Settings.WINDOW_SIZE);
         Dimension dim=Toolkit.getDefaultToolkit().getScreenSize();
         this.setLocation(dim.width/2-getSize().width/2, dim.height/2-getSize().height/2);
-        WorldPanel m = new WorldPanel();
+        ControlOptionPanel m = new ControlOptionPanel();
         add(m);
+        m.repaint();
         setUndecorated(true);
         m.setFocusable(true);
-        m.addKeyListener(new CharacterListener(m));
+        //m.addKeyListener(new CharacterListener(m));
         setVisible(true);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
