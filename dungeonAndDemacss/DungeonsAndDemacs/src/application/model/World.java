@@ -173,6 +173,9 @@ public class World {
         //viene usata dalla generazione dei powerup
         return isCharacter(p) || isDoor (p) || isEnemy(p) || isWall(p);
     }
+    public boolean isAlreadyUsed(Cordinate p){
+        return isEnemy(p)||isDoor(p)||isWall(p)||isPowerUp(p);
+    }
     public int getSize() {
         return blocks.length;
     }
@@ -207,7 +210,11 @@ public class World {
             if (type==1){
                 e.standardMove();
             } else{
-                e.smartMove(checkForPlayer(e.getPlace()),character.getPlace());
+                Cordinate movement=e.smartMove(checkForPlayer(e.getPlace()),character.getPlace());
+                if (isAlreadyUsed(movement)){
+                    e.undoMove();
+                    e.standardMove();
+                }
             }
         }
         manageEnemy();
@@ -237,7 +244,7 @@ public class World {
             if (posizione.equals(character.getPlace())){
                 this.eliminatePlayer();
             }
-            else if (isEnemy(posizione)||isDoor(posizione)||isWall(posizione)||isPowerUp(posizione)){
+            else if (isAlreadyUsed(posizione)){
                 e.undoMove();
             }
             //qui metto la posizione vecchia a empty e la nuova a enemy: se il movimento risulta essere non valido

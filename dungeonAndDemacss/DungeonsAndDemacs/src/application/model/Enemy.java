@@ -76,7 +76,7 @@ public class Enemy {
                 break;
         }
     }
-    public void smartMove(boolean found,Cordinate player){
+    public Cordinate smartMove(boolean found,Cordinate player){
         if (found){
             oldPlace=place; //assegnamento per poter eventualmente fare la undo
             int xPlayer= player.getX();
@@ -87,7 +87,7 @@ public class Enemy {
             //leggenda: xPlayer>xEnemy il player è a destra; yPlayer>yEnemy il player è sotto
             if (xPlayer>xEnemy){
                 if (yPlayer==yEnemy){
-                    setPlace(new Cordinate (xEnemy+1,yEnemy));
+                    setPlace(new Cordinate(xEnemy+1,yEnemy));
                 }
                 else if (yPlayer>yEnemy){
                     setPlace(new Cordinate (xEnemy+1,yEnemy+1));
@@ -109,11 +109,10 @@ public class Enemy {
                     setPlace(new Cordinate(xEnemy,yEnemy-1));
                 }
             }
-            //TODO: check walls?
         } else {
             standardMove();
         }
-
+        return place;
     }
     public void undoMove(){
         place=oldPlace;
