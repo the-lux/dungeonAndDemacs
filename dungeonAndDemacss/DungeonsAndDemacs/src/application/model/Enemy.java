@@ -63,24 +63,53 @@ public class Enemy {
         int direction=random.nextInt(0,3);
         switch (direction){
             case 0:
-                this.setPlace(new Cordinate(place.getX(), place.getY()-1));
+                setPlace(new Cordinate(place.getX(), place.getY()-1));
                 break;
             case 1:
-                this.setPlace(new Cordinate(place.getX()+1, place.getY()));
+                setPlace(new Cordinate(place.getX()+1, place.getY()));
                 break;
             case 2:
-                this.setPlace(new Cordinate(place.getX(), place.getY()+1));
+                setPlace(new Cordinate(place.getX(), place.getY()+1));
                 break;
             case 3:
-                this.setPlace(new Cordinate(place.getX()-1,place.getY()));
+                setPlace(new Cordinate(place.getX()-1,place.getY()));
                 break;
         }
     }
-    public void smartMove(boolean found){
+    public void smartMove(boolean found,Cordinate player){
         if (found){
-            oldPlace=place;
-            System.out.println("Movimento in fase di implementazione :D");
-            //TODO:move towards player
+            oldPlace=place; //assegnamento per poter eventualmente fare la undo
+            int xPlayer= player.getX();
+            int yPlayer= player.getY(); //salvo in delle variabili le cordinate x e y del player
+            int xEnemy=place.getX();
+            int yEnemy=place.getY(); //stessa cosa con la posizione del nemico
+            //il seguente corpo di if distingue i vari casi di posizione del player rispetto al nemico
+            //leggenda: xPlayer>xEnemy il player è a destra; yPlayer>yEnemy il player è sotto
+            if (xPlayer>xEnemy){
+                if (yPlayer==yEnemy){
+                    setPlace(new Cordinate (xEnemy+1,yEnemy));
+                }
+                else if (yPlayer>yEnemy){
+                    setPlace(new Cordinate (xEnemy+1,yEnemy+1));
+                } else {
+                    setPlace(new Cordinate(xEnemy+1,yEnemy-1));
+                }
+            } else if (xPlayer<xEnemy){
+                if (yPlayer==yEnemy){
+                    setPlace(new Cordinate (xEnemy-1,yEnemy));
+                } else if (yPlayer>yEnemy) {
+                    setPlace(new Cordinate (xEnemy-1,yEnemy+1));
+                } else {
+                    setPlace (new Cordinate (xEnemy-1,yEnemy-1));
+                }
+            } else {
+                if (yPlayer>yEnemy){
+                    setPlace(new Cordinate (xEnemy,yEnemy+1));
+                } else {
+                    setPlace(new Cordinate(xEnemy,yEnemy-1));
+                }
+            }
+            //TODO: check walls?
         } else {
             standardMove();
         }
