@@ -221,12 +221,16 @@ public class World {
     }
     public boolean checkForPlayer(Cordinate enemyPosition){
         //La funzione verifica che nei dintorni del nemico (un quadrato di raggio 1) ci sia il player
-        //TODO: Probabilmente da risolvere la visione attraverso i muri
-        for (int x=enemyPosition.getX()-1; x<=enemyPosition.getX()+1; x++){
-            for (int y=enemyPosition.getY()-1; y<=enemyPosition.getY()+1; y++){
-                if (isCharacter(new Cordinate (x,y))) return true;
-            }
+        int raggio=1;
+        //se raggio=1 non ho problemi coi muri, diversamente devo pensare un meccanismo per impedirmi di vedere attraverso
+            for (int x=enemyPosition.getX()-raggio; x<=enemyPosition.getX()+raggio; x++) {
+                for (int y = enemyPosition.getY() - raggio; y <= enemyPosition.getY() + raggio; y++) {
+                    if (isCharacter(new Cordinate(x, y))) return true;
+                }
+
+
         }
+
         return false;
     }
     public void killEnemy(Cordinate target){
