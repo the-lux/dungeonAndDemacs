@@ -225,7 +225,7 @@ public class World {
     public void bossMovement() {
         Boss boss = room.getBoss();
         if (!boss.isAlive()) return;
-        boss.smartMove(character.getPlace());
+        boss.move(character.getPlace());
         Cordinate posizione = room.getBoss().getPlace();
         if (posizione.equals(character.getPlace())) {
             System.out.println("Vita attuale:" + character.getHealth());
