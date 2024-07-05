@@ -196,7 +196,7 @@ public class World {
     }
     public void moveCharacter(Cordinate p){
         //controllo che la posizione sia valida, e se è così lo faccio muovere
-        if (!isInvalidPosition(p) && !isWall(p)  ){
+        if (!isInvalidPosition(p) && !isWall(p)  && !isEnemy(p) ){
             setType(character.getPlace(),Block.EMPTY);
             character.changePosition(p);
             setType(character.getPlace(),Block.CHARACTER);
@@ -254,7 +254,14 @@ public class World {
             Cordinate posizione=e.getPlace();
             //System.out.println("Posizione del nemico x:"+posizione.getX()+"y:"+posizione.getY());
             if (posizione.equals(character.getPlace())){
-                this.eliminatePlayer();
+                System.out.println("Vita attuale:"+character.getHealth());
+                character.updateHealth(-1);
+                System.out.println("Vita dopo il contatto:"+character.getHealth());
+                if (character.getHealth() <= 0){
+                    this.eliminatePlayer();
+                } else {
+                    e.undoMove();
+                }
             }
             else if (isAlreadyUsed(posizione)){
                 e.undoMove();

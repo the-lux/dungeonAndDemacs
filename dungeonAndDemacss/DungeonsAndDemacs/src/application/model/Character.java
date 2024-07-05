@@ -6,9 +6,12 @@ public class Character {
     private int health;
     private int damage;
     private int facing=0; //la direzione a cui è rivolto
-    public Character(){};
+    public Character(){
+        health=3;
+    };
     public Character (Cordinate p){
         place=p;
+        health=3;
     }
     public void changePosition(Cordinate p){
         place=p;
@@ -40,7 +43,7 @@ public class Character {
         return health;
     }
 
-    public void setHealth(int health) {
-        this.health = health;
-    }
+   public void updateHealth(int hit){
+        health+=hit;
+   }
 }

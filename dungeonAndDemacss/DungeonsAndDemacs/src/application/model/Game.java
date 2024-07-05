@@ -53,7 +53,12 @@ public class Game {
         if (newP == null)
             return;
         if (world.isEnemy(newP)){
-            world.eliminatePlayer();
+            System.out.println("Vita attuale:"+world.getCharacter().getHealth());
+            world.getCharacter().updateHealth(-1);
+            System.out.println("Nuova vita:"+world.getCharacter().getHealth());
+            if (world.getCharacter().getHealth()<=0) {
+                world.eliminatePlayer();
+            }
         }
         //aggiorno qui per non perdere il facing corretto se cambio stanza
         if (world.isPowerUp(newP)){
