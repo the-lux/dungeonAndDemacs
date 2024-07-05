@@ -112,7 +112,7 @@ public class World {
                 enemyCordinate = new Cordinate(random.nextInt(1,blocks.length-1), random.nextInt(1,blocks.length-1));
             }while (!isEmpty(enemyCordinate));
             //sfrutto il do while per evitare che mi generi il nemico sovrascrivendo il personaggio
-            room.addEnemy(new Enemy (enemyCordinate, 2,0));
+            room.addEnemy(new Enemy (enemyCordinate, 0,0));
             blocks[enemyCordinate.getX()][enemyCordinate.getY()]=Block.ENEMY;
         }
     }
@@ -210,25 +210,33 @@ public class World {
             if (type==1){
                 e.standardMove();
             } else{
-                Cordinate movement=e.smartMove(checkForPlayer(e.getPlace()),character.getPlace());
-                if (isAlreadyUsed(movement)){
-                    e.undoMove();
+                if (checkForPlayer(e.getPlace(),e.getView())){
+                    e.smartMove(character.getPlace());
+                } else {
                     e.standardMove();
                 }
+
             }
         }
         manageEnemy();
     }
-    public boolean checkForPlayer(Cordinate enemyPosition){
-        //La funzione verifica che nei dintorni del nemico (un quadrato di raggio 1) ci sia il player
-        int raggio=1;
+
+    public boolean checkForPlayer(Cordinate enemyPosition,int raggio){
+        //La funzione verifica che nei dintorni del nemico ci sia il player
+        //qui inizializzo il punto d'inizio e fine di ricerca, impostando lower bound e upper bound per non sforare.
+        int beginX=enemyPosition.getX()-raggio;
+        if (beginX < 0) beginX = 0;
+        int beginY= enemyPosition.getY()-raggio;
+        if (beginY<0) beginY = 0;
+        int endX=enemyPosition.getX()+raggio;
+        if (endX > blocks.length-1) endX = blocks.length - 1;
+        int endY= enemyPosition.getY()+raggio;
+        if (endY > blocks.length-1) endY = blocks.length - 1;
         //se raggio=1 non ho problemi coi muri, diversamente devo pensare un meccanismo per impedirmi di vedere attraverso
-            for (int x=enemyPosition.getX()-raggio; x<=enemyPosition.getX()+raggio; x++) {
-                for (int y = enemyPosition.getY() - raggio; y <= enemyPosition.getY() + raggio; y++) {
-                    if (isCharacter(new Cordinate(x, y))) return true;
+        for (int x=beginX; x<=endX; x++) {
+            for (int y =beginY; y <= endY; y++) {
+                if (isCharacter(new Cordinate(x, y))) return true;
                 }
-
-
         }
 
         return false;

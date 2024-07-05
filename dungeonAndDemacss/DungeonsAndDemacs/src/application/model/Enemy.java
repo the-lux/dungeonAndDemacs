@@ -3,9 +3,7 @@ package application.model;
 import java.util.Random;
 
 /*
-TODO: Ogni tipo di nemico una classe che estende Enemy
-TODO: Enemy classe astratta? (Potrebbe non convenire)
-TODO: Implementare logica dei nemici
+TODO: Ogni tipo di nemico una classe che estende Enemy?
  */
 public class Enemy {
     private Cordinate oldPlace; //la utilizzo per salvare la vecchia posizione e annullare il movimento se questo non dovesse essere valido
@@ -14,6 +12,7 @@ public class Enemy {
     private int health;
     private int damage;
     private int enemyType; //ogni nemico sarà di uno specifico tipo
+    private int view;
     /* Nemici
     0 Ianni
     1 fuduli
@@ -28,6 +27,14 @@ public class Enemy {
         place=p;
         enemyType=type;
         reference=i;
+        if (type!=1){
+            view=3;
+        } else {
+            view=0;
+        }
+    }
+    public int getView(){
+        return view;
     }
     public boolean isAlive() {
         return alive;
@@ -76,9 +83,8 @@ public class Enemy {
                 break;
         }
     }
-    public Cordinate smartMove(boolean found,Cordinate player){
-        if (found){
-            oldPlace=place; //assegnamento per poter eventualmente fare la undo
+    public void smartMove(Cordinate player){
+            oldPlace=place;//assegnamento per poter eventualmente fare la undo
             int xPlayer= player.getX();
             int yPlayer= player.getY(); //salvo in delle variabili le cordinate x e y del player
             int xEnemy=place.getX();
@@ -109,10 +115,7 @@ public class Enemy {
                     setPlace(new Cordinate(xEnemy,yEnemy-1));
                 }
             }
-        } else {
-            standardMove();
-        }
-        return place;
+        //return place;
     }
     public void undoMove(){
         place=oldPlace;

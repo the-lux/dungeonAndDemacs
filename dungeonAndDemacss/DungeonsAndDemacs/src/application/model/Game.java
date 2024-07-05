@@ -6,11 +6,11 @@ public class Game {
     public final static int MOVE_LEFT = 1;
     public final static int MOVE_UP = 2;
     public final static int MOVE_DOWN = 3;
-    public int speed = 1;
+    public static int speed = 1;
 
     private static Game game = null;
 
-    private boolean win;
+    private static boolean win;
     private final World world;
 
     private Game() {

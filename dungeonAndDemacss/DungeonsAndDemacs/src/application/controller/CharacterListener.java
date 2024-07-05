@@ -44,7 +44,7 @@ public class CharacterListener extends KeyAdapter {
             case KeyEvent.VK_S ->Game.getGame().move(Game.MOVE_DOWN);
             case KeyEvent.VK_D ->Game.getGame().move(Game.MOVE_RIGHT);
         }
-        worldPanel.repaint(); //sebbene sia chiamata in update, la chiamo anche qui per rendere più fluidi i movimenti
+        worldPanel.repaint();//sebbene sia chiamata in update, la chiamo anche qui per rendere più fluidi i movimenti
 
     }
     public void update(){

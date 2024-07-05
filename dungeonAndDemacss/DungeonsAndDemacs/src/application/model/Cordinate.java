@@ -48,7 +48,7 @@ public class Cordinate {
             return false;
         }
         Cordinate cord2=(Cordinate) obj;
-        return this.x==cord2.getX() && this.y==cord2.getY();
+        return this.x==cord2.x && this.y==cord2.y;
     }
     //TODO: Override dell'hash code?
 }
