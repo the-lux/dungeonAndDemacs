@@ -64,7 +64,7 @@ public class Game {
         if (world.isPowerUp(newP)){
             world.usePowerUp();
         }
-        if (world.isDoor(newP)){
+        if (world.isDoor(newP) && world.getRoom().isCompleted()){
             world.changeRoom(newP);
             return;
         }

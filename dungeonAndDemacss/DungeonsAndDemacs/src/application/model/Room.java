@@ -12,6 +12,7 @@ public  class Room {
     private ArrayList<Enemy> enemyArrayList;
     private int roomType;
     private PowerUp pUp;
+    private boolean completed;
     /* Stanze
     -1 empty
     0 Ianni
@@ -29,7 +30,8 @@ public  class Room {
         this.isStart = false;
         this.nDoor = 0;
         this.enemyArrayList = new ArrayList<>();
-        this.roomType = 2;
+        this.roomType = 3;
+        this.completed=false;
     }
     public Cordinate getDirRelativeCord(int dir){
         try {
@@ -254,10 +256,17 @@ public  class Room {
         return this.enemyArrayList.isEmpty();
     }
 
+    public boolean isCompleted() {
+        return completed;
+    }
+
     public boolean removeEnemy(Cordinate c) {
         for (Enemy r : enemyArrayList){
             if(r.getPlace().equals(c)){
                 enemyArrayList.remove(r);
+                if (enemyArrayList.isEmpty()) {
+                    completed=true;
+                }
                 return true;
             }
         }

@@ -95,9 +95,10 @@ public class World {
     4 Associazioni
     */
     private void genEnemy(int type){
+        if (room.isCompleted()) return;
         Random random=new Random();
         if(type==3){
-            for (int i=0; i<random.nextInt(10,15); i++){
+            for (int i=0; i<random.nextInt(2,4); i++){
                 Cordinate enemyCordinate;
                 do {
                     enemyCordinate = new Cordinate(random.nextInt(1,blocks.length-1), random.nextInt(1,blocks.length-1));
@@ -196,7 +197,7 @@ public class World {
     }
     public void moveCharacter(Cordinate p){
         //controllo che la posizione sia valida, e se è così lo faccio muovere
-        if (!isInvalidPosition(p) && !isWall(p)  && !isEnemy(p) ){
+        if (!isInvalidPosition(p) && !isWall(p)  && !isEnemy(p) && !(isDoor(p) && !room.isCompleted()) ){
             setType(character.getPlace(),Block.EMPTY);
             character.changePosition(p);
             setType(character.getPlace(),Block.CHARACTER);
