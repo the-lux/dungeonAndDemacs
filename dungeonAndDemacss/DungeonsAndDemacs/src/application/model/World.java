@@ -8,7 +8,7 @@ import java.util.Random;
 
 public class World {
 
-    private enum Block { EMPTY, WALL, ENEMY, CHARACTER,DOOR_UP,DOOR_DOWN, DOOR_LEFT, DOOR_RIGHT, POWERUP};
+    private enum Block { EMPTY, WALL, STANDARD_ENEMY, CHARACTER,DOOR_UP,DOOR_DOWN, DOOR_LEFT, DOOR_RIGHT, POWERUP,SMART_ENEMY};
     private Block[][] blocks;
 
     private Character character=new Character();
@@ -57,10 +57,10 @@ public class World {
         //crea il PG
         blocks[character.getPlace().getX()][character.getPlace().getY()]=Block.CHARACTER;
         //crea i nemici
-        if(!room.getEnemyArrayList().isEmpty()){//TODO bisogna stare attenti in futuro pk se sconfiggiamo tutti i nemici potrebbe ricrearli se li togliamo dalla lista
+        if(!room.getEnemyArrayList().isEmpty()){
             for (Enemy e : room.getEnemyArrayList()){
                 Cordinate c = e.getPlace();
-                blocks[c.getX()][c.getY()]=Block.ENEMY;
+                setEnemyBlock(c.getX(),c.getY(),e);
             }
         }
         else {
@@ -94,6 +94,17 @@ public class World {
     3 Torpedine
     4 Associazioni
     */
+    public void setEnemyBlock(int x,int y,Enemy e){
+        Cordinate p=new Cordinate(x,y);
+        if (isInvalidPosition(new Cordinate (x,y))) {
+            throw new IllegalArgumentException("Invalid position " + p);
+        }
+        if (e.getEnemyType()==0){
+            blocks[x][y]=Block.SMART_ENEMY;
+        } else {
+            blocks[x][y]=Block.STANDARD_ENEMY;
+        }
+    }
     private void genEnemy(int type){
         if (room.isCompleted()) return;
         Random random=new Random();
@@ -103,18 +114,20 @@ public class World {
                 do {
                     enemyCordinate = new Cordinate(random.nextInt(1,blocks.length-1), random.nextInt(1,blocks.length-1));
                 }while (!isEmpty(enemyCordinate));
+                Enemy e=new Enemy(enemyCordinate,random.nextInt(0,2),i);
                 //sfrutto il do while per evitare che mi generi il nemico sovrascrivendo il personaggio
-                room.addEnemy(new Enemy (enemyCordinate, random.nextInt(3,5),i));
-                blocks[enemyCordinate.getX()][enemyCordinate.getY()]=Block.ENEMY;
+                room.addEnemy(e);
+                setEnemyBlock(enemyCordinate.getX(), enemyCordinate.getY(), e);
             }
         } else if (type>=0 && type<=2) {
             Cordinate enemyCordinate;
             do {
                 enemyCordinate = new Cordinate(random.nextInt(1,blocks.length-1), random.nextInt(1,blocks.length-1));
             }while (!isEmpty(enemyCordinate));
+            Enemy enemy=new Enemy(enemyCordinate,0,0);
             //sfrutto il do while per evitare che mi generi il nemico sovrascrivendo il personaggio
-            room.addEnemy(new Enemy (enemyCordinate, 0,0));
-            blocks[enemyCordinate.getX()][enemyCordinate.getY()]=Block.ENEMY;
+            room.addEnemy(enemy);
+            setEnemyBlock(enemyCordinate.getX(),enemyCordinate.getY(),enemy);
         }
     }
     public void changeRoom(Cordinate p){
@@ -144,11 +157,6 @@ public class World {
             throw new IllegalArgumentException("Invalid position " + p);
         blocks[p.getX()][p.getY()] = type;
     }
-    public void setEnemy(Cordinate p){
-        if(isInvalidPosition(p))
-            throw new IllegalArgumentException("Invalid position " + p);
-        blocks[p.getX()][p.getY()] = Block.ENEMY;
-    }
     public boolean isWall(Cordinate p) {
         return isType(p, Block.WALL);
     }
@@ -165,7 +173,9 @@ public class World {
     public boolean isDoor(Cordinate p){
         return (isRightDoor(p)|| isUpDoor(p) || isDownDoor(p)||isLeftDoor(p));
     }
-    public boolean isEnemy(Cordinate p){return isType(p,Block.ENEMY);}
+    public boolean isSmartEnemy(Cordinate p) {return isType(p,Block.SMART_ENEMY);}
+    public boolean isStandardEnemy(Cordinate p) {return isType(p,Block.STANDARD_ENEMY);}
+    public boolean isEnemy(Cordinate p){return isSmartEnemy(p)||isStandardEnemy(p);}
 
     private boolean isInvalidPosition(Cordinate p) {
         return (p.getX() < 0 || p.getX() >= blocks.length || p.getY() < 0 || p.getY() >= blocks.length);
@@ -270,7 +280,7 @@ public class World {
             //qui metto la posizione vecchia a empty e la nuova a enemy: se il movimento risulta essere non valido
             //oldPlace e place avranno lo stesso valore
             setType(e.getOldPlace(),Block.EMPTY);
-            setType(e.getPlace(),Block.ENEMY);
+            setEnemyBlock(e.getPlace().getX(),e.getPlace().getY(),e);
         }
     }
     public void eliminatePlayer(){

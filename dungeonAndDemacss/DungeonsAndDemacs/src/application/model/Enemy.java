@@ -11,7 +11,7 @@ public class Enemy {
     private boolean alive;
     private int health;
     private int damage;
-    private int enemyType; //ogni nemico sarà di uno specifico tipo
+    private int enemyType; //0 smart, 1 standard, 2+ boss
     private int view;
     /* Nemici
     0 Ianni
