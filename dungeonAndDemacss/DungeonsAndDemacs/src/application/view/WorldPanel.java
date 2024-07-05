@@ -33,10 +33,9 @@ public class WorldPanel extends JPanel {
             return;
 
         } else if (game.win()) {
-            /*
             drawEnd(g, "Ti sei laureato! Premi n per ricominciare");
             return;
-            */
+
         }
 
         World world = game.getWorld();
@@ -52,6 +51,7 @@ public class WorldPanel extends JPanel {
                 else if (world.isSmartEnemy(p)) {c=Color.RED;}
                 else if (world.isCharacter(p)) {c=Color.GREEN;}
                 else if (world.isPowerUp(p)) {c=Color.CYAN;}
+                else if (world.isBoss(p)) {c=Color.BLACK;}
                 g.setColor(c);
                 if (!world.isCharacter(p)) {
                     g.fillRect(i * Settings.BLOCK_SIZE, j * Settings.BLOCK_SIZE, Settings.BLOCK_SIZE,

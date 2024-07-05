@@ -52,7 +52,7 @@ public class Game {
         //if per evitare comportamenti anomali della funzione
         if (newP == null)
             return;
-        if (world.isEnemy(newP)){
+        if (world.isEnemy(newP) || world.isBoss(newP)){
             System.out.println("Vita attuale:"+world.getCharacter().getHealth());
             world.getCharacter().updateHealth(-1);
             System.out.println("Nuova vita:"+world.getCharacter().getHealth());
@@ -60,7 +60,6 @@ public class Game {
                 world.eliminatePlayer();
             }
         }
-        //aggiorno qui per non perdere il facing corretto se cambio stanza
         if (world.isPowerUp(newP)){
             world.usePowerUp();
         }
@@ -84,11 +83,14 @@ public class Game {
         }
         world.killEnemy(target);
         //TODO: Condizione non valida, da aggiornare.
-        if (world.roomCleaned()){
+        if (world.bossDefeated()){
             win=true;
         }
     }
     public void update(){
         world.enemyMovement();
+        if(world.getRoom().isBossRoom()){
+            world.bossMovement();
+        }
     }
 }

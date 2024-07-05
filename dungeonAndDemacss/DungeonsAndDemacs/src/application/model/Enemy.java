@@ -6,13 +6,13 @@ import java.util.Random;
 TODO: Ogni tipo di nemico una classe che estende Enemy?
  */
 public class Enemy {
-    private Cordinate oldPlace; //la utilizzo per salvare la vecchia posizione e annullare il movimento se questo non dovesse essere valido
-    private Cordinate place;
-    private boolean alive;
-    private int health;
-    private int damage;
-    private int enemyType; //0 smart, 1 standard, 2+ boss
-    private int view;
+    protected Cordinate oldPlace; //la utilizzo per salvare la vecchia posizione e annullare il movimento se questo non dovesse essere valido
+    protected Cordinate place;
+    protected boolean alive;
+    protected int health;
+    protected int damage;
+    protected int enemyType; //0 smart, 1 standard, 2+ boss
+    protected int view;
     /* Nemici
     0 Ianni
     1 fuduli
@@ -20,8 +20,7 @@ public class Enemy {
     3 Torpedine
     4 Associazioni
     */
-    private final int reference; //id che uso per riferirmi a quello specifico nemico in un gruppo di nemici;
-
+    protected final int reference; //id che uso per riferirmi a quello specifico nemico in un gruppo di nemici;
     public Enemy(Cordinate p, int type, int i){
         alive=true;
         place=p;
@@ -36,6 +35,11 @@ public class Enemy {
     public int getView(){
         return view;
     }
+
+    public int getHealth() {
+        return health;
+    }
+
     public boolean isAlive() {
         return alive;
     }
@@ -48,7 +52,7 @@ public class Enemy {
     }
 
     public void setEnemyType(int enemyType) {
-        if (enemyType>=1 && enemyType<3)
+        if (enemyType>=0 && enemyType<3)
             this.enemyType = enemyType;
     }
 

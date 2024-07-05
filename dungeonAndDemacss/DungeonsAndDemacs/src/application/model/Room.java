@@ -10,10 +10,15 @@ public  class Room {
     private final Room[]roomLink;
     private Cordinate position;
     private ArrayList<Enemy> enemyArrayList;
+    private Boss boss;
     private int roomType;
     private PowerUp pUp;
     private boolean completed;
     /* Stanze
+    NUOVI INDICI:
+    0=più nemici
+    1=1 nemico
+    2+=Boss(Ianni,Fuduli e Van Bon)
     -1 empty
     0 Ianni
     1 fuduli
@@ -30,7 +35,7 @@ public  class Room {
         this.isStart = false;
         this.nDoor = 0;
         this.enemyArrayList = new ArrayList<>();
-        this.roomType = 3;
+        this.roomType = 2;
         this.completed=false;
     }
     public Cordinate getDirRelativeCord(int dir){
@@ -255,6 +260,17 @@ public  class Room {
     public boolean isAllDefeated() {
         return this.enemyArrayList.isEmpty();
     }
+    public boolean isBossRoom(){
+        return (roomType>=2); //se il tipo di stanza è minore di 2 non è una stanza boss, altrimenti sì
+    }
+
+    public Boss getBoss() {
+        return boss;
+    }
+
+    public void setBoss(Boss boss) {
+        this.boss = boss;
+    }
 
     public boolean isCompleted() {
         return completed;
@@ -272,4 +288,9 @@ public  class Room {
         }
         return false;
     }
-}
+    public void defeatBoss(){
+        boss.setDead();
+        completed=true;
+    }
+    }
+

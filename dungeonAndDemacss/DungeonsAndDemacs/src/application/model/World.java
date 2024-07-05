@@ -8,7 +8,7 @@ import java.util.Random;
 
 public class World {
 
-    private enum Block { EMPTY, WALL, STANDARD_ENEMY, CHARACTER,DOOR_UP,DOOR_DOWN, DOOR_LEFT, DOOR_RIGHT, POWERUP,SMART_ENEMY};
+    private enum Block { EMPTY, WALL, STANDARD_ENEMY, CHARACTER,DOOR_UP,DOOR_DOWN, DOOR_LEFT, DOOR_RIGHT, POWERUP,SMART_ENEMY,BOSS};
     private Block[][] blocks;
 
     private Character character=new Character();
@@ -68,7 +68,7 @@ public class World {
         }
         Random rand=new Random();
         int chance=rand.nextInt(0,100); //simulo una probabilità del 10%
-        if (chance < 10){
+        if (!room.isCompleted() && chance < 10){
             Cordinate powerUpPlace;
             do {
                 powerUpPlace= new Cordinate(rand.nextInt(1, blocks.length-1),rand.nextInt(1, blocks.length-1));
@@ -108,7 +108,7 @@ public class World {
     private void genEnemy(int type){
         if (room.isCompleted()) return;
         Random random=new Random();
-        if(type==3){
+        if(type==0){
             for (int i=0; i<random.nextInt(2,4); i++){
                 Cordinate enemyCordinate;
                 do {
@@ -119,7 +119,7 @@ public class World {
                 room.addEnemy(e);
                 setEnemyBlock(enemyCordinate.getX(), enemyCordinate.getY(), e);
             }
-        } else if (type>=0 && type<=2) {
+        } else if (type == 1) {
             Cordinate enemyCordinate;
             do {
                 enemyCordinate = new Cordinate(random.nextInt(1,blocks.length-1), random.nextInt(1,blocks.length-1));
@@ -128,6 +128,11 @@ public class World {
             //sfrutto il do while per evitare che mi generi il nemico sovrascrivendo il personaggio
             room.addEnemy(enemy);
             setEnemyBlock(enemyCordinate.getX(),enemyCordinate.getY(),enemy);
+        } else if (type == 2){
+            Cordinate bossCordinate=new Cordinate(19,24);
+            room.setBoss(new Boss(bossCordinate));
+            setType(bossCordinate,Block.BOSS);
+            //Metti il boss nella room
         }
     }
     public void changeRoom(Cordinate p){
@@ -176,7 +181,7 @@ public class World {
     public boolean isSmartEnemy(Cordinate p) {return isType(p,Block.SMART_ENEMY);}
     public boolean isStandardEnemy(Cordinate p) {return isType(p,Block.STANDARD_ENEMY);}
     public boolean isEnemy(Cordinate p){return isSmartEnemy(p)||isStandardEnemy(p);}
-
+    public boolean isBoss (Cordinate p) {return isType(p,Block.BOSS);}
     private boolean isInvalidPosition(Cordinate p) {
         return (p.getX() < 0 || p.getX() >= blocks.length || p.getY() < 0 || p.getY() >= blocks.length);
     }
@@ -202,21 +207,44 @@ public class World {
     public Room getRoom() {
         return room;
     }
+    public boolean bossDefeated(){
+        return (room.isBossRoom() && room.isCompleted());
+    }
     public boolean roomCleaned(){
         return room.isAllDefeated();
     }
     public void moveCharacter(Cordinate p){
         //controllo che la posizione sia valida, e se è così lo faccio muovere
-        if (!isInvalidPosition(p) && !isWall(p)  && !isEnemy(p) && !(isDoor(p) && !room.isCompleted()) ){
+        if (!isInvalidPosition(p) && !isWall(p)  && !isEnemy(p) && !isBoss(p) && !(isDoor(p) && !room.isCompleted()) ){
             setType(character.getPlace(),Block.EMPTY);
             character.changePosition(p);
             setType(character.getPlace(),Block.CHARACTER);
         }
 
     }
+    public void bossMovement() {
+        Boss boss = room.getBoss();
+        if (!boss.isAlive()) return;
+        boss.smartMove(character.getPlace());
+        Cordinate posizione = room.getBoss().getPlace();
+        if (posizione.equals(character.getPlace())) {
+            System.out.println("Vita attuale:" + character.getHealth());
+            character.updateHealth(-1);
+            System.out.println("Vita dopo il contatto:" + character.getHealth());
+            if (character.getHealth() <= 0) {
+                this.eliminatePlayer();
+            } else {
+                boss.undoMove();
+            }
+        } else if (isAlreadyUsed(posizione)) boss.undoMove();
+        setType(boss.getOldPlace(), Block.EMPTY);
+        setType(boss.getPlace(),Block.BOSS);
+        }
+
     public void enemyMovement(){
         ArrayList<Enemy> list=room.getEnemyArrayList();
         for (Enemy e: list){
+            if (!e.isAlive()) break;
             int type=e.getEnemyType();
             if (type==1){
                 e.standardMove();
@@ -257,6 +285,15 @@ public class World {
             setType(target,Block.EMPTY);
             room.removeEnemy(target);
         }
+        if (isBoss(target)){
+            System.out.println("Vita del boss prima del colpo "+room.getBoss().getHealth());
+            room.getBoss().updateHealth(-1);
+            System.out.println("Vita del boss dopo il colpo "+room.getBoss().getHealth());
+            if (room.getBoss().getHealth() <= 0){
+                setType(target,Block.EMPTY);
+                room.defeatBoss();
+            }
+        }
     }
     public void manageEnemy(){
         ArrayList<Enemy> list=room.getEnemyArrayList();
@@ -264,18 +301,17 @@ public class World {
         for (Enemy e: list){
             Cordinate posizione=e.getPlace();
             //System.out.println("Posizione del nemico x:"+posizione.getX()+"y:"+posizione.getY());
-            if (posizione.equals(character.getPlace())){
-                System.out.println("Vita attuale:"+character.getHealth());
+            if (posizione.equals(character.getPlace())) {
+                System.out.println("Vita attuale:" + character.getHealth());
                 character.updateHealth(-1);
-                System.out.println("Vita dopo il contatto:"+character.getHealth());
-                if (character.getHealth() <= 0){
+                System.out.println("Vita dopo il contatto:" + character.getHealth());
+                if (character.getHealth() <= 0) {
                     this.eliminatePlayer();
                 } else {
                     e.undoMove();
                 }
-            }
-            else if (isAlreadyUsed(posizione)){
-                e.undoMove();
+            } else if (isAlreadyUsed(posizione)){
+                    e.undoMove();
             }
             //qui metto la posizione vecchia a empty e la nuova a enemy: se il movimento risulta essere non valido
             //oldPlace e place avranno lo stesso valore
