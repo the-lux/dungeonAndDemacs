@@ -44,7 +44,7 @@ public class WorldPanel extends JPanel {
                 Cordinate p = new Cordinate(i, j);
                 if(world.isEmpty(p))
                     continue;
-                Color c = Color.BLACK;
+                Color c = Color.WHITE;
                 if(world.isWall(p)) c = Color.DARK_GRAY;
                 else if (world.isDoor(p)) c= Color.MAGENTA;
                 else if (world.isStandardEnemy(p) ){ c=Color.ORANGE;}
@@ -52,6 +52,7 @@ public class WorldPanel extends JPanel {
                 else if (world.isCharacter(p)) {c=Color.GREEN;}
                 else if (world.isPowerUp(p)) {c=Color.CYAN;}
                 else if (world.isBoss(p)) {c=Color.BLACK;}
+                else if (world.isTrap(p)) {c=Color.LIGHT_GRAY;}
                 g.setColor(c);
                 if (!world.isCharacter(p)) {
                     g.fillRect(i * Settings.BLOCK_SIZE, j * Settings.BLOCK_SIZE, Settings.BLOCK_SIZE,

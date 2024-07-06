@@ -8,7 +8,8 @@ import java.util.Random;
 
 public class World {
 
-    private enum Block { EMPTY, WALL, STANDARD_ENEMY, CHARACTER,DOOR_UP,DOOR_DOWN, DOOR_LEFT, DOOR_RIGHT, POWERUP,SMART_ENEMY,BOSS};
+    private enum Block { EMPTY, WALL, STANDARD_ENEMY, CHARACTER,DOOR_UP,DOOR_DOWN, DOOR_LEFT, DOOR_RIGHT,
+                        POWERUP,SMART_ENEMY,BOSS,TRAP};
     private Block[][] blocks;
 
     private Character character=new Character();
@@ -73,8 +74,8 @@ public class World {
             do {
                 powerUpPlace= new Cordinate(rand.nextInt(1, blocks.length-1),rand.nextInt(1, blocks.length-1));
             } while (isOccupied(powerUpPlace));
-            int type=rand.nextInt(1,4);
-            r.setpUp(new PowerUp(type));
+            int type=rand.nextInt(1,5);
+            r.setpUp(new PowerUp(2));
             blocks [powerUpPlace.getX()][powerUpPlace.getY()]=Block.POWERUP;
         }
     }
@@ -136,6 +137,8 @@ public class World {
         }
     }
     public void changeRoom(Cordinate p){
+        if (character.isInvisible()) character.setInvisible(false);
+        if (character.isShielded()) character.setShielded(false);
         if (isUpDoor(p)){
             room=room.getIndexRoom(0);
             character.changePosition(new Cordinate(p.getX(),blocks.length-2));
@@ -182,6 +185,7 @@ public class World {
     public boolean isStandardEnemy(Cordinate p) {return isType(p,Block.STANDARD_ENEMY);}
     public boolean isEnemy(Cordinate p){return isSmartEnemy(p)||isStandardEnemy(p);}
     public boolean isBoss (Cordinate p) {return isType(p,Block.BOSS);}
+    public boolean isTrap(Cordinate p) {return isType(p,Block.TRAP);}
     private boolean isInvalidPosition(Cordinate p) {
         return (p.getX() < 0 || p.getX() >= blocks.length || p.getY() < 0 || p.getY() >= blocks.length);
     }
@@ -224,12 +228,16 @@ public class World {
     }
     public void bossMovement() {
         Boss boss = room.getBoss();
-        if (!boss.isAlive()) return;
-        boss.move(character.getPlace());
+        if (!boss.isAlive() || !character.isAlive()) return;
+        if (!character.isInvisible()){
+            boss.move(character.getPlace());
+        } else {
+            boss.standardMove();
+        }
         Cordinate posizione = room.getBoss().getPlace();
         if (posizione.equals(character.getPlace())) {
             System.out.println("Vita attuale:" + character.getHealth());
-            character.updateHealth(-1);
+            character.damageCharacter(-1);
             System.out.println("Vita dopo il contatto:" + character.getHealth());
             if (character.getHealth() <= 0) {
                 this.eliminatePlayer();
@@ -239,10 +247,14 @@ public class World {
         } else if (isAlreadyUsed(posizione)) boss.undoMove();
         setType(boss.getOldPlace(), Block.EMPTY);
         setType(boss.getPlace(),Block.BOSS);
+        if (boss.attack()){
+            setType(boss.getOldPlace(),Block.TRAP);
+        }
         }
 
     public void enemyMovement(){
         ArrayList<Enemy> list=room.getEnemyArrayList();
+        if (!character.isAlive()) return;
         for (Enemy e: list){
             if (!e.isAlive()) break;
             int type=e.getEnemyType();
@@ -261,6 +273,7 @@ public class World {
     }
 
     public boolean checkForPlayer(Cordinate enemyPosition,int raggio){
+        if (character.isInvisible()) return false;
         //La funzione verifica che nei dintorni del nemico ci sia il player
         //qui inizializzo il punto d'inizio e fine di ricerca, impostando lower bound e upper bound per non sforare.
         int beginX=enemyPosition.getX()-raggio;
@@ -303,7 +316,7 @@ public class World {
             //System.out.println("Posizione del nemico x:"+posizione.getX()+"y:"+posizione.getY());
             if (posizione.equals(character.getPlace())) {
                 System.out.println("Vita attuale:" + character.getHealth());
-                character.updateHealth(-1);
+                character.damageCharacter(-1);
                 System.out.println("Vita dopo il contatto:" + character.getHealth());
                 if (character.getHealth() <= 0) {
                     this.eliminatePlayer();
@@ -326,6 +339,27 @@ public class World {
 
     }
     public void usePowerUp(){
-        room.getpUp().effect();
+        try {
+            switch(room.getpUp().getId()){
+                case 1:
+                    System.out.println("Effetto in fase di implementazione");
+                    break;
+                case 2:
+                    character.setShielded(true);
+                    break;
+                case 3:
+                    System.out.println("Rendo il personaggio invisibile");
+                    character.setInvisible(true);
+                    break;
+                case 4:
+                    character.fullHeal();
+                    break;
+                default:
+                    throw new IllegalArgumentException();
+            }
+        } catch(IllegalArgumentException e){
+            System.out.println("L'id del powerup non è valido");
+        }
+        //TODO: Ci sarà uno switch che a seconda dell'id attiva un effetto diverso
     }
 }

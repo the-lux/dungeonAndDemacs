@@ -52,9 +52,9 @@ public class Game {
         //if per evitare comportamenti anomali della funzione
         if (newP == null)
             return;
-        if (world.isEnemy(newP) || world.isBoss(newP)){
+        if (world.isEnemy(newP) || world.isBoss(newP) || world.isTrap(newP)){
             System.out.println("Vita attuale:"+world.getCharacter().getHealth());
-            world.getCharacter().updateHealth(-1);
+            world.getCharacter().damageCharacter(-1);
             System.out.println("Nuova vita:"+world.getCharacter().getHealth());
             if (world.getCharacter().getHealth()<=0) {
                 world.eliminatePlayer();
@@ -67,7 +67,6 @@ public class Game {
             world.changeRoom(newP);
             return;
         }
-
         if (world.getCharacter().isAlive()) {
             world.moveCharacter(newP);
         }
@@ -82,7 +81,6 @@ public class Game {
             default-> target=null;
         }
         world.killEnemy(target);
-        //TODO: Condizione non valida, da aggiornare.
         if (world.bossDefeated()){
             win=true;
         }

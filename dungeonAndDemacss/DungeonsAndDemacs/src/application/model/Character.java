@@ -5,14 +5,34 @@ public class Character {
     private boolean alive=true;
     private int health;
     private int damage;
-    private int facing=0; //la direzione a cui è rivolto
+    private int facing=0;//la direzione a cui è rivolto
+    private boolean invisible=false; //serve per implementare il powerup3
+    private boolean shielded=false;
     public Character(){
         health=3;
     };
-    public Character (Cordinate p){
-        place=p;
-        health=3;
+    public boolean isInvisible() {
+        return invisible;
     }
+
+    public void setInvisible(boolean invisible) {
+        this.invisible=invisible;
+    }
+
+    public boolean isShielded() {
+        return shielded;
+    }
+
+    public void setShielded(boolean shielded) {
+        this.shielded = shielded;
+    }
+
+    /*public Character (Cordinate p){
+            place=p;
+            health=3;
+        }
+
+         */
     public void changePosition(Cordinate p){
         place=p;
     }
@@ -45,5 +65,15 @@ public class Character {
 
    public void updateHealth(int hit){
         health+=hit;
+   }
+   public void fullHeal(){
+        health=3;
+   }
+   public void damageCharacter(int hit){
+        if (shielded){
+            setShielded(false);
+        } else {
+            updateHealth(hit);
+        }
    }
 }
