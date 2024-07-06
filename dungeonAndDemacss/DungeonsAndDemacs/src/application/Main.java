@@ -1,12 +1,11 @@
 package application;
 
-import application.model.MapGen;
-import application.view.MainMenu;
-import application.view.MainWindow;
+import application.view.MainFrame;
+
 public class Main {
 
     public static void main(String[] args) {
-        MainMenu m = new MainMenu();
+        MainFrame m = new MainFrame();
         m.setVisible(true);
         //MainWindow.launch();
         /*
