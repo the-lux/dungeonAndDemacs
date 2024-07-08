@@ -1,12 +1,7 @@
 package application.view;
 
 import application.GameLoop;
-import application.controller.CharacterListener;
-import application.controller.MenuListener;
-import application.controller.OptionListener;
-
-import java.awt.*;
-import java.awt.event.ComponentListener;
+import application.controller.*;
 
 public class PanelMenager {
     private static PanelMenager instance = new PanelMenager();
@@ -46,14 +41,37 @@ public class PanelMenager {
         mainFrame.repaint();
     }
     public void goOptionControl(){
+        clear();
+        ControlOptionPanel cOP = new ControlOptionPanel();
+        cOP.setFocusable(true);
+        //todo listener op controlli
+        //todo aggiunge il controller
+        mainFrame.add(cOP);
+        mainFrame.revalidate();
+        mainFrame.repaint();
     }
     public void goCredit(){
+        //todo completare
+    }
+    public void close(){
+        //mainFrame.dispose();
+        System.exit(0);
+    }
+    public void goOptionAudio(){
+        clear();
+        optionAudioPanel op = new optionAudioPanel();
+        op.setFocusable(true);
+        OptionAudioChangeListener oAL = new OptionAudioChangeListener();
+        OptionAudioActionListener oAAL = new OptionAudioActionListener();
+        op.setController(oAL,oAAL);
+        mainFrame.add(op);
+        mainFrame.revalidate();
+        mainFrame.repaint();
+    }
+    public void goOptionLanguage(){
 
     }
-    public void exit(){
-
-    }
-    public void goOptionAdio(){
+    public void goOptionVideo(){
 
     }
     public void goWord(){

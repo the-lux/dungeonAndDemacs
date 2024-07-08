@@ -26,7 +26,7 @@ public class MenuListener implements ActionListener {
                     break;
                 case 3:
                     System.out.println("exit");
-                    PanelMenager.getInstance().exit();
+                    PanelMenager.getInstance().close();
                     break;
             }
         }

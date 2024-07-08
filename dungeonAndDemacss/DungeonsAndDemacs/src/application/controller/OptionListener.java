@@ -13,7 +13,7 @@ public class OptionListener implements ActionListener {
             switch(topButton.getType()){
                 case 0:
                     System.out.println("audio");
-                    PanelMenager.getInstance().goOptionAdio();
+                    PanelMenager.getInstance().goOptionAudio();
                     break;
                 case 1:
                     System.out.println("control");
@@ -21,11 +21,11 @@ public class OptionListener implements ActionListener {
                     break;
                 case 2:
                     System.out.println("video");
-                    //PanelMenager.getInstance();
+                    PanelMenager.getInstance().goOptionVideo();
                     break;
                 case 3:
                     System.out.println("language");
-                    //PanelMenager.getInstance();
+                    PanelMenager.getInstance().goOptionLanguage();
                     break;
                 case 4:
                     System.out.println("exit");

@@ -1,27 +1,28 @@
 package application.view;
 
+import application.controller.OptionAudioActionListener;
+import application.controller.OptionAudioChangeListener;
+
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 public class optionAudioPanel extends JPanel {
     private JLabel opzAudioLabel;
     private JLabel generalLabel;
     private JLabel musicLabel;
     private JLabel effectLabel;
-    private JSlider generalSlider;
-    private JSlider musicSlider;
-    private JSlider effectSlider;
+    private TopSlider generalSlider;
+    private TopSlider musicSlider;
+    private TopSlider effectSlider;
     private JButton exitButton;
     public optionAudioPanel () {
         opzAudioLabel = new JLabel();
-        generalSlider = new JSlider();
+        generalSlider = new TopSlider(0, 100);
         generalLabel = new JLabel();
         musicLabel = new JLabel();
-        musicSlider = new JSlider();
+        musicSlider = new TopSlider(0, 100);
         effectLabel = new JLabel();
-        effectSlider = new JSlider();
+        effectSlider = new TopSlider(0, 100);
         exitButton = new JButton();
 
         setMaximumSize(new Dimension(600, 600));
@@ -36,6 +37,7 @@ public class optionAudioPanel extends JPanel {
         generalSlider.setSnapToTicks(true);
         generalSlider.setName("generalAudio");
         generalSlider.setOpaque(false);
+        generalSlider.setType(0);
 
         generalLabel.setFont(new Font("Algerian", 0, 36));
         generalLabel.setText("Generale");
@@ -48,6 +50,7 @@ public class optionAudioPanel extends JPanel {
         musicSlider.setSnapToTicks(true);
         musicSlider.setName("generalAudio");
         musicSlider.setOpaque(false);
+        musicSlider.setType(1);
 
         effectLabel.setFont(new Font("Algerian", 0, 36));
         effectLabel.setText("Effetti");
@@ -56,6 +59,7 @@ public class optionAudioPanel extends JPanel {
         effectSlider.setSnapToTicks(true);
         effectSlider.setName("generalAudio");
         effectSlider.setOpaque(false);
+        effectSlider.setType(2);
 
         exitButton.setBackground(new Color(153, 153, 153));
         exitButton.setFont(new Font("Algerian", 0, 48));
@@ -122,5 +126,11 @@ public class optionAudioPanel extends JPanel {
         GradientPaint gp = new GradientPaint(0, 0, new Color(240,22,14), 0, height, Color.black);
         g2d.setPaint(gp);
         g2d.fillRect(0, 0, width, height);
+    }
+    public void setController(OptionAudioChangeListener optionAudioChangeListener, OptionAudioActionListener optionAudioActionListener){
+        generalSlider.addChangeListener(optionAudioChangeListener);
+        musicSlider.addChangeListener(optionAudioChangeListener);
+        effectSlider.addChangeListener(optionAudioChangeListener);
+        exitButton.addActionListener(optionAudioActionListener);
     }
 }
