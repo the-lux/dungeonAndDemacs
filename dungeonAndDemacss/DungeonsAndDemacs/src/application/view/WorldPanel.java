@@ -12,6 +12,7 @@ public class WorldPanel extends JPanel {
     public WorldPanel() {
         reset();
     }
+    CharacterView cv=new CharacterView();
     public void reset(){
         this.setBackground(Color.WHITE);
     }
@@ -22,6 +23,10 @@ public class WorldPanel extends JPanel {
         g.drawString(messagge, Settings.WINDOW_SIZE/20, Settings.WINDOW_SIZE/20);
     }
 
+    public void setCharacterView(CharacterView characterView)
+    {
+        this.cv=characterView;                               //PROVA
+    }
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
@@ -36,6 +41,12 @@ public class WorldPanel extends JPanel {
             drawEnd(g, "Ti sei laureato! Premi n per ricominciare");
             return;
 
+        }
+        if(cv!=null)
+        {
+            Image characterImage=cv.getImage();
+            int x=getWidth()/2 -characterImage.getWidth(null)/2;
+            int y=getHeight()/2 -characterImage.getHeight(null)/2; //PROVA
         }
 
         World world = game.getWorld();
@@ -57,9 +68,8 @@ public class WorldPanel extends JPanel {
                 if (!world.isCharacter(p)) {
                     g.fillRect(i * Settings.BLOCK_SIZE, j * Settings.BLOCK_SIZE, Settings.BLOCK_SIZE,
                             Settings.BLOCK_SIZE);
-                } else {
-                    g.fillOval(i*Settings.BLOCK_SIZE, j*Settings.BLOCK_SIZE, Settings.BLOCK_SIZE,Settings.BLOCK_SIZE);
                 }
+                g.drawImage(cv.getImage(),world.getCharacter().getPlace().getX()*Settings.BLOCK_SIZE,world.getCharacter().getPlace().getY()*Settings.BLOCK_SIZE,Settings.BLOCK_SIZE*2,Settings.BLOCK_SIZE*2,null);
             }
         }
 
