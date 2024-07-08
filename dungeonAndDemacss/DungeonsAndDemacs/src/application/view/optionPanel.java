@@ -1,24 +1,28 @@
 package application.view;
 
+import application.controller.OptionListener;
+
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 public class optionPanel extends JPanel {
     private JLabel optionLabel;
-    private JButton audioButton;
-    private JButton controlButton;
-    private JButton videoButton;
-    private JButton languageButton;
-    private JButton exitButton;
+    private TopButton audioButton;
+    private TopButton controlButton;
+    private TopButton exitButton;
+    //private TopButton videoButton;
+    private TopButton languageButton;
+    private final Color white;
+    private final Color black;
     public optionPanel () {
         optionLabel = new JLabel();
-        audioButton = new JButton();
-        controlButton = new JButton();
-        videoButton = new JButton();
-        languageButton = new JButton();
-        exitButton = new JButton();
+        audioButton = new TopButton(0);
+        controlButton = new TopButton(1);
+        exitButton = new TopButton(4);
+        //videoButton = new TopButton(2);
+        languageButton = new TopButton(3);
+        white = new Color(195, 195, 195);
+        black = new Color(0,0,0);
 
         setMaximumSize(new Dimension(60, 600));
         setMinimumSize(new Dimension(600, 600));
@@ -26,7 +30,8 @@ public class optionPanel extends JPanel {
         optionLabel.setFont(new Font("Algerian", 0, 70));
         optionLabel.setHorizontalAlignment(SwingConstants.CENTER);
         optionLabel.setText("Opzioni");
-        optionLabel.setForeground(Color.BLACK);
+        optionLabel.setForeground(black);
+        optionLabel.setBackground(white);
 
         audioButton.setBackground(new Color(153, 153, 153));
         audioButton.setFont(new Font("Algerian", 0, 48));
@@ -34,7 +39,8 @@ public class optionPanel extends JPanel {
         audioButton.setBorder(BorderFactory.createLineBorder(new Color(0, 0, 0), 2));
         audioButton.setHorizontalTextPosition(SwingConstants.CENTER);
         audioButton.setFocusable(false);
-        audioButton.setForeground(Color.BLACK);
+        audioButton.setForeground(black);
+        audioButton.setBackground(white);
 
         controlButton.setBackground(new Color(153, 153, 153));
         controlButton.setFont(new Font("Algerian", 0, 48));
@@ -42,33 +48,37 @@ public class optionPanel extends JPanel {
         controlButton.setBorder(BorderFactory.createLineBorder(new Color(0, 0, 0), 2));
         controlButton.setFocusable(false);
         controlButton.setHorizontalTextPosition(SwingConstants.CENTER);
-        controlButton.setForeground(Color.BLACK);
+        controlButton.setForeground(black);
+        controlButton.setBackground(white);
 
 
+        exitButton.setBackground(new Color(153, 153, 153));
+        exitButton.setFont(new Font("Algerian", 0, 48));
+        exitButton.setText("EXIT");
+        exitButton.setBorder(BorderFactory.createLineBorder(new Color(0, 0, 0), 2));
+        exitButton.setHorizontalTextPosition(SwingConstants.CENTER);
+        exitButton.setFocusable(false);
+        exitButton.setBackground(white);
+        exitButton.setForeground(black);
+
+/*
         videoButton.setBackground(new Color(153, 153, 153));
-        videoButton.setFont(new Font("Algerian", 0, 48));
-        videoButton.setText("EXIT");
+        videoButton.setFont(new Font("Algerian", 0, 48)); // NOI18N
+        videoButton.setText("Video");
         videoButton.setBorder(BorderFactory.createLineBorder(new Color(0, 0, 0), 2));
-        videoButton.setHorizontalTextPosition(SwingConstants.CENTER);
         videoButton.setFocusable(false);
-        videoButton.setForeground(Color.BLACK);
-
+        videoButton.setHorizontalTextPosition(SwingConstants.CENTER);
+        videoButton.setForeground(black);
+        videoButton.setBackground(white);*/
 
         languageButton.setBackground(new Color(153, 153, 153));
         languageButton.setFont(new Font("Algerian", 0, 48)); // NOI18N
-        languageButton.setText("Video");
+        languageButton.setText("Lingua");
         languageButton.setBorder(BorderFactory.createLineBorder(new Color(0, 0, 0), 2));
         languageButton.setFocusable(false);
         languageButton.setHorizontalTextPosition(SwingConstants.CENTER);
-        languageButton.setForeground(Color.BLACK);
-
-        exitButton.setBackground(new Color(153, 153, 153));
-        exitButton.setFont(new Font("Algerian", 0, 48)); // NOI18N
-        exitButton.setText("Lingua");
-        exitButton.setBorder(BorderFactory.createLineBorder(new Color(0, 0, 0), 2));
-        exitButton.setFocusable(false);
-        exitButton.setHorizontalTextPosition(SwingConstants.CENTER);
-        exitButton.setForeground(Color.BLACK);
+        languageButton.setForeground(black);
+        languageButton.setBackground(white);
 
 
         GroupLayout layout = new GroupLayout(this);
@@ -84,12 +94,12 @@ public class optionPanel extends JPanel {
                                 .addGroup(layout.createParallelGroup(GroupLayout.Alignment.TRAILING, false)
                                         .addComponent(audioButton, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                         .addComponent(controlButton, GroupLayout.DEFAULT_SIZE, 416, Short.MAX_VALUE)
-                                        .addComponent(languageButton, GroupLayout.DEFAULT_SIZE, 416, Short.MAX_VALUE)
-                                        .addComponent(exitButton, GroupLayout.DEFAULT_SIZE, 416, Short.MAX_VALUE))
+                                        //.addComponent(videoButton, GroupLayout.DEFAULT_SIZE, 416, Short.MAX_VALUE)
+                                        .addComponent(languageButton, GroupLayout.DEFAULT_SIZE, 416, Short.MAX_VALUE))
                                 .addGap(90, 90, 90))
                         .addGroup(layout.createSequentialGroup()
                                 .addGap(186, 186, 186)
-                                .addComponent(videoButton, GroupLayout.PREFERRED_SIZE, 228, GroupLayout.PREFERRED_SIZE)
+                                .addComponent(exitButton, GroupLayout.PREFERRED_SIZE, 228, GroupLayout.PREFERRED_SIZE)
                                 .addContainerGap(186, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -102,11 +112,11 @@ public class optionPanel extends JPanel {
                                 .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(controlButton)
                                 .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(languageButton)
+                                //.addComponent(videoButton)
                                 .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(exitButton)
+                                .addComponent(languageButton)
                                 .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 75, Short.MAX_VALUE)
-                                .addComponent(videoButton, GroupLayout.PREFERRED_SIZE, 58, GroupLayout.PREFERRED_SIZE)
+                                .addComponent(exitButton, GroupLayout.PREFERRED_SIZE, 58, GroupLayout.PREFERRED_SIZE)
                                 .addGap(20, 20, 20))
         );
     }
@@ -120,5 +130,12 @@ public class optionPanel extends JPanel {
         GradientPaint gp = new GradientPaint(0, 0, new Color(240,22,14), 0, height, Color.black);
         g2d.setPaint(gp);
         g2d.fillRect(0, 0, width, height);
+    }
+    public void setController(OptionListener optionListener){
+        audioButton.addActionListener(optionListener);
+        controlButton.addActionListener(optionListener);
+        exitButton.addActionListener(optionListener);
+        //videoButton.addActionListener(optionListener);
+        languageButton.addActionListener(optionListener);
     }
 }

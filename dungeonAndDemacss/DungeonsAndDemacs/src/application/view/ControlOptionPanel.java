@@ -26,7 +26,7 @@ public class ControlOptionPanel extends JPanel {
     private JLabel itemLabel4;
     private JLabel jLabel1;
     private JPanel jPanel1;
-    private JPanel jPanel2;
+    private GradientPanel jPanel2;
     private JScrollPane jScrollPane1;
     private JToggleButton leftLookButton;
     private JLabel leftLookLabel;
@@ -41,8 +41,10 @@ public class ControlOptionPanel extends JPanel {
     private JLabel runLabel;
     private JToggleButton upButton;
     private JLabel upLabel;
+    private Color foreGroundColor;
+    private Color backGroundColor;
     public ControlOptionPanel() {
-        jPanel2 = new JPanel();
+        jPanel2 = new GradientPanel();
         resetButton = new javax.swing.JButton();
         exitButton = new javax.swing.JButton();
         jLabel1 = new JLabel();
@@ -79,6 +81,8 @@ public class ControlOptionPanel extends JPanel {
         itemLabel3 = new JLabel();
         itemButton4 = new JToggleButton();
         itemLabel4 = new JLabel();
+        foreGroundColor = new Color(0,0,0);
+        backGroundColor= new Color(195, 195, 195);
 
         setMaximumSize(new java.awt.Dimension(600, 600));
         setMinimumSize(new java.awt.Dimension(600, 600));
@@ -87,18 +91,22 @@ public class ControlOptionPanel extends JPanel {
         setRequestFocusEnabled(false);
         setLayout(new java.awt.BorderLayout());
 
+        jPanel1.setBackground(new Color(240,22,14));
         jPanel2.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.CENTER, 10, 5));
 
-        resetButton.setBackground(new java.awt.Color(153, 153, 153));
-        resetButton.setFont(new java.awt.Font("Algerian", 0, 24)); // NOI18N
+
+        resetButton.setBackground(backGroundColor);
+        resetButton.setForeground(foreGroundColor);
+        resetButton.setFont(new java.awt.Font("Algerian", 0, 24));
         resetButton.setText("Ripristina");
         resetButton.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
         resetButton.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         resetButton.setPreferredSize(new java.awt.Dimension(200, 40));
         jPanel2.add(resetButton);
 
-        exitButton.setBackground(new java.awt.Color(153, 153, 153));
-        exitButton.setFont(new java.awt.Font("Algerian", 0, 24)); // NOI18N
+        exitButton.setBackground(backGroundColor);
+        exitButton.setForeground(foreGroundColor);
+        exitButton.setFont(new java.awt.Font("Algerian", 0, 24));
         exitButton.setText("EXIT");
         exitButton.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
         exitButton.setPreferredSize(new java.awt.Dimension(200, 40));
@@ -134,12 +142,16 @@ public class ControlOptionPanel extends JPanel {
         aheadButton.setText("W");
         aheadButton.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
         aheadButton.setPreferredSize(new java.awt.Dimension(200, 30));
+        aheadButton.setBackground(backGroundColor);
+        aheadButton.setForeground(foreGroundColor);
 
         backButton.setBackground(new java.awt.Color(153, 153, 153));
         backButton.setFont(new java.awt.Font("Algerian", 0, 24)); // NOI18N
         backButton.setText("S");
         backButton.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
         backButton.setPreferredSize(new java.awt.Dimension(30, 30));
+        backButton.setBackground(backGroundColor);
+        backButton.setForeground(foreGroundColor);
 
         backLabel.setFont(new java.awt.Font("Algerian", 0, 24)); // NOI18N
         backLabel.setText("Indietro");
@@ -154,6 +166,8 @@ public class ControlOptionPanel extends JPanel {
         LeftMovButton3.setText("A");
         LeftMovButton3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
         LeftMovButton3.setPreferredSize(new java.awt.Dimension(30, 30));
+        LeftMovButton3.setBackground(backGroundColor);
+        LeftMovButton3.setForeground(foreGroundColor);
 
         rightMovLabel.setFont(new java.awt.Font("Algerian", 0, 24)); // NOI18N
         rightMovLabel.setText("Destra");
