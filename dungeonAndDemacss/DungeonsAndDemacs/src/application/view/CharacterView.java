@@ -1,16 +1,10 @@
 package application.view;
 
-import application.config.Settings;
 
 import javax.imageio.ImageIO;
-import javax.swing.*;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
-
-import application.controller.CharacterListener;
-import application.model.Game;
-import application.model.World;
 
 
 

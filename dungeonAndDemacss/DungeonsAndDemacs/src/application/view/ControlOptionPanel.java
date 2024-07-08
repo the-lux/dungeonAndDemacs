@@ -119,6 +119,8 @@ public class ControlOptionPanel extends JPanel {
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Comandi");
         jLabel1.setToolTipText("");
+        jLabel1.setOpaque(true);
+        jLabel1.setBackground(new Color(240,22,14));
         add(jLabel1, java.awt.BorderLayout.PAGE_START);
 
         jScrollPane1.setColumnHeaderView(jLabel1);
