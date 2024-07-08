@@ -93,6 +93,7 @@ public class ControlOptionPanel extends JPanel {
 
         jPanel1.setBackground(new Color(240,22,14));
         jPanel2.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.CENTER, 10, 5));
+        jPanel2.setBackground(Color.red);
 
 
         resetButton.setBackground(backGroundColor);

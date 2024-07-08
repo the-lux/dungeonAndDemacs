@@ -79,7 +79,8 @@ public class PanelMenager {
         System.out.println("word");
         worldPanel = new WorldPanel();
         worldPanel.setFocusable(true);
-        CharacterListener controller=new CharacterListener(worldPanel);
+        CharacterView cV = new CharacterView();
+        CharacterListener controller=new CharacterListener(worldPanel,cV);
         worldPanel.addKeyListener(controller);
         mainFrame.add(worldPanel);
         worldPanel.requestFocusInWindow();
