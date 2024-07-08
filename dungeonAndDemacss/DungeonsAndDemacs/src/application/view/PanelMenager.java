@@ -81,11 +81,12 @@ public class PanelMenager {
         worldPanel.setFocusable(true);
         CharacterListener controller=new CharacterListener(worldPanel);
         worldPanel.addKeyListener(controller);
-        GameLoop gameLoop = new GameLoop(controller);
-        gameLoop.startGame();
         mainFrame.add(worldPanel);
+        worldPanel.requestFocusInWindow();
         mainFrame.revalidate();
         mainFrame.repaint();
+        GameLoop gameLoop = new GameLoop(controller);
+        gameLoop.startGame();
     }
 
     private void clear(){
