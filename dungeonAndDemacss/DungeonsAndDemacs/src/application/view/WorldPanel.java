@@ -9,10 +9,11 @@ import javax.swing.*;
 import java.awt.*;
 
 public class WorldPanel extends JPanel {
-    public WorldPanel() {
+    CharacterView cv;
+    public WorldPanel(CharacterView cv) {
+        this.cv = cv;
         reset();
     }
-    CharacterView cv=new CharacterView();
     public void reset(){
         this.setBackground(Color.WHITE);
     }

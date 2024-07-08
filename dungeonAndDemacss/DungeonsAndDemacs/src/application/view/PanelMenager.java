@@ -77,9 +77,9 @@ public class PanelMenager {
     public void goWord(){
         clear();
         System.out.println("word");
-        worldPanel = new WorldPanel();
-        worldPanel.setFocusable(true);
         CharacterView cV = new CharacterView();
+        worldPanel = new WorldPanel(cV);
+        worldPanel.setFocusable(true);
         CharacterListener controller=new CharacterListener(worldPanel,cV);
         worldPanel.addKeyListener(controller);
         mainFrame.add(worldPanel);

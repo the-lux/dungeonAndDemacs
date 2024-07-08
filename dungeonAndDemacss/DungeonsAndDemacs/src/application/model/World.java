@@ -199,12 +199,6 @@ public class World {
     public int getSize() {
         return blocks.length;
     }
-
-        /*public int getEnemyNumber() {
-            return enemyNumber;
-        }
-         */
-
     public Character getCharacter (){
         return character;
     }

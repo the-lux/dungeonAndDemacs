@@ -40,7 +40,7 @@ public class CharacterView {
     }
 
     public void updateDirection(int direction) {
-        currentDirection = direction;
+        this.currentDirection = direction;
     }
 
 
