@@ -14,6 +14,7 @@ public class World {
 
     private Character character=new Character();
     private MapGen m=new MapGen();
+    private boolean enemyHit=false;
 
     private Room room; //stanza corrente
 
@@ -236,6 +237,7 @@ public class World {
         }
         Cordinate posizione = room.getBoss().getPlace();
         if (posizione.equals(character.getPlace())) {
+            enemyHit=true;
             System.out.println("Vita attuale:" + character.getHealth());
             character.damageCharacter(-1);
             System.out.println("Vita dopo il contatto:" + character.getHealth());
@@ -315,6 +317,7 @@ public class World {
             Cordinate posizione=e.getPlace();
             //System.out.println("Posizione del nemico x:"+posizione.getX()+"y:"+posizione.getY());
             if (posizione.equals(character.getPlace())) {
+                enemyHit=true;
                 System.out.println("Vita attuale:" + character.getHealth());
                 character.damageCharacter(-1);
                 System.out.println("Vita dopo il contatto:" + character.getHealth());
@@ -360,6 +363,13 @@ public class World {
         } catch(IllegalArgumentException e){
             System.out.println("L'id del powerup non è valido");
         }
-        //TODO: Ci sarà uno switch che a seconda dell'id attiva un effetto diverso
+
+    }
+
+    public boolean hasEnemyHit() {
+        return enemyHit;
+    }
+    public void endEnemyHit(){
+        enemyHit=false;
     }
 }

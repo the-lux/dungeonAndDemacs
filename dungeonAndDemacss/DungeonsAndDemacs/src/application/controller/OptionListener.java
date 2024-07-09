@@ -1,6 +1,6 @@
 package application.controller;
 
-import application.view.PanelMenager;
+import application.view.PanelManager;
 import application.view.TopButton;
 
 import java.awt.event.ActionEvent;
@@ -13,23 +13,23 @@ public class OptionListener implements ActionListener {
             switch(topButton.getType()){
                 case 0:
                     System.out.println("audio");
-                    PanelMenager.getInstance().goOptionAudio();
+                    PanelManager.getInstance().goOptionAudio();
                     break;
                 case 1:
                     System.out.println("control");
-                    PanelMenager.getInstance().goOptionControl();
+                    PanelManager.getInstance().goOptionControl();
                     break;
                 case 2:
                     System.out.println("video");
-                    PanelMenager.getInstance().goOptionVideo();
+                    PanelManager.getInstance().goOptionVideo();
                     break;
                 case 3:
                     System.out.println("language");
-                    PanelMenager.getInstance().goOptionLanguage();
+                    PanelManager.getInstance().goOptionLanguage();
                     break;
                 case 4:
                     System.out.println("exit");
-                    PanelMenager.getInstance().goMenu();
+                    PanelManager.getInstance().goMenu();
             }
         }
     }

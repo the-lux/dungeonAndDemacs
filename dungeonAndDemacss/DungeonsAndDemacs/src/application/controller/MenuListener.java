@@ -1,6 +1,6 @@
 package application.controller;
 
-import application.view.PanelMenager;
+import application.view.PanelManager;
 import application.view.TopButton;
 
 import java.awt.event.ActionEvent;
@@ -14,19 +14,19 @@ public class MenuListener implements ActionListener {
             switch(topButton.getType()){
                 case 0:
                     System.out.println("play");
-                    PanelMenager.getInstance().goWord();
+                    PanelManager.getInstance().goWord();
                     break;
                 case 1:
                     System.out.println("option");
-                    PanelMenager.getInstance().goOption();
+                    PanelManager.getInstance().goOption();
                     break;
                 case 2:
                     System.out.println("Credit");
-                    PanelMenager.getInstance().goCredit();
+                    PanelManager.getInstance().goCredit();
                     break;
                 case 3:
                     System.out.println("exit");
-                    PanelMenager.getInstance().close();
+                    PanelManager.getInstance().close();
                     break;
             }
         }

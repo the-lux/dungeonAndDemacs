@@ -1,7 +1,6 @@
 package application.controller;
 
-import application.view.PanelMenager;
-import application.view.TopButton;
+import application.view.PanelManager;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -11,7 +10,7 @@ public class OptionAudioActionListener implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         if(e.getSource() instanceof JButton jButton){
-            PanelMenager.getInstance().goOption();
+            PanelManager.getInstance().goOption();
         }
     }
 }

@@ -19,4 +19,19 @@ public class GameLoop {
         executorService = Executors.newSingleThreadScheduledExecutor();
         executorService.scheduleAtFixedRate(controller::update, 0, 800, TimeUnit.MILLISECONDS);
     }
+    public void stopGame(){
+        if (executorService != null && !executorService.isShutdown()){
+            executorService.shutdownNow();
+            try {
+                if (!executorService.awaitTermination(1,TimeUnit.SECONDS)){
+                    System.err.println("L'esecutore ha impiegato troppo a terminare");
+                }
+            } catch (InterruptedException e){
+                System.err.println("Processo di terminazione interrotto");
+                Thread.currentThread().interrupt();
+            }
+            executorService=null;
+        }
+
+    }
 }

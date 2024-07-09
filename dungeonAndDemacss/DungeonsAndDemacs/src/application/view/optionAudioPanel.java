@@ -17,12 +17,13 @@ public class optionAudioPanel extends JPanel {
     private JButton exitButton;
     public optionAudioPanel () {
         opzAudioLabel = new JLabel();
-        generalSlider = new TopSlider(0, 100);
+        generalSlider = new TopSlider(-80, 6);
         generalLabel = new JLabel();
         musicLabel = new JLabel();
-        musicSlider = new TopSlider(0, 100);
+        musicSlider = new TopSlider(-80, 6);
         effectLabel = new JLabel();
-        effectSlider = new TopSlider(0, 100);
+        effectSlider = new TopSlider(-80, 6);
+        //questo intervallo perchè la classe Sound va dall'intervallo -80(minimum) a 6 (maximum)
         exitButton = new JButton();
 
         setMaximumSize(new Dimension(600, 600));
@@ -37,6 +38,7 @@ public class optionAudioPanel extends JPanel {
         generalSlider.setSnapToTicks(true);
         generalSlider.setName("generalAudio");
         generalSlider.setOpaque(false);
+        generalSlider.setValue(0);
         generalSlider.setType(0);
 
         generalLabel.setFont(new Font("Algerian", 0, 36));
@@ -50,6 +52,7 @@ public class optionAudioPanel extends JPanel {
         musicSlider.setSnapToTicks(true);
         musicSlider.setName("generalAudio");
         musicSlider.setOpaque(false);
+        musicSlider.setValue(0);
         musicSlider.setType(1);
 
         effectLabel.setFont(new Font("Algerian", 0, 36));
@@ -59,6 +62,7 @@ public class optionAudioPanel extends JPanel {
         effectSlider.setSnapToTicks(true);
         effectSlider.setName("generalAudio");
         effectSlider.setOpaque(false);
+        effectSlider.setValue(0);
         effectSlider.setType(2);
 
         exitButton.setBackground(new Color(153, 153, 153));

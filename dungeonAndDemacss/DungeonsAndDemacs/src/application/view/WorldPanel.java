@@ -1,5 +1,6 @@
 package application.view;
 
+import application.config.AudioSettings;
 import application.config.Settings;
 import application.model.Game;
 import application.model.Cordinate;
@@ -16,10 +17,11 @@ public class WorldPanel extends JPanel {
         this.setBackground(Color.WHITE);
     }
     private void drawEnd(Graphics g, String messagge){
-        this.setBackground(Color.DARK_GRAY);
-        g.setFont(new Font("arial", Font.PLAIN, 20));
-        g.setColor(Color.WHITE);
-        g.drawString(messagge, Settings.WINDOW_SIZE/20, Settings.WINDOW_SIZE/20);
+        Color red=new Color(240,22,14);
+        this.setBackground(red);
+        g.setFont(new Font("Algerian", Font.PLAIN, 30));
+        g.setColor(Color.BLACK);
+        g.drawString(messagge, Settings.WINDOW_SIZE/25-15, Settings.WINDOW_SIZE/2);
     }
 
     @Override
@@ -28,16 +30,18 @@ public class WorldPanel extends JPanel {
         Game game=Game.getGame();
         String message;
         if (!game.isAlive()) {
-            message="Bocciato :)"+" Premi n per riprovare!";
-            drawEnd(g, message);
+            //message="Bocciato. "+"Premi n per riprovare!";
+            //drawEnd(g, message);
+            PanelManager.getInstance().goLose();
             return;
 
         } else if (game.win()) {
-            drawEnd(g, "Ti sei laureato! Premi n per ricominciare");
+            //message="Ti sei laureato! Premi n per ricominciare.";
+            //drawEnd(g, message);
+            PanelManager.getInstance().goWin();
             return;
 
         }
-
         World world = game.getWorld();
         for (int i = 0; i < world.getSize(); i++) {
             for (int j = 0; j < world.getSize(); j++) {
@@ -66,5 +70,28 @@ public class WorldPanel extends JPanel {
     }
     public void update(){
         this.repaint();
+        Game game=Game.getGame();
+        if (game.getWorld().hasEnemyHit()){
+            Sound audio=new Sound("meleeAttack2.wav");
+            audio.play();
+            audio.adjustAudio(0, AudioSettings.getVolumeEffetti());
+            game.getWorld().endEnemyHit();
+        }
+        if (game.isUsedPowerUp()){
+            Sound audio=new Sound("powerup.wav");
+            audio.play();
+            audio.adjustAudio(0,AudioSettings.getVolumeEffetti());
+            game.endUsedPowerUp();
+        }
+    }
+    public void sfxMovementChar(){
+        Sound audio=new Sound("charWalk.wav");
+        audio.play();
+        audio.adjustAudio(0,AudioSettings.getVolumeEffetti());
+    }
+    public void sfxAttack(){
+        Sound audio=new Sound("meleeAttack1.wav");
+        audio.play();
+        audio.adjustAudio(0,AudioSettings.getVolumeEffetti());
     }
 }
