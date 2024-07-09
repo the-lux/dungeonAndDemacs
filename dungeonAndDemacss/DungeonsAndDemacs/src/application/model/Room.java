@@ -19,6 +19,8 @@ public  class Room {
     0=più nemici
     1=1 nemico
     2+=Boss(Ianni,Fuduli e Van Bon)
+
+
     -1 empty
     0 Ianni
     1 fuduli

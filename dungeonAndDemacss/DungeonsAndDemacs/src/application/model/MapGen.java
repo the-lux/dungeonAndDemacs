@@ -81,35 +81,6 @@ public class MapGen {
         }
         //aggiunge alla fine una stanza del tesoro sicura
     }
-    /*metodo ricorsivo per generare le stanze aggiuntive
-    private void genMoreRoom(int nRoom,Room r){
-        if(r.isEmpty()||nRoom==0||r.getNDoor()==4) return;
-        int a =rN.nextInt(3);
-        Cordinate current = new Cordinate(r.getPosition());
-        if(a==1){//una sola stanza aggiuntiva
-            if(map[current.getX()--][current.getY()]==null){//sopra
-
-            }
-            else if(map[current.getX()][current.getY()++]==null){//destra
-
-            }
-            else if(map[current.getX()++][current.getY()]==null){//sotto
-
-            }
-            else if(map[current.getX()][current.getY()--]==null){//sinistra
-
-            }
-            /*for(int i=0; i<4;i++){
-                if(!r.getDoors()[i]){
-                    map[r.getPosition().getX()][r.getPosition().getY()]
-                }
-            }
-        }
-        else if (a==2){due stanze aggiuntive
-
-        }
-        altrimenti nessuna
-    }*/
     private void setSonRoom(Cordinate son,Cordinate father,int dir){
         map[son.getX()][son.getY()]=new Room();//crea una nuova stanza
         map[father.getX()][father.getY()].setIndexDoor(dir,true,map[son.getX()][son.getY()]);//collega la stanza corrente alla nuova
@@ -131,13 +102,5 @@ public class MapGen {
     public Room getCordRoom(Cordinate c){
         return map[c.getX()][c.getY()];
     }
-
-    /*private Cordinate genExit(){
-        Random r = new Random();
-        Cordinate c = new Cordinate();
-        c.getX() = r.nextInt(28);
-        c.getY()=r.nextInt(28);
-        if()
-    }*/
 }
 

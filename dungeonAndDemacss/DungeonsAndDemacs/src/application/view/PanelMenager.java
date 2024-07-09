@@ -9,6 +9,7 @@ public class PanelMenager {
     private MenuPanel menuPanel;
     private WorldPanel worldPanel;
     private optionPanel OptionPanel;
+    private ControlOptionPanel cOP;
 
     private PanelMenager(){
 
@@ -42,10 +43,10 @@ public class PanelMenager {
     }
     public void goOptionControl(){
         clear();
-        ControlOptionPanel cOP = new ControlOptionPanel();
+        cOP = new ControlOptionPanel();
         cOP.setFocusable(true);
-        //todo listener op controlli
-        //todo aggiunge il controller
+        OptionControlListener oPL = new OptionControlListener();
+        cOP.setController(oPL);
         mainFrame.add(cOP);
         mainFrame.revalidate();
         mainFrame.repaint();
