@@ -1,5 +1,6 @@
 package application.view;
 
+import application.config.AudioSettings;
 import application.config.Settings;
 import application.model.Game;
 import application.model.Cordinate;
@@ -39,12 +40,11 @@ public class WorldPanel extends JPanel {
         Game game=Game.getGame();
         String message;
         if (!game.isAlive()) {
-            message="Bocciato :)"+" Premi n per riprovare!";
-            drawEnd(g, message);
+            PanelManager.getInstance().goLose();
             return;
 
         } else if (game.win()) {
-            drawEnd(g, "Ti sei laureato! Premi n per ricominciare");
+            PanelManager.getInstance().goWin();
             return;
 
         }
@@ -114,6 +114,29 @@ public class WorldPanel extends JPanel {
     }
     public void update(){
         this.repaint();
+        Game game=Game.getGame();
+        if (game.getWorld().hasEnemyHit()){
+            Sound audio=new Sound("meleeAttack2.wav");
+            audio.play();
+            audio.adjustAudio(0, AudioSettings.getVolumeEffetti());
+            game.getWorld().endEnemyHit();
+        }
+        if (game.isUsedPowerUp()){
+            Sound audio=new Sound("powerup.wav");
+            audio.play();
+            audio.adjustAudio(0,AudioSettings.getVolumeEffetti());
+            game.endUsedPowerUp();
+        }
+    }
+    public void sfxMovementChar(){
+        Sound audio=new Sound("charWalk.wav");
+        audio.play();
+        audio.adjustAudio(0,AudioSettings.getVolumeEffetti());
+    }
+    public void sfxAttack(){
+        Sound audio=new Sound("meleeAttack1.wav");
+        audio.play();
+        audio.adjustAudio(0,AudioSettings.getVolumeEffetti());
     }
     private void loadHeart(){
         try {

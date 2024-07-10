@@ -1,9 +1,8 @@
 package application.controller;
 
-import application.view.PanelMenager;
+import application.view.PanelManager;
 import application.view.TopButton;
 
-import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
@@ -28,7 +27,7 @@ public class OptionControlListener implements ActionListener {
         if(e.getSource() instanceof TopButton topButton) {
             switch (topButton.getType()) {
                 case -1://exit
-                    PanelMenager.getInstance().goOption();
+                    PanelManager.getInstance().goOption();
                     break;
                 case -2://reset
                     System.out.println("Testo cambiato in "+text);

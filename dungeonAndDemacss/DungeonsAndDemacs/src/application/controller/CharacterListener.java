@@ -54,6 +54,11 @@ public class CharacterListener extends KeyAdapter {
         } else if (e.getKeyCode()==commandKeyCode[8]) {
             Game.getGame().meleeAttack();
         }
+        if (e.getKeyCode()==commandKeyCode[8]){
+            worldPanel.sfxAttack();
+        } else {
+            worldPanel.sfxMovementChar();
+        }
         /*if (e.getKeyCode() == KeyEvent.VK_W &&e.getKeyCode() == KeyEvent.VK_DOWN){
             System.out.println("prova");
         }

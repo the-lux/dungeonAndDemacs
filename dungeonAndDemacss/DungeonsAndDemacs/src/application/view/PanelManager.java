@@ -103,8 +103,9 @@ public class PanelManager {
         System.out.println("word");
         emptyPanel= new JPanel();
         emptyPanel.setLayout(cardLayout);
-        worldPanel = new WorldPanel();
-        CharacterListener controller=new CharacterListener(worldPanel);
+        CharacterView cv=new CharacterView();
+        worldPanel = new WorldPanel(cv);
+        CharacterListener controller=new CharacterListener(worldPanel,cv);
         worldPanel.addKeyListener(controller);
         Game.restartGame();
         emptyPanel.add(worldPanel, "WorldPanel");

@@ -12,7 +12,7 @@ public class MainFrame extends JFrame {
         this.setSize(Settings.WINDOW_SIZE, Settings.WINDOW_SIZE);
         Dimension dim=Toolkit.getDefaultToolkit().getScreenSize();
         this.setLocation(dim.width/2-getSize().width/2, dim.height/2-getSize().height/2);
-        PanelMenager.getInstance().start(this);
+        PanelManager.getInstance().start(this);
         setUndecorated(true);
         setVisible(true);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
