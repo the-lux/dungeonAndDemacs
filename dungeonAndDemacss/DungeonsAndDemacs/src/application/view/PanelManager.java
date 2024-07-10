@@ -2,6 +2,7 @@ package application.view;
 
 import application.GameLoop;
 import application.config.AudioSettings;
+import application.config.Settings;
 import application.controller.*;
 import application.model.Game;
 
@@ -99,6 +100,7 @@ public class PanelManager {
     }
     public void goWord(){
         clear();
+        mainFrame.setSize(Settings.WINDOW_SIZE,Settings.WINDOW_SIZE+40);
         clearAudio();
         System.out.println("word");
         emptyPanel= new JPanel();
