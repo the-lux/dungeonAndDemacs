@@ -1,6 +1,5 @@
 package application.controller;
 
-import application.config.AudioSettings;
 import application.config.Settings;
 import application.model.CommandFileReader;
 import application.model.Game;

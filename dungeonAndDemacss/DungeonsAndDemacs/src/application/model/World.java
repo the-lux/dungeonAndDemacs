@@ -296,15 +296,30 @@ public class World {
 
         return false;
     }
-    public void killEnemy(Cordinate target){
-        if (isEnemy(target)){
+    public void killEnemy(Cordinate target,int facing){
+        Cordinate rangeTwoAttack=new Cordinate();
+        switch (facing){
+            case 0:
+                rangeTwoAttack=new Cordinate(target.getX()+1,target.getY());
+                break;
+            case 1:
+                rangeTwoAttack=new Cordinate(target.getX()-1,target.getY());
+                break;
+            case 2:
+                rangeTwoAttack=new Cordinate(target.getX(),target.getY()-1);
+                break;
+            case 3:
+                rangeTwoAttack=new Cordinate(target.getX(), target.getY()+1);
+                break;
+        }
+        if (isEnemy(target) || isEnemy(rangeTwoAttack) ){
             setType(target,Block.EMPTY);
             room.removeEnemy(target);
         }
-        if (isBoss(target)){
-            System.out.println("Vita del boss prima del colpo "+room.getBoss().getHealth());
+        if (isBoss(target) || isBoss(rangeTwoAttack)){
+            //System.out.println("Vita del boss prima del colpo "+room.getBoss().getHealth());
             room.getBoss().updateHealth(-1);
-            System.out.println("Vita del boss dopo il colpo "+room.getBoss().getHealth());
+            //System.out.println("Vita del boss dopo il colpo "+room.getBoss().getHealth());
             if (room.getBoss().getHealth() <= 0){
                 setType(target,Block.EMPTY);
                 room.defeatBoss();

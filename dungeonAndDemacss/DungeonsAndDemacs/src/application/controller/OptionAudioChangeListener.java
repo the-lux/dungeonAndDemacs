@@ -29,8 +29,6 @@ public class OptionAudioChangeListener implements ChangeListener {
                     break;
             }
         }
-        //JSlider source = (JSlider) e.getSource();
-        //int value = source.getValue();
 
     }
 }
