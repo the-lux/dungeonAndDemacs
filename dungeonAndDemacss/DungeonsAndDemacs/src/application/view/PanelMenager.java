@@ -1,6 +1,7 @@
 package application.view;
 
 import application.GameLoop;
+import application.config.Settings;
 import application.controller.*;
 
 public class PanelMenager {
@@ -9,6 +10,7 @@ public class PanelMenager {
     private MenuPanel menuPanel;
     private WorldPanel worldPanel;
     private optionPanel OptionPanel;
+    private ControlOptionPanel cOP;
 
     private PanelMenager(){
 
@@ -42,10 +44,10 @@ public class PanelMenager {
     }
     public void goOptionControl(){
         clear();
-        ControlOptionPanel cOP = new ControlOptionPanel();
+        cOP = new ControlOptionPanel();
         cOP.setFocusable(true);
-        //todo listener op controlli
-        //todo aggiunge il controller
+        OptionControlListener oPL = new OptionControlListener();
+        cOP.setController(oPL);
         mainFrame.add(cOP);
         mainFrame.revalidate();
         mainFrame.repaint();
@@ -84,6 +86,7 @@ public class PanelMenager {
         worldPanel.addKeyListener(controller);
         mainFrame.add(worldPanel);
         worldPanel.requestFocusInWindow();
+        mainFrame.setSize(Settings.WINDOW_SIZE,Settings.WINDOW_SIZE+40);
         mainFrame.revalidate();
         mainFrame.repaint();
         GameLoop gameLoop = new GameLoop(controller);

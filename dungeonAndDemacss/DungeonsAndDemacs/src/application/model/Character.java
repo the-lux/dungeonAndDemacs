@@ -9,7 +9,7 @@ public class Character {
     private boolean invisible=false; //serve per implementare il powerup3
     private boolean shielded=false;
     public Character(){
-        health=3;
+        health=6;
     };
     public boolean isInvisible() {
         return invisible;

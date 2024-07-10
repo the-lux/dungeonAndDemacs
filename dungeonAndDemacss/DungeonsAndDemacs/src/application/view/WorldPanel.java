@@ -5,13 +5,18 @@ import application.model.Game;
 import application.model.Cordinate;
 import application.model.World;
 
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
+import java.awt.image.BufferedImage;
+import java.io.IOException;
 
 public class WorldPanel extends JPanel {
     CharacterView cv;
+    public final BufferedImage[] image = new BufferedImage[3];
     public WorldPanel(CharacterView cv) {
         this.cv = cv;
+        loadHeart();
         reset();
     }
     public void reset(){
@@ -73,9 +78,50 @@ public class WorldPanel extends JPanel {
                 g.drawImage(cv.getImage(),world.getCharacter().getPlace().getX()*Settings.BLOCK_SIZE,world.getCharacter().getPlace().getY()*Settings.BLOCK_SIZE,Settings.BLOCK_SIZE*2,Settings.BLOCK_SIZE*2,null);
             }
         }
+        switch (game.getWorld().getCharacter().getHealth()){
+            case 1://mezzo cuore
+                g.drawImage(image[1],20,590,null);
+                g.drawImage(image[2],70,590,null);
+                g.drawImage(image[2],120,590,null);
+                break;
+            case 2://un solo cuore
+                g.drawImage(image[0],20,590,null);
+                g.drawImage(image[2],70,590,null);
+                g.drawImage(image[2],120,590,null);
+                break;
+            case 3://uno e mezzo cuore
+                g.drawImage(image[0],20,590,null);
+                g.drawImage(image[1],70,590,null);
+                g.drawImage(image[2],120,590,null);
+                break;
+            case 4://2 cuore
+                g.drawImage(image[0],20,590,null);
+                g.drawImage(image[0],70,590,null);
+                g.drawImage(image[2],120,590,null);
+                break;
+            case 5://2 mezzo cuore
+                g.drawImage(image[0],20,590,null);
+                g.drawImage(image[0],70,590,null);
+                g.drawImage(image[1],120,590,null);
+                break;
+            case 6://3 cuori
+                g.drawImage(image[0],20,590,null);
+                g.drawImage(image[0],70,590,null);
+                g.drawImage(image[0],120,590,null);
+                break;
+        }
 
     }
     public void update(){
         this.repaint();
+    }
+    private void loadHeart(){
+        try {
+            image[0] = ImageIO.read(getClass().getResourceAsStream("../resources/heart_full.png"));
+            image[1] = ImageIO.read(getClass().getResourceAsStream("../resources/heart_half.png"));
+            image[2] = ImageIO.read(getClass().getResourceAsStream("../resources/heart_empty.png"));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }
