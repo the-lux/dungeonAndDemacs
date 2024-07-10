@@ -81,7 +81,7 @@ public class Game {
             case MOVE_UP ->target=new Cordinate(target.getX(), target.getY()-1);
             default-> target=null;
         }
-        world.killEnemy(target);
+        world.killEnemy(target,world.getCharacter().getFacing());
         if (world.bossDefeated()){
             win=true;
         }

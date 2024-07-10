@@ -42,7 +42,6 @@ public class OptionControlListener implements ActionListener {
                             topButton.removeKeyListener(this); // Rimuovi il KeyListener
                             System.out.println("Testo cambiato in "+text+" = ");
                             System.out.println(e.getKeyCode());
-                            //todo chiamata della funzione che setta i comandi
                         }
                     });
                     break;

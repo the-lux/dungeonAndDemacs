@@ -27,12 +27,6 @@ public class Character {
         this.shielded = shielded;
     }
 
-    /*public Character (Cordinate p){
-            place=p;
-            health=3;
-        }
-
-         */
     public void changePosition(Cordinate p){
         place=p;
     }
