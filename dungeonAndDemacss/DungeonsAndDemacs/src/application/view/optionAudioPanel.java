@@ -17,12 +17,12 @@ public class optionAudioPanel extends JPanel {
     private JButton exitButton;
     public optionAudioPanel () {
         opzAudioLabel = new JLabel();
-        generalSlider = new TopSlider(0, 100);
+        generalSlider = new TopSlider(-80, 6);
         generalLabel = new JLabel();
         musicLabel = new JLabel();
-        musicSlider = new TopSlider(0, 100);
+        musicSlider = new TopSlider(-80, 6);
         effectLabel = new JLabel();
-        effectSlider = new TopSlider(0, 100);
+        effectSlider = new TopSlider(-80, 6);
         exitButton = new JButton();
 
         setMaximumSize(new Dimension(600, 600));
@@ -38,6 +38,7 @@ public class optionAudioPanel extends JPanel {
         generalSlider.setName("generalAudio");
         generalSlider.setOpaque(false);
         generalSlider.setType(0);
+        generalSlider.setValue(0);
 
         generalLabel.setFont(new Font("Algerian", 0, 36));
         generalLabel.setText("Generale");
@@ -51,6 +52,7 @@ public class optionAudioPanel extends JPanel {
         musicSlider.setName("generalAudio");
         musicSlider.setOpaque(false);
         musicSlider.setType(1);
+        musicSlider.setValue(0);
 
         effectLabel.setFont(new Font("Algerian", 0, 36));
         effectLabel.setText("Effetti");
@@ -60,6 +62,7 @@ public class optionAudioPanel extends JPanel {
         effectSlider.setName("generalAudio");
         effectSlider.setOpaque(false);
         effectSlider.setType(2);
+        effectSlider.setValue(0);
 
         exitButton.setBackground(new Color(153, 153, 153));
         exitButton.setFont(new Font("Algerian", 0, 48));

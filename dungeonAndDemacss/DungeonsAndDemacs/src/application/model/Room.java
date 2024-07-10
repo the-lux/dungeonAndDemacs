@@ -148,12 +148,12 @@ public  class Room {
     public void setRight(boolean right, Room rightLink) {
         if(right){
             this.roomLink[1] =rightLink;
-            this.doors[1] = right;
+            this.doors[1] = true;
             this.nDoor ++;
         }
         else {
             this.roomLink[1] =null;
-            this.doors[1] = right;
+            this.doors[1] = false;
             this.nDoor --;
         }
     }
