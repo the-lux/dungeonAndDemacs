@@ -19,13 +19,6 @@ public  class Room {
     0=più nemici
     1=1 nemico mini boss
     2+=Boss(Ianni,Fuduli e Van Bon)
-
-
-    -1 empty
-    0 Ianni
-    1 fuduli
-    2 Van Bon
-    3 minion torpedine e associazione
     */
 
     public Room() {
@@ -68,23 +61,10 @@ public  class Room {
         return enemyArrayList;
     }
 
-    public void setEnemyArrayList(ArrayList<Enemy> enemyArrayList) {
-        this.enemyArrayList = enemyArrayList;
-    }
-
     public void addEnemy(Enemy e){
         enemyArrayList.add(e);
     }
 
-    public int getSizeEnemyArrayList(){
-        return enemyArrayList.size();
-    }
-    public Cordinate getPosition() {
-        return position;
-    }
-    public void setPosition(Cordinate c) {
-        this.position = new Cordinate(c);
-    }
     public void setPosition(int x,int y) {
         this.position = new Cordinate(x,y);
     }
@@ -105,84 +85,11 @@ public  class Room {
             this.nDoor --;
         }
     }
-
-    public boolean isBelow() {
-        return doors[2];
-    }
-
-    public void setBelow(boolean below,Room belowLink) {//if boolean is false link is null
-        if(below){
-            this.doors[2] = below;
-            this.roomLink[2]=belowLink;
-            this.nDoor ++;
-        }
-        else {
-            this.doors[2] = below;
-            this.roomLink[2]=null;
-            this.nDoor --;
-        }
-    }
-
-    public boolean isLeft() {
-        return doors[3];
-    }
-
-    public void setLeft(boolean left, Room leftLink) {
-        if(left){
-            this.roomLink[3]=leftLink;
-            this.doors[3] = left;
-            this.nDoor ++;
-        }
-        else {
-            this.roomLink[3]=null;
-            this.doors[3] = left;
-            this.nDoor --;
-        }
-    }
-
-    public boolean isRight() {
-        return doors[1];
-    }
-
-    public void setRight(boolean right, Room rightLink) {
-        if(right){
-            this.roomLink[1] =rightLink;
-            this.doors[1] = true;
-            this.nDoor ++;
-        }
-        else {
-            this.roomLink[1] =null;
-            this.doors[1] = false;
-            this.nDoor --;
-        }
-    }
-
-    public Room getUpLink() {
-        return roomLink[0];
-    }
-    public Room getBelowLink() {
-        return roomLink[2];
-    }
-    public Room getLeftLink() {
-        return roomLink[3];
-    }
-    public Room getRightLink() {
-        return roomLink[1];
-    }
-    public boolean isStart() {
-        return isStart;
-    }
     public void setStart(boolean start) {
         isStart = start;
     }
-    public boolean isEnd() {
-        return isEnd;
-    }
     public void setEnd(boolean end) {
         isEnd = end;
-    }
-    public boolean isEmpty(){
-        return (nDoor==0);
     }
     public boolean[] getDoors(){
         return doors;

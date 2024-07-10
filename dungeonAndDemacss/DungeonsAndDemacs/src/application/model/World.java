@@ -81,22 +81,6 @@ public class World {
             blocks [powerUpPlace.getX()][powerUpPlace.getY()]=Block.POWERUP;
         }
     }
-    /* Stanze
-    -1 empty
-    0 Ianni
-    1 fuduli
-    2 Van Bon
-    3 minion torpedine e associazione
-    4 loot
-    5 mercante
-    */
-    /* Nemici
-    0 Ianni
-    1 fuduli
-    2 Van Bon
-    3 Torpedine
-    4 Associazioni
-    */
     public void setEnemyBlock(int x,int y,Enemy e){
         Cordinate p=new Cordinate(x,y);
         if (isInvalidPosition(new Cordinate (x,y))) {
@@ -202,11 +186,6 @@ public class World {
         return blocks.length;
     }
 
-        /*public int getEnemyNumber() {
-            return enemyNumber;
-        }
-         */
-
     public Character getCharacter (){
         return character;
     }
@@ -215,9 +194,6 @@ public class World {
     }
     public boolean bossDefeated(){
         return (room.isBossRoom() && room.isCompleted());
-    }
-    public boolean roomCleaned(){
-        return room.isAllDefeated();
     }
     public void moveCharacter(Cordinate p){
         //controllo che la posizione sia valida, e se è così lo faccio muovere

@@ -3,10 +3,6 @@ package application.model;
 import java.util.Random;
 
 public class Boss extends Enemy{
-    /*
-    0 Ianni
-    1 fuduli
-    2 Van Bon*/
     public Boss(Cordinate p){
         super(p,2,0);
         health=3;

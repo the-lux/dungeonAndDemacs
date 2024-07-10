@@ -12,7 +12,7 @@ public class WinLoseListener implements ActionListener {
         if (e.getSource() instanceof TopButton topButton) {
             switch (topButton.getType()) {
                 case 0:
-                    PanelManager.getInstance().goWord();
+                    PanelManager.getInstance().goWorld();
                     break;
                 case 1:
                     PanelManager.getInstance().goMenu();

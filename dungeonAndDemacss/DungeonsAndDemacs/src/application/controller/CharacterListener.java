@@ -20,6 +20,7 @@ public class CharacterListener extends KeyAdapter {
         this.characterView=cv;
         this.worldPanel =wP;
         int [] temp = Settings.defaultCommand;//key code of order: W,S,A,D,UP,Down,Left,Right,Space
+        //In qualsiasi modo non riesce a leggere il messaggio di testo o file di byte
         /*CommandFileReader commandFileReader = new CommandFileReader();
         try {
             temp = commandFileReader.read();

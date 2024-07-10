@@ -6,7 +6,6 @@ public class Character {
     private int health;
     private int damage;
     private int facing=0;//la direzione a cui è rivolto
-    //todo cambiare i getter e setter restituendo utilizzando powerUpType
     private boolean invisible=false; //serve per implementare il powerup3
     private boolean shielded=false;
     private int powerUpType = -1;

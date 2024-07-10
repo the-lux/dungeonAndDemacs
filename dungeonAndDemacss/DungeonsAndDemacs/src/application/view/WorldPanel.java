@@ -25,22 +25,10 @@ public class WorldPanel extends JPanel {
     public void reset(){
         this.setBackground(Color.WHITE);
     }
-    private void drawEnd(Graphics g, String messagge){
-        this.setBackground(Color.DARK_GRAY);
-        g.setFont(new Font("arial", Font.PLAIN, 20));
-        g.setColor(Color.WHITE);
-        g.drawString(messagge, Settings.WINDOW_SIZE/20, Settings.WINDOW_SIZE/20);
-    }
-
-    public void setCharacterView(CharacterView characterView)
-    {
-        this.cv=characterView;                               //PROVA
-    }
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
         Game game=Game.getGame();
-        String message;
         if (!game.isAlive()) {
             PanelManager.getInstance().goLose();
             return;
@@ -49,12 +37,6 @@ public class WorldPanel extends JPanel {
             PanelManager.getInstance().goWin();
             return;
 
-        }
-        if(cv!=null)
-        {
-            Image characterImage=cv.getImage();
-            int x=getWidth()/2 -characterImage.getWidth(null)/2;
-            int y=getHeight()/2 -characterImage.getHeight(null)/2; //PROVA
         }
 
         World world = game.getWorld();
@@ -151,7 +133,7 @@ public class WorldPanel extends JPanel {
                     throw new IllegalArgumentException();
             }
         } catch(IllegalArgumentException e){
-            System.out.println("L'id del powerup non è valido");
+            e.printStackTrace();
         }
     }
     private void showHeart(Graphics g, int heart){

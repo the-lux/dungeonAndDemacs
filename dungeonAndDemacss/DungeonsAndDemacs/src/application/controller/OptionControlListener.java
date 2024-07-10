@@ -12,18 +12,7 @@ public class OptionControlListener implements ActionListener {
     String text;
     @Override
     public void actionPerformed(ActionEvent e) {
-        /*if(e.getSource() instanceof JToggleButton toggleButton){
-            if (toggleButton.isSelected()) {
-                toggleButton.addKeyListener(new KeyAdapter() {
-                    @Override
-                    public void keyPressed(KeyEvent e) {
-                        toggleButton.setText(KeyEvent.getKeyText(e.getKeyCode()));
-                        toggleButton.setSelected(false); // Deseleziona il pulsante
-                        toggleButton.removeKeyListener(this); // Rimuovi il KeyListener
-                    }
-                });
-            }
-        }*/
+
         if(e.getSource() instanceof TopButton topButton) {
             switch (topButton.getType()) {
                 case -1://exit
@@ -38,7 +27,6 @@ public class OptionControlListener implements ActionListener {
                         public void keyPressed(KeyEvent e) {
                             text = KeyEvent.getKeyText(e.getKeyCode());
                             topButton.setText(text);
-                            //topButton.setSelected(false); // Deseleziona il pulsante
                             topButton.removeKeyListener(this); // Rimuovi il KeyListener
                             System.out.println("Testo cambiato in "+text+" = ");
                             System.out.println(e.getKeyCode());

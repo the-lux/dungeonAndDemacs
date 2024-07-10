@@ -16,14 +16,12 @@ public class OptionAudioChangeListener implements ChangeListener {
             switch(topSlider.getType()){
 
                 case 1://musica
-                    //System.out.println("Il valore del JSlider musica è: " + topSlider.getValue());
                     newValue=topSlider.getValue();
                     oldValue= AudioSettings.getVolumeMusica();
                     AudioSettings.setVolumeMusica(newValue);
                     PanelManager.getInstance().adjustAudio(oldValue,AudioSettings.getVolumeMusica());
                     break;
                 case 2://effetti
-                    //System.out.println("Il valore del JSlider effetti è: " + topSlider.getValue());
                     newValue=topSlider.getValue();
                     AudioSettings.setVolumeEffetti(newValue);
                     break;

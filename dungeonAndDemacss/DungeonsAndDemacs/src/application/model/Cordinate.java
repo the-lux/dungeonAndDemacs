@@ -1,7 +1,6 @@
 package application.model;
 
 public class Cordinate{
-    //TODO: DA FARE COME RECORD!
     private int x;
     private int y;
     public Cordinate(){}
@@ -22,22 +21,11 @@ public class Cordinate{
         return y;
     }
 
-    public void setX(int x) {
-        this.x = x;
-    }
-    public void setY(int y) {
-        this.y = y;
-    }
-
     public void plusEqualX(int val){
         this.x+=val;
     }
     public void plusEqualY(int val){
         this.y+=val;
-    }
-
-    public boolean isGreaterThan(Cordinate c){
-        return this.x > c.x || this.y > c.y;
     }
 
     @Override

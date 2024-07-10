@@ -37,13 +37,6 @@ public class Sound{
         if (clip != null)
             clip.stop();
     }
-    public void restart() { //Riproduce dall’inizio
-        if (clip != null) {
-            clip.stop();
-            clip.setFramePosition(0);
-            clip.start();
-        }
-    }
     public void reduceVolume() { //Abbassa il volume
         if (clip != null) {
             FloatControl gainControl = (FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN);

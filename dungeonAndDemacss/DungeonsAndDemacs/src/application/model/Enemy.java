@@ -7,7 +7,6 @@ public class Enemy {
     protected Cordinate place;
     protected boolean alive;
     protected int health;
-    protected int damage;
     protected int enemyType; //0 smart, 1 standard, 2+ boss
     protected int view;
     /* Nemici
@@ -47,12 +46,6 @@ public class Enemy {
     public int getEnemyType() {
         return enemyType;
     }
-
-    public void setEnemyType(int enemyType) {
-        if (enemyType >=0 && enemyType <3)
-            this.enemyType = enemyType;
-    }
-
     public Cordinate getPlace() {
         return place;
     }
@@ -116,7 +109,6 @@ public class Enemy {
                     setPlace(new Cordinate(xEnemy,yEnemy-1));
                 }
             }
-        //return place;
     }
     public void undoMove(){
         place=oldPlace;

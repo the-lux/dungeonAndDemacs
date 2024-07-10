@@ -10,7 +10,6 @@ public class optionPanel extends JPanel {
     private TopButton audioButton;
     private TopButton controlButton;
     private TopButton exitButton;
-    //private TopButton videoButton;
     private TopButton tutorialButton;
     private final Color white;
     private final Color black;
@@ -19,7 +18,6 @@ public class optionPanel extends JPanel {
         audioButton = new TopButton(0);
         controlButton = new TopButton(1);
         exitButton = new TopButton(4);
-        //videoButton = new TopButton(2);
         tutorialButton = new TopButton(3);
         white = new Color(195, 195, 195);
         black = new Color(0,0,0);
@@ -60,16 +58,6 @@ public class optionPanel extends JPanel {
         exitButton.setFocusable(false);
         exitButton.setBackground(white);
         exitButton.setForeground(black);
-
-/*
-        videoButton.setBackground(new Color(153, 153, 153));
-        videoButton.setFont(new Font("Algerian", 0, 48)); // NOI18N
-        videoButton.setText("Video");
-        videoButton.setBorder(BorderFactory.createLineBorder(new Color(0, 0, 0), 2));
-        videoButton.setFocusable(false);
-        videoButton.setHorizontalTextPosition(SwingConstants.CENTER);
-        videoButton.setForeground(black);
-        videoButton.setBackground(white);*/
 
         tutorialButton.setBackground(new Color(153, 153, 153));
         tutorialButton.setFont(new Font("Algerian", 0, 48)); // NOI18N
@@ -135,7 +123,6 @@ public class optionPanel extends JPanel {
         audioButton.addActionListener(optionListener);
         controlButton.addActionListener(optionListener);
         exitButton.addActionListener(optionListener);
-        //videoButton.addActionListener(optionListener);
         tutorialButton.addActionListener(optionListener);
     }
 }

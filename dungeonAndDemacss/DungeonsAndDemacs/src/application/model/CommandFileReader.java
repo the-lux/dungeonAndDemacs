@@ -45,7 +45,7 @@ public class CommandFileReader {
                 command[i] = dis.readInt();
             }
         } catch (IOException e) {
-            //todo aggiungere un codice d'eccezione
+            // aggiungere un codice d'eccezione
             e.printStackTrace();
         }
     }
@@ -55,7 +55,7 @@ public class CommandFileReader {
                 dos.writeInt(n);
             }
         } catch (IOException e) {
-            //todo aggiungere un codice d'eccezione
+            // aggiungere un codice d'eccezione
             e.printStackTrace();
         }
     }

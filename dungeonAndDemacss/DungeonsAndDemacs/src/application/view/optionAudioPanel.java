@@ -9,10 +9,8 @@ import java.awt.*;
 
 public class optionAudioPanel extends JPanel {
     private JLabel opzAudioLabel;
-    private JLabel generalLabel;
     private JLabel musicLabel;
     private JLabel effectLabel;
-    private TopSlider generalSlider;
     private TopSlider musicSlider;
     private TopSlider effectSlider;
     private JButton exitButton;

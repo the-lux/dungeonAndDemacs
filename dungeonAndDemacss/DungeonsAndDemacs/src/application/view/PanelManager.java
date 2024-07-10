@@ -104,7 +104,7 @@ public class PanelManager {
     public void goOptionVideo(){
 
     }
-    public void goWord(){
+    public void goWorld(){
         clear();
         mainFrame.setSize(Settings.WINDOW_SIZE,Settings.WINDOW_SIZE+40);
         clearAudio();

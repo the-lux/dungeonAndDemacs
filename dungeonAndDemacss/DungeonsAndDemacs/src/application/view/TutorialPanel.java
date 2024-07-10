@@ -19,7 +19,7 @@ public class TutorialPanel extends  GradientPanel{
         Color black=new Color(0,0,0);
         setLayout(new BorderLayout());
 
-        exitButton.setFont(new Font("Algerian", 0, 48)); // NOI18N
+        exitButton.setFont(new Font("Algerian", 0, 48));
         exitButton.setText("EXIT");
         exitButton.setBorder(BorderFactory.createLineBorder(black, buttonBorder));
 
@@ -42,12 +42,10 @@ public class TutorialPanel extends  GradientPanel{
 
         add(buttonPanel, BorderLayout.PAGE_END);
 
-        //jTextArea.setColumns(20);
         jTextArea.setEditable(false);
         jTextArea.setBackground(Color.red);
         jTextArea.setForeground(Color.white);
-        jTextArea.setFont(new Font("Times New Roman", 0, 24)); // NOI18N
-        //jTextArea.setRows(5);
+        jTextArea.setFont(new Font("Times New Roman", 0, 24));
         jTextArea.setText("L'obbiettivo è quello di laurearsi ovvero:\n Sconfiggere tutti i nemici nelle stanze (associazioni, e torpedine) per poi sconfigere i boss (professori).\n  GPT +danno, Tessera Associazione ti da lo scudo, Sigaretta sei invisibile, caffè ti da + vita\n  Comandi movimento: W,S,A,D\n  Comandi visione con le frecce:UP,Down,Left,Right\n  Attacco(nella direzione della visione): Space.");
         jScrollPane.setViewportView(jTextArea);
         add(jScrollPane, BorderLayout.CENTER);

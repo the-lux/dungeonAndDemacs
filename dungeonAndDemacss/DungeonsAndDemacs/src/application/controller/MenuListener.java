@@ -14,7 +14,7 @@ public class MenuListener implements ActionListener {
             switch(topButton.getType()){
                 case 0:
                     System.out.println("play");
-                    PanelManager.getInstance().goWord();
+                    PanelManager.getInstance().goWorld();
                     break;
                 case 1:
                     System.out.println("option");
