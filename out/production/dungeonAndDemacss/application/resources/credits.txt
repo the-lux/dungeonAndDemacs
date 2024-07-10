@@ -1,0 +1,29 @@
+Realizzazione: Romano Luca, Isabella Mariano Vincenzo, Perrelli Salvatore
+Sprite: Perrelli Salvatore
+Nemici: Isabella Mariano Vincenzo
+Boss: Isabella Mariano Vincenzo
+Menu: Romano Luca, Isabella Mariano Vincenzo
+Generazione mappa: Romano Luca
+Power up: Isabella Mariano Vincenzo
+Design delle stanze: Perrelli Salvatore
+Caricamento delle stanze: Perrelli Salvatore
+Autori delle tracce audio utilizzate:
+ finalBoss->Dialga's Fight to the Finish: Remaster by Zame (https://www.youtube.com/channel/UCKKKbeAhjKYJfOy5Opg8lcQ)
+ menu->Personality Test (Remastered) by Zame (https://www.youtube.com/channel/UCKKKbeAhjKYJfOy5Opg8lcQ)
+ charWalk->mco_walk_e02.wav by Fantozzi -- https://freesound.org/s/166297/ -- License: Creative Commons 0
+ meleeAttack1-> Sword_Clash (43).wav by JohnBuhr -- https://freesound.org/s/326855/ -- License: Creative Commons 0
+ win-> Jingle_Win_00.wav by LittleRobotSoundFactory -- https://freesound.org/s/270528/ -- License: Attribution 4.0
+ lose-> Game Over Again.mp3 by Baltiyar13 -- https://freesound.org/s/564046/ -- License: Creative Commons 0
+ powerUp-> Powerup03.wav by jeremysykes -- https://freesound.org/s/341240/ -- License: Creative Commons 0
+ bossWalking-> Retro, Boss Step 02.wav by MATRIXXX_ -- https://freesound.org/s/441364/ -- License: Creative Commons 0
+ meleeAttack2-> Hard Swing 1 by magnuswaker -- https://freesound.org/s/523230/ -- License: Creative Commons 0
+ rangedAttack-> Laser by Daleonfire -- https://freesound.org/s/376694/ -- License: Creative Commons 0
+ boss1-> Big bad boss by Victor_Natas -- https://freesound.org/s/613151/ -- License: Attribution 4.0
+ Room-A)Dungeon.wav by TerryTom -- https://freesound.org/s/561217/ -- License: Attribution NonCommercial 3.0
+ Room-B)Amp-Plains: Remastered by Zame (https://www.youtube.com/channel/UCKKKbeAhjKYJfOy5Opg8lcQ)
+ treasure-> Gerudo Valley Theme (Medieval Cover) by Middle Ages (https://www.youtube.com/@MiddleAgesMusic)
+ Un ringraziamento speciale a Luca,Francesco e Roberta per il nome del gruppo
+
+ Sei stato bocciato.
+ Riprovare?
+
