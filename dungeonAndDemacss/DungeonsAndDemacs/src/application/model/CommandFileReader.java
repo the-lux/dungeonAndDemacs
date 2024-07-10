@@ -6,12 +6,12 @@ import java.nio.file.Path;
 import java.util.Arrays;
 
 public class CommandFileReader {
-    private final String path = "../resources/configuration.txt";
+    private final String path = "/resources/configuration.txt";
     public int[] read() throws IOException {
         int[] command = new int[9];
         BufferedReader in = null;
         try {
-            in = new BufferedReader(new FileReader(String.valueOf(getClass().getResource("configuration.txt"))));
+            in = new BufferedReader(new FileReader(String.valueOf(getClass().getResource(path))));
             for (int i=0; i<command.length; i++){
                 command[i]= Integer.parseInt(in.readLine());
             }

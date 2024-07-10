@@ -1,6 +1,7 @@
 package application.view;
 
 import application.GameLoop;
+import application.config.Settings;
 import application.controller.*;
 
 public class PanelMenager {
@@ -85,6 +86,7 @@ public class PanelMenager {
         worldPanel.addKeyListener(controller);
         mainFrame.add(worldPanel);
         worldPanel.requestFocusInWindow();
+        mainFrame.setSize(Settings.WINDOW_SIZE,Settings.WINDOW_SIZE+40);
         mainFrame.revalidate();
         mainFrame.repaint();
         GameLoop gameLoop = new GameLoop(controller);

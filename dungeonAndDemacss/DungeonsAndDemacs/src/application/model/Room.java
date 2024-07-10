@@ -17,7 +17,7 @@ public  class Room {
     /* Stanze
     NUOVI INDICI:
     0=più nemici
-    1=1 nemico
+    1=1 nemico mini boss
     2+=Boss(Ianni,Fuduli e Van Bon)
 
 
@@ -26,8 +26,6 @@ public  class Room {
     1 fuduli
     2 Van Bon
     3 minion torpedine e associazione
-    4 loot
-    5 mercante
     */
 
     public Room() {

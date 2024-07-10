@@ -40,16 +40,19 @@ public class MapGen {
                         next.plusEqualY(-1);
                 }
             }while (map[next.getX()][next.getY()]!=null); //while per evitare di creare una stanza in una posizione già occupata
-            setSonRoom(next,current,dir);
+            setSonRoom(next,current,dir,rN.nextInt(2));
             queue.add(current);//aggiunge alla coda le stanze principali
-            //TODO inserisce delle stanze alternate tra: stanze con molti minion, un miniboss(or prof depotenziato),
             current = new Cordinate(next);
         }
         queue.add(next);
         map[current.getX()][current.getY()].setEnd(true);//setta la stanza finale
-        //TODO inserisce il boss finale
+        map[current.getX()][current.getY()].setRoomType(2);
     }
     /*
+    0=più nemici
+    1=1 nemico (mini boss)
+    //2+=Boss(Ianni,Fuduli e Van Bon)
+
     -1 empty
     0 Ianni
     1 fuduli
@@ -68,11 +71,8 @@ public class MapGen {
                 for (int i = 0; i < 4 && randomNRoom>0&&nRoom>0; i++) { //aggiunto nRoom>0 perchè c'è la possibilità che verso la fine della funzione crei più stanze
                     next = map[current.getX()][current.getY()].getDirRelativeCord(i);
                     if(map[next.getX()][next.getY()]==null){
-                        setSonRoom(current,i);
+                        setSonRoom(current,i,rN.nextInt(1));
                         queue.add(current);
-                        //TODO aggiunge stanze tra: un miniboss(or prof depotenziato) 50/50 con stanza molti minion,
-                        // stanze tesoro (prob più bassa)
-
                         randomNRoom --;
                         nRoom--;
                     }
@@ -81,18 +81,20 @@ public class MapGen {
         }
         //aggiunge alla fine una stanza del tesoro sicura
     }
-    private void setSonRoom(Cordinate son,Cordinate father,int dir){
+    private void setSonRoom(Cordinate son,Cordinate father,int dir,int type){
         map[son.getX()][son.getY()]=new Room();//crea una nuova stanza
         map[father.getX()][father.getY()].setIndexDoor(dir,true,map[son.getX()][son.getY()]);//collega la stanza corrente alla nuova
         map[son.getX()][son.getY()].setIndexDoor(((dir + 2) % 4),true,map[father.getX()][father.getY()]);//collega la nuova stanza
         map[son.getX()][son.getY()].setPosition(son.getX(),son.getY());//setta la posizione del figlio
+        map[son.getX()][son.getY()].setRoomType(type);
     }
-    private void setSonRoom(Cordinate father,int dir){
+    private void setSonRoom(Cordinate father,int dir,int type){
         Cordinate son = new Cordinate(map[father.getX()][father.getY()].getDirRelativeCord(dir));
         map[son.getX()][son.getY()]=new Room();//crea una nuova stanza
         map[father.getX()][father.getY()].setIndexDoor(dir,true,map[son.getX()][son.getY()]);//collega la stanza corrente alla nuova
         map[son.getX()][son.getY()].setIndexDoor(((dir + 2) % 4),true,map[father.getX()][father.getY()]);//collega la nuova stanza
         map[son.getX()][son.getY()].setPosition(son.getX(),son.getY());
+        map[son.getX()][son.getY()].setRoomType(type);
     }
 
     public Room getRoot(){

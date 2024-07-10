@@ -79,16 +79,14 @@ public class World {
             blocks [powerUpPlace.getX()][powerUpPlace.getY()]=Block.POWERUP;
         }
     }
-    /* Stanze
-    -1 empty
-    0 Ianni
-    1 fuduli
-    2 Van Bon
-    3 minion torpedine e associazione
-    4 loot
-    5 mercante
-    */
-    /* Nemici
+
+    /*
+    Stanze
+    0=più nemici
+    1=1 nemico (mini boss)
+    //2+=Boss(Ianni,Fuduli e Van Bon)
+
+    Nemici
     0 Ianni
     1 fuduli
     2 Van Bon
@@ -115,7 +113,7 @@ public class World {
                 do {
                     enemyCordinate = new Cordinate(random.nextInt(1,blocks.length-1), random.nextInt(1,blocks.length-1));
                 }while (!isEmpty(enemyCordinate));
-                Enemy e=new Enemy(enemyCordinate,random.nextInt(0,2),i);
+                Enemy e=new Enemy(enemyCordinate,random.nextInt(0,3),i);
                 //sfrutto il do while per evitare che mi generi il nemico sovrascrivendo il personaggio
                 room.addEnemy(e);
                 setEnemyBlock(enemyCordinate.getX(), enemyCordinate.getY(), e);
@@ -125,7 +123,7 @@ public class World {
             do {
                 enemyCordinate = new Cordinate(random.nextInt(1,blocks.length-1), random.nextInt(1,blocks.length-1));
             }while (!isEmpty(enemyCordinate));
-            Enemy enemy=new Enemy(enemyCordinate,0,0);
+            Enemy enemy=new Enemy(enemyCordinate,random.nextInt(0,3),0);
             //sfrutto il do while per evitare che mi generi il nemico sovrascrivendo il personaggio
             room.addEnemy(enemy);
             setEnemyBlock(enemyCordinate.getX(),enemyCordinate.getY(),enemy);
@@ -252,7 +250,7 @@ public class World {
         for (Enemy e: list){
             if (!e.isAlive()) break;
             int type=e.getEnemyType();
-            if (type==1){
+            if (type==3){
                 e.standardMove();
             } else{
                 if (checkForPlayer(e.getPlace(),e.getView())){
