@@ -124,7 +124,7 @@ public class WorldPanel extends JPanel {
     }
     private void loadPowerUp(){
         try {
-            powerUpImage[0] = ImageIO.read(getClass().getResourceAsStream("../resources/power_up_damage_gtp.png"));
+            powerUpImage[0] = ImageIO.read(getClass().getResourceAsStream("../resources/power_up_ gpt_damage.png"));
             powerUpImage[1] = ImageIO.read(getClass().getResourceAsStream("../resources/power_up_shield_card.png"));
             powerUpImage[2] = ImageIO.read(getClass().getResourceAsStream("../resources/power_up_invisible_siga.png"));
             powerUpImage[3] = ImageIO.read(getClass().getResourceAsStream("../resources/power_up_health_coffee.png"));
@@ -136,16 +136,16 @@ public class WorldPanel extends JPanel {
         try {
             switch(type){
                 case 1://GPT(+danno)
-                    g.drawImage(powerUpImage[1],160,590,null);
+                    g.drawImage(powerUpImage[1],200,590,64,64,null);
                     break;
                 case 2://Tessera Associazione (scudo)
-                    g.drawImage(powerUpImage[1],160,590,null);
+                    g.drawImage(powerUpImage[1],200,590,64,64,null);
                     break;
                 case 3://Sigaretta(invisibile)
-                    g.drawImage(powerUpImage[1],160,590,null);
+                    g.drawImage(powerUpImage[1],200,590,64,64,null);
                     break;
                 case 4://caffè vita
-                    g.drawImage(powerUpImage[1],160,590,null);
+                    g.drawImage(powerUpImage[1],200,590,64,64,null);
                     break;
                 default:
                     throw new IllegalArgumentException();
