@@ -78,6 +78,7 @@ public class WorldPanel extends JPanel {
                 g.drawImage(cv.getImage(),world.getCharacter().getPlace().getX()*Settings.BLOCK_SIZE,world.getCharacter().getPlace().getY()*Settings.BLOCK_SIZE,Settings.BLOCK_SIZE*2,Settings.BLOCK_SIZE*2,null);
             }
         }
+        //prova
         switch (game.getWorld().getCharacter().getHealth()){
             case 1://mezzo cuore
                 g.drawImage(image[1],20,590,null);

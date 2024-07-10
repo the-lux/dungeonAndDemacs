@@ -10,6 +10,7 @@ public class World {
 
     private enum Block { EMPTY, WALL, STANDARD_ENEMY, CHARACTER,DOOR_UP,DOOR_DOWN, DOOR_LEFT, DOOR_RIGHT,
                         POWERUP,SMART_ENEMY,BOSS,TRAP};
+
     private Block[][] blocks;
 
     private Character character=new Character();
@@ -344,17 +345,17 @@ public class World {
     public void usePowerUp(){
         try {
             switch(room.getpUp().getId()){
-                case 1:
+                case 1://coffee
                     System.out.println("Effetto in fase di implementazione");
                     break;
-                case 2:
+                case 2://tessera
                     character.setShielded(true);
                     break;
-                case 3:
+                case 3://segreteria
                     System.out.println("Rendo il personaggio invisibile");
                     character.setInvisible(true);
                     break;
-                case 4:
+                case 4://Sigaretta
                     character.fullHeal();
                     break;
                 default:
@@ -372,4 +373,5 @@ public class World {
     public void endEnemyHit(){
         enemyHit=false;
     }
+
 }
