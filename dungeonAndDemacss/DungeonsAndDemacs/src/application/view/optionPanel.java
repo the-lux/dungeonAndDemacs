@@ -11,7 +11,7 @@ public class optionPanel extends JPanel {
     private TopButton controlButton;
     private TopButton exitButton;
     //private TopButton videoButton;
-    private TopButton languageButton;
+    private TopButton tutorialButton;
     private final Color white;
     private final Color black;
     public optionPanel () {
@@ -20,7 +20,7 @@ public class optionPanel extends JPanel {
         controlButton = new TopButton(1);
         exitButton = new TopButton(4);
         //videoButton = new TopButton(2);
-        languageButton = new TopButton(3);
+        tutorialButton = new TopButton(3);
         white = new Color(195, 195, 195);
         black = new Color(0,0,0);
 
@@ -71,14 +71,14 @@ public class optionPanel extends JPanel {
         videoButton.setForeground(black);
         videoButton.setBackground(white);*/
 
-        languageButton.setBackground(new Color(153, 153, 153));
-        languageButton.setFont(new Font("Algerian", 0, 48)); // NOI18N
-        languageButton.setText("Lingua");
-        languageButton.setBorder(BorderFactory.createLineBorder(new Color(0, 0, 0), 2));
-        languageButton.setFocusable(false);
-        languageButton.setHorizontalTextPosition(SwingConstants.CENTER);
-        languageButton.setForeground(black);
-        languageButton.setBackground(white);
+        tutorialButton.setBackground(new Color(153, 153, 153));
+        tutorialButton.setFont(new Font("Algerian", 0, 48)); // NOI18N
+        tutorialButton.setText("Tutorial");
+        tutorialButton.setBorder(BorderFactory.createLineBorder(new Color(0, 0, 0), 2));
+        tutorialButton.setFocusable(false);
+        tutorialButton.setHorizontalTextPosition(SwingConstants.CENTER);
+        tutorialButton.setForeground(black);
+        tutorialButton.setBackground(white);
 
 
         GroupLayout layout = new GroupLayout(this);
@@ -95,7 +95,7 @@ public class optionPanel extends JPanel {
                                         .addComponent(audioButton, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                         .addComponent(controlButton, GroupLayout.DEFAULT_SIZE, 416, Short.MAX_VALUE)
                                         //.addComponent(videoButton, GroupLayout.DEFAULT_SIZE, 416, Short.MAX_VALUE)
-                                        .addComponent(languageButton, GroupLayout.DEFAULT_SIZE, 416, Short.MAX_VALUE))
+                                        .addComponent(tutorialButton, GroupLayout.DEFAULT_SIZE, 416, Short.MAX_VALUE))
                                 .addGap(90, 90, 90))
                         .addGroup(layout.createSequentialGroup()
                                 .addGap(186, 186, 186)
@@ -114,7 +114,7 @@ public class optionPanel extends JPanel {
                                 .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
                                 //.addComponent(videoButton)
                                 .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(languageButton)
+                                .addComponent(tutorialButton)
                                 .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 75, Short.MAX_VALUE)
                                 .addComponent(exitButton, GroupLayout.PREFERRED_SIZE, 58, GroupLayout.PREFERRED_SIZE)
                                 .addGap(20, 20, 20))
@@ -136,6 +136,6 @@ public class optionPanel extends JPanel {
         controlButton.addActionListener(optionListener);
         exitButton.addActionListener(optionListener);
         //videoButton.addActionListener(optionListener);
-        languageButton.addActionListener(optionListener);
+        tutorialButton.addActionListener(optionListener);
     }
 }

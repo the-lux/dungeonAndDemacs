@@ -6,7 +6,6 @@ import application.config.Settings;
 import application.controller.*;
 import application.model.Game;
 
-import javax.sound.sampled.AudioInputStream;
 import javax.swing.*;
 import java.awt.*;
 
@@ -17,6 +16,7 @@ public class PanelManager {
     private WorldPanel worldPanel;
     private optionPanel OptionPanel;
     private CreditPanel creditPanel;
+    private  TutorialPanel tutorialPanel;
     private WinPanel winPanel;
     private LosePanel losePanel;
     private JPanel emptyPanel;
@@ -92,8 +92,14 @@ public class PanelManager {
         mainFrame.revalidate();
         mainFrame.repaint();
     }
-    public void goOptionLanguage(){
-
+    public void goOptionTutorial(){
+        clear();
+        tutorialPanel = new TutorialPanel();
+        tutorialPanel.setFocusable(true);
+        CreditListener creditListener=new CreditListener();
+        tutorialPanel.setController(creditListener);
+        mainFrame.add(tutorialPanel);
+        mainFrame.revalidate();
     }
     public void goOptionVideo(){
 

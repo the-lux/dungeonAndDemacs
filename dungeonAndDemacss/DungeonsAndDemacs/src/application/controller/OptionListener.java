@@ -25,7 +25,7 @@ public class OptionListener implements ActionListener {
                     break;
                 case 3:
                     //System.out.println("language");
-                    PanelManager.getInstance().goOptionLanguage();
+                    PanelManager.getInstance().goOptionTutorial();
                     break;
                 case 4:
                     //System.out.println("exit");
