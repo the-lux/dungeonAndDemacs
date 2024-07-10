@@ -75,7 +75,6 @@ public class PanelManager {
         adjustAudio(0,AudioSettings.getVolumeMusica());
         mainFrame.add(creditPanel);
         mainFrame.revalidate();
-        //mainFrame.repaint(); funziona lo stesso, si può togliere per maggiore efficienza?
     }
     public void close(){
         //mainFrame.dispose();
@@ -108,7 +107,6 @@ public class PanelManager {
         clear();
         mainFrame.setSize(Settings.WINDOW_SIZE,Settings.WINDOW_SIZE+40);
         clearAudio();
-        System.out.println("word");
         emptyPanel= new JPanel();
         emptyPanel.setLayout(cardLayout);
         CharacterView cv=new CharacterView();
@@ -140,7 +138,6 @@ public class PanelManager {
         worldPanel.requestFocusInWindow();
     }
     public void goLose(){
-
         audio=new Sound("lose.wav");
         audio.play();
         adjustAudio(0,AudioSettings.getVolumeMusica());

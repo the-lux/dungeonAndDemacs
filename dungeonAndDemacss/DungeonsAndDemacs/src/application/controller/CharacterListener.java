@@ -1,7 +1,7 @@
 package application.controller;
 
 import application.config.Settings;
-import application.model.CommandFileReader;
+
 import application.model.Game;
 import application.view.CharacterView;
 import application.view.PanelManager;
@@ -9,8 +9,6 @@ import application.view.WorldPanel;
 
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
-import java.io.IOException;
-import java.util.Arrays;
 
 public class CharacterListener extends KeyAdapter {
     private final WorldPanel worldPanel;
@@ -19,7 +17,7 @@ public class CharacterListener extends KeyAdapter {
     public CharacterListener(WorldPanel wP,CharacterView cv){
         this.characterView=cv;
         this.worldPanel =wP;
-        int [] temp = Settings.defaultCommand;//key code of order: W,S,A,D,UP,Down,Left,Right,Space
+        //int [] temp = Settings.defaultCommand;//key code of order: W,S,A,D,UP,Down,Left,Right,Space
         //In qualsiasi modo non riesce a leggere il messaggio di testo o file di byte
         /*CommandFileReader commandFileReader = new CommandFileReader();
         try {
@@ -27,8 +25,7 @@ public class CharacterListener extends KeyAdapter {
         }catch (IOException e){
             e.printStackTrace();
         }*/
-        commandKeyCode = temp;
-        System.out.println(Arrays.toString(commandKeyCode));
+        commandKeyCode = Settings.defaultCommand;
     }
 
     @Override
@@ -63,53 +60,6 @@ public class CharacterListener extends KeyAdapter {
         } else {
             worldPanel.sfxMovementChar();
         }
-        /*if (e.getKeyCode() == KeyEvent.VK_W &&e.getKeyCode() == KeyEvent.VK_DOWN){
-            System.out.println("prova");
-        }
-        switch(e.getKeyCode()) {
-            case commandKeyCode[0]:
-                Game.getGame().meleeAttack();
-                break;
-            case KeyEvent.VK_N:
-                Game.restartGame();
-                worldPanel.reset();
-                break;
-            case KeyEvent.VK_LEFT:
-                Game.getGame().updateFacing(Game.MOVE_LEFT);
-                break;
-            case KeyEvent.VK_RIGHT:
-                Game.getGame().updateFacing(Game.MOVE_RIGHT);
-                break;
-            case KeyEvent.VK_DOWN:
-                Game.getGame().updateFacing(Game.MOVE_DOWN);
-                break;
-            case KeyEvent.VK_UP :
-                Game.getGame().updateFacing(Game.MOVE_UP);
-                break;
-            case KeyEvent.VK_W:
-                Game.getGame().move(Game.MOVE_UP);
-                characterView.updateDirection(0);
-                break;
-            case KeyEvent.VK_D:
-                Game.getGame().move(Game.MOVE_RIGHT);
-                characterView.updateDirection(2);
-                break;
-            case KeyEvent.VK_S:
-                Game.getGame().move(Game.MOVE_DOWN);
-                characterView.updateDirection(4);
-                break;
-            case KeyEvent.VK_A:
-                Game.getGame().move(Game.MOVE_LEFT);
-                characterView.updateDirection(6);
-                break;
-        }
-        /*prova = KeyEvent.getKeyText(e.getKeyCode());
-        if(prova.equals(command[0])){//ahead
-            Game.getGame().move(Game.MOVE_UP);
-            characterView.updateDirection(0);
-        } else if (prova.equals(command[1])) {//back
-
-        }*/
         worldPanel.repaint();//sebbene sia chiamata in update, la chiamo anche qui per rendere più fluidi i movimenti
     }
     public void update(){

@@ -8,8 +8,7 @@ import java.util.Random;
 
 public class World {
 
-    private enum Block { EMPTY, WALL, STANDARD_ENEMY, CHARACTER,DOOR_UP,DOOR_DOWN, DOOR_LEFT, DOOR_RIGHT,
-                        POWERUP,SMART_ENEMY,BOSS,TRAP};
+    private enum Block { EMPTY, WALL, STANDARD_ENEMY, CHARACTER,DOOR_UP,DOOR_DOWN, DOOR_LEFT, DOOR_RIGHT,POWERUP,SMART_ENEMY,BOSS,TRAP}
 
     private Block[][] blocks;
 
@@ -76,7 +75,6 @@ public class World {
             do {
                 powerUpPlace= new Cordinate(rand.nextInt(1, blocks.length-1),rand.nextInt(1, blocks.length-1));
             } while (isOccupied(powerUpPlace));
-            int type=rand.nextInt(1,5);
             r.setpUp(new PowerUp(2));
             blocks [powerUpPlace.getX()][powerUpPlace.getY()]=Block.POWERUP;
         }
@@ -215,9 +213,7 @@ public class World {
         Cordinate posizione = room.getBoss().getPlace();
         if (posizione.equals(character.getPlace())) {
             enemyHit=true;
-            System.out.println("Vita attuale:" + character.getHealth());
             character.damageCharacter(-1);
-            System.out.println("Vita dopo il contatto:" + character.getHealth());
             if (character.getHealth() <= 0) {
                 this.eliminatePlayer();
             } else {
@@ -293,9 +289,7 @@ public class World {
             room.removeEnemy(target);
         }
         if (isBoss(target) || isBoss(rangeTwoAttack)){
-            //System.out.println("Vita del boss prima del colpo "+room.getBoss().getHealth());
             room.getBoss().updateHealth(-1);
-            //System.out.println("Vita del boss dopo il colpo "+room.getBoss().getHealth());
             if (room.getBoss().getHealth() <= 0){
                 setType(target,Block.EMPTY);
                 room.defeatBoss();
@@ -304,15 +298,11 @@ public class World {
     }
     public void manageEnemy(){
         ArrayList<Enemy> list=room.getEnemyArrayList();
-        //System.out.println("Posizione del player x"+character.getPlace().getX()+"y:"+character.getPlace().getY());
         for (Enemy e: list){
             Cordinate posizione=e.getPlace();
-            //System.out.println("Posizione del nemico x:"+posizione.getX()+"y:"+posizione.getY());
             if (posizione.equals(character.getPlace())) {
                 enemyHit=true;
-                System.out.println("Vita attuale:" + character.getHealth());
                 character.damageCharacter(-1);
-                System.out.println("Vita dopo il contatto:" + character.getHealth());
                 if (character.getHealth() <= 0) {
                     this.eliminatePlayer();
                 } else {
@@ -356,7 +346,7 @@ public class World {
                     throw new IllegalArgumentException();
             }
         } catch(IllegalArgumentException e){
-            System.out.println("L'id del powerup non è valido");
+            e.printStackTrace();
         }
 
     }
