@@ -2,9 +2,6 @@ package application.model;
 
 import java.util.Random;
 
-/*
-TODO: Ogni tipo di nemico una classe che estende Enemy?
- */
 public class Enemy {
     protected Cordinate oldPlace; //la utilizzo per salvare la vecchia posizione e annullare il movimento se questo non dovesse essere valido
     protected Cordinate place;
@@ -17,14 +14,14 @@ public class Enemy {
     0 Ianni
     1 fuduli
     2 Van Bon
-    3 Torpedine
-    4 Associazioni
+    3 Torpedine // standard
+    4 Associazioni //segue intelligente
     */
     protected final int reference; //id che uso per riferirmi a quello specifico nemico in un gruppo di nemici;
     public Enemy(Cordinate p, int type, int i){
         alive=true;
         place=p;
-        enemyType=type;
+        enemyType =type;
         reference=i;
         if (type!=1){
             view=3;
@@ -52,7 +49,7 @@ public class Enemy {
     }
 
     public void setEnemyType(int enemyType) {
-        if (enemyType>=0 && enemyType<3)
+        if (enemyType >=0 && enemyType <3)
             this.enemyType = enemyType;
     }
 

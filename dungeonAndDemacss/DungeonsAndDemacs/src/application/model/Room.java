@@ -17,15 +17,15 @@ public  class Room {
     /* Stanze
     NUOVI INDICI:
     0=più nemici
-    1=1 nemico
+    1=1 nemico mini boss
     2+=Boss(Ianni,Fuduli e Van Bon)
+
+
     -1 empty
     0 Ianni
     1 fuduli
     2 Van Bon
     3 minion torpedine e associazione
-    4 loot
-    5 mercante
     */
 
     public Room() {
@@ -35,7 +35,7 @@ public  class Room {
         this.isStart = false;
         this.nDoor = 0;
         this.enemyArrayList = new ArrayList<>();
-        this.roomType = 0;
+        this.roomType = -1;
         this.completed=false;
     }
     public Cordinate getDirRelativeCord(int dir){
@@ -82,7 +82,6 @@ public  class Room {
     public Cordinate getPosition() {
         return position;
     }
-    //TODO creare un nuovo metodo di overload per setIndexDoor che accetta anche le cord
     public void setPosition(Cordinate c) {
         this.position = new Cordinate(c);
     }
@@ -148,12 +147,12 @@ public  class Room {
     public void setRight(boolean right, Room rightLink) {
         if(right){
             this.roomLink[1] =rightLink;
-            this.doors[1] = right;
+            this.doors[1] = true;
             this.nDoor ++;
         }
         else {
             this.roomLink[1] =null;
-            this.doors[1] = right;
+            this.doors[1] = false;
             this.nDoor --;
         }
     }
