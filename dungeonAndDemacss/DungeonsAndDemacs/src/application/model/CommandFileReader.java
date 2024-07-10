@@ -6,7 +6,7 @@ import java.nio.file.Path;
 import java.util.Arrays;
 
 public class CommandFileReader {
-    private final String path = "/resources/configuration.txt";
+    private final String path = "../resources/configuration.txt";
     public int[] read() throws IOException {
         int[] command = new int[9];
         BufferedReader in = null;
