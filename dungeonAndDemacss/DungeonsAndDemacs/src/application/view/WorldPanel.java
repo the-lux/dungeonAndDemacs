@@ -131,6 +131,7 @@ public class WorldPanel extends JPanel {
         } catch (IOException e) {
             e.printStackTrace();
         }
+        //prova
     }
     private void showPowerUp(Graphics g, int type){
         try {
