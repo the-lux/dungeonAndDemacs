@@ -1,5 +1,6 @@
 package application.controller;
 
+import application.config.AudioSettings;
 import application.config.Settings;
 import application.model.CommandFileReader;
 import application.model.Game;
@@ -53,6 +54,11 @@ public class CharacterListener extends KeyAdapter {
             Game.getGame().updateFacing(Game.MOVE_RIGHT);
         } else if (e.getKeyCode()==commandKeyCode[8]) {
             Game.getGame().meleeAttack();
+        }
+        if (e.getKeyCode()==commandKeyCode[8]){
+            worldPanel.sfxAttack();
+        } else {
+            worldPanel.sfxMovementChar();
         }
         /*if (e.getKeyCode() == KeyEvent.VK_W &&e.getKeyCode() == KeyEvent.VK_DOWN){
             System.out.println("prova");

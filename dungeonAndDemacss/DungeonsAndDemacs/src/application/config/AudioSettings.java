@@ -8,11 +8,6 @@ public class AudioSettings {
         return volumeGenerale;
     }
 
-    public static void setVolumeGenerale(int vol) {
-
-        volumeGenerale = vol;
-
-    }
 
     public static int getVolumeEffetti() {
         return volumeEffetti;
@@ -28,7 +23,7 @@ public class AudioSettings {
     public static void setVolumeMusica(int vol) {
         volumeMusica = vol;
     }
-    public static void increaseAllVolumes(int increase){
+    public static void increaseVolumes(int increase){
         volumeMusica+=increase;
         volumeEffetti+=increase;
     }

@@ -1,5 +1,6 @@
 package application.view;
 
+import application.config.AudioSettings;
 import application.controller.OptionAudioActionListener;
 import application.controller.OptionAudioChangeListener;
 
@@ -38,7 +39,7 @@ public class optionAudioPanel extends JPanel {
         generalSlider.setSnapToTicks(true);
         generalSlider.setName("generalAudio");
         generalSlider.setOpaque(false);
-        generalSlider.setValue(0);
+        generalSlider.setValue(AudioSettings.getVolumeGenerale());
         generalSlider.setType(0);
 
         generalLabel.setFont(new Font("Algerian", 0, 36));
@@ -52,7 +53,7 @@ public class optionAudioPanel extends JPanel {
         musicSlider.setSnapToTicks(true);
         musicSlider.setName("generalAudio");
         musicSlider.setOpaque(false);
-        musicSlider.setValue(0);
+        musicSlider.setValue(AudioSettings.getVolumeMusica());
         musicSlider.setType(1);
 
         effectLabel.setFont(new Font("Algerian", 0, 36));
@@ -62,7 +63,7 @@ public class optionAudioPanel extends JPanel {
         effectSlider.setSnapToTicks(true);
         effectSlider.setName("generalAudio");
         effectSlider.setOpaque(false);
-        effectSlider.setValue(0);
+        effectSlider.setValue(AudioSettings.getVolumeEffetti());
         effectSlider.setType(2);
 
         exitButton.setBackground(new Color(153, 153, 153));
