@@ -6,8 +6,18 @@ public class Character {
     private int health;
     private int damage;
     private int facing=0;//la direzione a cui è rivolto
+    //todo cambiare i getter e setter restituendo utilizzando powerUpType
     private boolean invisible=false; //serve per implementare il powerup3
     private boolean shielded=false;
+    private int powerUpType = -1;
+
+    public int getPowerUpType() {
+        return powerUpType;
+    }
+
+    public void setPowerUpType(int powerUpType) {
+        this.powerUpType = powerUpType;
+    }
     public Character(){
         health=6;
     };
@@ -56,7 +66,7 @@ public class Character {
     }
 
     public void setDamage(int damage) {
-        this.damage = damage;
+        this.damage += damage;
     }
 
     public int getHealth() {

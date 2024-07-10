@@ -17,6 +17,7 @@ public class OptionAudioChangeListener implements ChangeListener {
             switch(topSlider.getType()){
                 case 0: //generale
                     //System.out.println("Il valore del JSlider generale è: " + topSlider.getValue());
+
                     oldGeneralValue= AudioSettings.getVolumeGenerale();
                     System.out.println("Il vecchio valore generale è" +oldGeneralValue);
                     System.out.println("Il valore in new value è: "+newValue);

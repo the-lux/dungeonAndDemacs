@@ -14,10 +14,12 @@ import java.io.IOException;
 
 public class WorldPanel extends JPanel {
     CharacterView cv;
-    public final BufferedImage[] image = new BufferedImage[3];
+    public final BufferedImage[] heartImage = new BufferedImage[3];
+    public final BufferedImage[] powerUpImage = new BufferedImage[4];
     public WorldPanel(CharacterView cv) {
         this.cv = cv;
         loadHeart();
+        loadPowerUp();
         reset();
     }
     public void reset(){
@@ -78,40 +80,12 @@ public class WorldPanel extends JPanel {
                 g.drawImage(cv.getImage(),world.getCharacter().getPlace().getX()*Settings.BLOCK_SIZE,world.getCharacter().getPlace().getY()*Settings.BLOCK_SIZE,Settings.BLOCK_SIZE*2,Settings.BLOCK_SIZE*2,null);
             }
         }
-        //prova
-        switch (game.getWorld().getCharacter().getHealth()){
-            case 1://mezzo cuore
-                g.drawImage(image[1],20,590,null);
-                g.drawImage(image[2],70,590,null);
-                g.drawImage(image[2],120,590,null);
-                break;
-            case 2://un solo cuore
-                g.drawImage(image[0],20,590,null);
-                g.drawImage(image[2],70,590,null);
-                g.drawImage(image[2],120,590,null);
-                break;
-            case 3://uno e mezzo cuore
-                g.drawImage(image[0],20,590,null);
-                g.drawImage(image[1],70,590,null);
-                g.drawImage(image[2],120,590,null);
-                break;
-            case 4://2 cuore
-                g.drawImage(image[0],20,590,null);
-                g.drawImage(image[0],70,590,null);
-                g.drawImage(image[2],120,590,null);
-                break;
-            case 5://2 mezzo cuore
-                g.drawImage(image[0],20,590,null);
-                g.drawImage(image[0],70,590,null);
-                g.drawImage(image[1],120,590,null);
-                break;
-            case 6://3 cuori
-                g.drawImage(image[0],20,590,null);
-                g.drawImage(image[0],70,590,null);
-                g.drawImage(image[0],120,590,null);
-                break;
+        showHeart(g,game.getWorld().getCharacter().getHealth());
+        //LEGGENDA: 1=GPT(+danno), 2=Tessera Associazione(Scudo), 3=Sigaretta(invisibile), 4=caffè vita
+        int powerUpType = world.getCharacter().getPowerUpType();
+        if(powerUpType>0&&powerUpType<4){
+            showPowerUp(g,powerUpType-1);
         }
-
     }
     public void update(){
         this.repaint();
@@ -141,11 +115,77 @@ public class WorldPanel extends JPanel {
     }
     private void loadHeart(){
         try {
-            image[0] = ImageIO.read(getClass().getResourceAsStream("../resources/heart_full.png"));
-            image[1] = ImageIO.read(getClass().getResourceAsStream("../resources/heart_half.png"));
-            image[2] = ImageIO.read(getClass().getResourceAsStream("../resources/heart_empty.png"));
+            heartImage[0] = ImageIO.read(getClass().getResourceAsStream("../resources/heart_full.png"));
+            heartImage[1] = ImageIO.read(getClass().getResourceAsStream("../resources/heart_half.png"));
+            heartImage[2] = ImageIO.read(getClass().getResourceAsStream("../resources/heart_empty.png"));
         } catch (IOException e) {
             e.printStackTrace();
+        }
+    }
+    private void loadPowerUp(){
+        try {
+            powerUpImage[0] = ImageIO.read(getClass().getResourceAsStream("../resources/power_up_damage_gtp.png"));
+            powerUpImage[1] = ImageIO.read(getClass().getResourceAsStream("../resources/power_up_shield_card.png"));
+            powerUpImage[2] = ImageIO.read(getClass().getResourceAsStream("../resources/power_up_invisible_siga.png"));
+            powerUpImage[3] = ImageIO.read(getClass().getResourceAsStream("../resources/power_up_health_coffee.png"));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+    private void showPowerUp(Graphics g, int type){
+        try {
+            switch(type){
+                case 1://GPT(+danno)
+                    g.drawImage(powerUpImage[1],160,590,null);
+                    break;
+                case 2://Tessera Associazione (scudo)
+                    g.drawImage(powerUpImage[1],160,590,null);
+                    break;
+                case 3://Sigaretta(invisibile)
+                    g.drawImage(powerUpImage[1],160,590,null);
+                    break;
+                case 4://caffè vita
+                    g.drawImage(powerUpImage[1],160,590,null);
+                    break;
+                default:
+                    throw new IllegalArgumentException();
+            }
+        } catch(IllegalArgumentException e){
+            System.out.println("L'id del powerup non è valido");
+        }
+    }
+    private void showHeart(Graphics g, int heart){
+        switch (heart){
+            case 1://mezzo cuore
+                g.drawImage(heartImage[1],20,590,null);
+                g.drawImage(heartImage[2],70,590,null);
+                g.drawImage(heartImage[2],120,590,null);
+                break;
+            case 2://un solo cuore
+                g.drawImage(heartImage[0],20,590,null);
+                g.drawImage(heartImage[2],70,590,null);
+                g.drawImage(heartImage[2],120,590,null);
+                break;
+            case 3://uno e mezzo cuore
+                g.drawImage(heartImage[0],20,590,null);
+                g.drawImage(heartImage[1],70,590,null);
+                g.drawImage(heartImage[2],120,590,null);
+                break;
+            case 4://2 cuore
+                g.drawImage(heartImage[0],20,590,null);
+                g.drawImage(heartImage[0],70,590,null);
+                g.drawImage(heartImage[2],120,590,null);
+                break;
+            case 5://2 mezzo cuore
+                g.drawImage(heartImage[0],20,590,null);
+                g.drawImage(heartImage[0],70,590,null);
+                g.drawImage(heartImage[1],120,590,null);
+                break;
+            case 6://3 cuori
+                g.drawImage(heartImage[0],20,590,null);
+                g.drawImage(heartImage[0],70,590,null);
+                g.drawImage(heartImage[0],120,590,null);
+                break;
         }
     }
 }

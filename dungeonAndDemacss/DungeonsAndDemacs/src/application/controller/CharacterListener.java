@@ -4,6 +4,7 @@ import application.config.Settings;
 import application.model.CommandFileReader;
 import application.model.Game;
 import application.view.CharacterView;
+import application.view.PanelManager;
 import application.view.WorldPanel;
 
 import java.awt.event.KeyAdapter;
@@ -53,6 +54,8 @@ public class CharacterListener extends KeyAdapter {
             Game.getGame().updateFacing(Game.MOVE_RIGHT);
         } else if (e.getKeyCode()==commandKeyCode[8]) {
             Game.getGame().meleeAttack();
+        } else if (e.getKeyCode()==KeyEvent.VK_ESCAPE) {
+            PanelManager.getInstance().goMenu();
         }
         /*if (e.getKeyCode() == KeyEvent.VK_W &&e.getKeyCode() == KeyEvent.VK_DOWN){
             System.out.println("prova");

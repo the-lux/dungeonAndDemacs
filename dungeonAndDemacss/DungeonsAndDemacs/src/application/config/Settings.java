@@ -1,5 +1,6 @@
 package application.config;
 
+//todo fare recod
 public class Settings {
     public final static int WINDOW_SIZE = 600;
     public final static int WORLD_SIZE = 40;

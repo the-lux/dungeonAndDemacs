@@ -345,18 +345,21 @@ public class World {
     public void usePowerUp(){
         try {
             switch(room.getpUp().getId()){
-                case 1://coffee
-                    System.out.println("Effetto in fase di implementazione");
+                case 1://GPT danno
+                    character.setPowerUpType(1);
+                    character.setDamage(1);
                     break;
-                case 2://tessera
+                case 2://tessera scudo
                     character.setShielded(true);
+                    character.setPowerUpType(2);
                     break;
-                case 3://segreteria
-                    System.out.println("Rendo il personaggio invisibile");
+                case 3://Sigaretta invisibilità
                     character.setInvisible(true);
+                    character.setPowerUpType(3);
                     break;
-                case 4://Sigaretta
+                case 4://coffee vita
                     character.fullHeal();
+                    character.setPowerUpType(4);
                     break;
                 default:
                     throw new IllegalArgumentException();
