@@ -11,6 +11,7 @@ public class MapGen {
         map[15][15] = new Room();
         map[15][15].setStart(true);
         map[15][15].setPosition(15,15);
+        map[15][15].setRoomType(rN.nextInt(0,2));
         queue = new ArrayList<>();
         int p = (int) (nRoom*0.40);
         clearPathGen(p);

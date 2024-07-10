@@ -3,6 +3,7 @@ package application.view;
 import application.GameLoop;
 import application.config.Settings;
 import application.controller.*;
+import application.model.Game;
 
 public class PanelMenager {
     private static PanelMenager instance = new PanelMenager();
@@ -89,6 +90,7 @@ public class PanelMenager {
         mainFrame.setSize(Settings.WINDOW_SIZE,Settings.WINDOW_SIZE+40);
         mainFrame.revalidate();
         mainFrame.repaint();
+        Game.restartGame();
         GameLoop gameLoop = new GameLoop(controller);
         gameLoop.startGame();
     }

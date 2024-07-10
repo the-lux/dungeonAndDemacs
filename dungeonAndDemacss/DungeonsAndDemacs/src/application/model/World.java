@@ -352,6 +352,5 @@ public class World {
         } catch(IllegalArgumentException e){
             System.out.println("L'id del powerup non è valido");
         }
-        //TODO: Ci sarà uno switch che a seconda dell'id attiva un effetto diverso
     }
 }

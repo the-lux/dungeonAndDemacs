@@ -82,7 +82,6 @@ public  class Room {
     public Cordinate getPosition() {
         return position;
     }
-    //TODO creare un nuovo metodo di overload per setIndexDoor che accetta anche le cord
     public void setPosition(Cordinate c) {
         this.position = new Cordinate(c);
     }
