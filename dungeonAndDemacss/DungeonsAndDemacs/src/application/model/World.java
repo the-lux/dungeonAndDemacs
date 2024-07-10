@@ -15,6 +15,7 @@ public class World {
 
     private Character character=new Character();
     private MapGen m=new MapGen();
+    private boolean enemyHit=false;
 
     private Room room; //stanza corrente
 
@@ -80,14 +81,16 @@ public class World {
             blocks [powerUpPlace.getX()][powerUpPlace.getY()]=Block.POWERUP;
         }
     }
-
-    /*
-    Stanze
-    0=più nemici
-    1=1 nemico (mini boss)
-    //2+=Boss(Ianni,Fuduli e Van Bon)
-
-    Nemici
+    /* Stanze
+    -1 empty
+    0 Ianni
+    1 fuduli
+    2 Van Bon
+    3 minion torpedine e associazione
+    4 loot
+    5 mercante
+    */
+    /* Nemici
     0 Ianni
     1 fuduli
     2 Van Bon
@@ -114,7 +117,7 @@ public class World {
                 do {
                     enemyCordinate = new Cordinate(random.nextInt(1,blocks.length-1), random.nextInt(1,blocks.length-1));
                 }while (!isEmpty(enemyCordinate));
-                Enemy e=new Enemy(enemyCordinate,random.nextInt(0,3),i);
+                Enemy e=new Enemy(enemyCordinate,random.nextInt(0,2),i);
                 //sfrutto il do while per evitare che mi generi il nemico sovrascrivendo il personaggio
                 room.addEnemy(e);
                 setEnemyBlock(enemyCordinate.getX(), enemyCordinate.getY(), e);
@@ -124,7 +127,7 @@ public class World {
             do {
                 enemyCordinate = new Cordinate(random.nextInt(1,blocks.length-1), random.nextInt(1,blocks.length-1));
             }while (!isEmpty(enemyCordinate));
-            Enemy enemy=new Enemy(enemyCordinate,random.nextInt(0,3),0);
+            Enemy enemy=new Enemy(enemyCordinate,0,0);
             //sfrutto il do while per evitare che mi generi il nemico sovrascrivendo il personaggio
             room.addEnemy(enemy);
             setEnemyBlock(enemyCordinate.getX(),enemyCordinate.getY(),enemy);
@@ -198,6 +201,12 @@ public class World {
     public int getSize() {
         return blocks.length;
     }
+
+        /*public int getEnemyNumber() {
+            return enemyNumber;
+        }
+         */
+
     public Character getCharacter (){
         return character;
     }
@@ -229,6 +238,7 @@ public class World {
         }
         Cordinate posizione = room.getBoss().getPlace();
         if (posizione.equals(character.getPlace())) {
+            enemyHit=true;
             System.out.println("Vita attuale:" + character.getHealth());
             character.damageCharacter(-1);
             System.out.println("Vita dopo il contatto:" + character.getHealth());
@@ -251,7 +261,7 @@ public class World {
         for (Enemy e: list){
             if (!e.isAlive()) break;
             int type=e.getEnemyType();
-            if (type==3){
+            if (type==1){
                 e.standardMove();
             } else{
                 if (checkForPlayer(e.getPlace(),e.getView())){
@@ -308,6 +318,7 @@ public class World {
             Cordinate posizione=e.getPlace();
             //System.out.println("Posizione del nemico x:"+posizione.getX()+"y:"+posizione.getY());
             if (posizione.equals(character.getPlace())) {
+                enemyHit=true;
                 System.out.println("Vita attuale:" + character.getHealth());
                 character.damageCharacter(-1);
                 System.out.println("Vita dopo il contatto:" + character.getHealth());
@@ -353,6 +364,14 @@ public class World {
         } catch(IllegalArgumentException e){
             System.out.println("L'id del powerup non è valido");
         }
+
+    }
+
+    public boolean hasEnemyHit() {
+        return enemyHit;
+    }
+    public void endEnemyHit(){
+        enemyHit=false;
     }
 
 }

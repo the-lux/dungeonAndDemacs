@@ -1,8 +1,9 @@
 package application.model;
 
-public class Cordinate {
-    private int x;//rig
-    private int y;//colon
+public class Cordinate{
+    //TODO: DA FARE COME RECORD!
+    private int x;
+    private int y;
     public Cordinate(){}
     public Cordinate(int x,int y){
         this.x=x;
@@ -50,5 +51,4 @@ public class Cordinate {
         Cordinate cord2=(Cordinate) obj;
         return this.x==cord2.x && this.y==cord2.y;
     }
-    //TODO: Override dell'hash code?
 }

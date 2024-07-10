@@ -7,7 +7,7 @@ Generazione mappa: Romano Luca
 Power up: Isabella Mariano Vincenzo
 Design delle stanze: Perrelli Salvatore
 Caricamento delle stanze: Perrelli Salvatore
-Autori delle canzoni utilizzate:
+Autori delle tracce audio utilizzate:
  finalBoss->Dialga's Fight to the Finish: Remaster by Zame (https://www.youtube.com/channel/UCKKKbeAhjKYJfOy5Opg8lcQ)
  menu->Personality Test (Remastered) by Zame (https://www.youtube.com/channel/UCKKKbeAhjKYJfOy5Opg8lcQ)
  charWalk->mco_walk_e02.wav by Fantozzi -- https://freesound.org/s/166297/ -- License: Creative Commons 0
@@ -23,4 +23,7 @@ Autori delle canzoni utilizzate:
  Room-B)Amp-Plains: Remastered by Zame (https://www.youtube.com/channel/UCKKKbeAhjKYJfOy5Opg8lcQ)
  treasure-> Gerudo Valley Theme (Medieval Cover) by Middle Ages (https://www.youtube.com/@MiddleAgesMusic)
  Un ringraziamento speciale a Luca,Francesco e Roberta per il nome del gruppo
+
+ Sei stato bocciato.
+ Riprovare?
 

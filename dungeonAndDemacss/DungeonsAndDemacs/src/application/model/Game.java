@@ -12,7 +12,7 @@ public class Game {
 
     private static boolean win;
     private final World world;
-
+    private boolean usedPowerUp= false;
     private Game() {
         win = false;
         world = new World();
@@ -61,6 +61,7 @@ public class Game {
             }
         }
         if (world.isPowerUp(newP)){
+            usedPowerUp=true;
             world.usePowerUp();
         }
         if (world.isDoor(newP) && world.getRoom().isCompleted()){
@@ -90,5 +91,12 @@ public class Game {
         if(world.getRoom().isBossRoom()){
             world.bossMovement();
         }
+    }
+
+    public boolean isUsedPowerUp() {
+        return usedPowerUp;
+    }
+    public void endUsedPowerUp(){
+        usedPowerUp=false;
     }
 }
