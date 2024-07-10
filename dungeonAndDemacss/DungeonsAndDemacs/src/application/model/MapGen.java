@@ -40,26 +40,21 @@ public class MapGen {
                         next.plusEqualY(-1);
                 }
             }while (map[next.getX()][next.getY()]!=null); //while per evitare di creare una stanza in una posizione già occupata
-            setSonRoom(next,current,dir,rN.nextInt(2));
+            setSonRoom(next,current,dir, rN.nextInt(2));//setta il figlio e il tipo di stanza
             queue.add(current);//aggiunge alla coda le stanze principali
             current = new Cordinate(next);
         }
         queue.add(next);
         map[current.getX()][current.getY()].setEnd(true);//setta la stanza finale
-        map[current.getX()][current.getY()].setRoomType(2);
+        map[current.getX()][current.getY()].setRoomType(2); //setta il bos
     }
     /*
+    /* Stanze
+    NUOVI INDICI:
     0=più nemici
-    1=1 nemico (mini boss)
-    //2+=Boss(Ianni,Fuduli e Van Bon)
-
+    1=1 nemico
+    2+=Boss(Ianni,Fuduli e Van Bon)
     -1 empty
-    0 Ianni
-    1 fuduli
-    2 Van Bon
-    3 minion
-    4 loot
-    5 mercante
     */
 
     private void genMoreRoom(int nRoom){
@@ -71,7 +66,7 @@ public class MapGen {
                 for (int i = 0; i < 4 && randomNRoom>0&&nRoom>0; i++) { //aggiunto nRoom>0 perchè c'è la possibilità che verso la fine della funzione crei più stanze
                     next = map[current.getX()][current.getY()].getDirRelativeCord(i);
                     if(map[next.getX()][next.getY()]==null){
-                        setSonRoom(current,i,rN.nextInt(1));
+                        setSonRoom(current,i, rN.nextInt(2));
                         queue.add(current);
                         randomNRoom --;
                         nRoom--;
@@ -79,7 +74,6 @@ public class MapGen {
                 }
             }
         }
-        //aggiunge alla fine una stanza del tesoro sicura
     }
     private void setSonRoom(Cordinate son,Cordinate father,int dir,int type){
         map[son.getX()][son.getY()]=new Room();//crea una nuova stanza

@@ -35,7 +35,7 @@ public  class Room {
         this.isStart = false;
         this.nDoor = 0;
         this.enemyArrayList = new ArrayList<>();
-        this.roomType = 0;
+        this.roomType = -1;
         this.completed=false;
     }
     public Cordinate getDirRelativeCord(int dir){

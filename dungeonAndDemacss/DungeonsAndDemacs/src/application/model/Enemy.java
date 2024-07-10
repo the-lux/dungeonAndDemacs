@@ -2,9 +2,6 @@ package application.model;
 
 import java.util.Random;
 
-/*
-TODO: Ogni tipo di nemico una classe che estende Enemy?
- */
 public class Enemy {
     protected Cordinate oldPlace; //la utilizzo per salvare la vecchia posizione e annullare il movimento se questo non dovesse essere valido
     protected Cordinate place;
