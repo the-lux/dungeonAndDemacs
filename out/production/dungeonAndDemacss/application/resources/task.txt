@@ -13,3 +13,8 @@
 
 ---------------------------------------------------------------
 2.Progettare HUD (barra vita, minimappa, ecc,)-S
+
+
+aggiustare collisioni                  fatto
+migliorare HUD
+Risolvere command file reader

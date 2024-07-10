@@ -13,7 +13,7 @@ import java.util.Arrays;
 
 public class CharacterListener extends KeyAdapter {
     private final WorldPanel worldPanel;
-    private final CharacterView characterView; //PROVA
+    private final CharacterView characterView;
     private final int[] commandKeyCode;
     public CharacterListener(WorldPanel wP,CharacterView cv){
         this.characterView=cv;
@@ -53,7 +53,13 @@ public class CharacterListener extends KeyAdapter {
             Game.getGame().updateFacing(Game.MOVE_RIGHT);
         } else if (e.getKeyCode()==commandKeyCode[8]) {
             Game.getGame().meleeAttack();
+        } else if (e.getKeyCode()==KeyEvent.VK_N) {
+            Game.restartGame();
+            worldPanel.reset();
+        }else if (e.getKeyCode()==KeyEvent.VK_ESCAPE){//TODO da finire il ritorno al menu
+            PanelMenager.getInstance().goMenu();
         }
+
         /*if (e.getKeyCode() == KeyEvent.VK_W &&e.getKeyCode() == KeyEvent.VK_DOWN){
             System.out.println("prova");
         }
