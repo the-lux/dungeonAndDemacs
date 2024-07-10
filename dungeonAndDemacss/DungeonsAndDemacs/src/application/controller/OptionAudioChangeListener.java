@@ -9,18 +9,12 @@ import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
 public class OptionAudioChangeListener implements ChangeListener {
-    int oldValue, newValue, oldGeneralValue;
+    int oldValue, newValue;
     @Override
     public void stateChanged(ChangeEvent e) {
         if(e.getSource() instanceof TopSlider topSlider) {
             switch(topSlider.getType()){
-                case 0: //generale
-                    oldGeneralValue= AudioSettings.getVolumeGenerale();
-                    newValue=topSlider.getValue();
-                    int difference=newValue-oldGeneralValue;
-                    AudioSettings.increaseVolumes(difference);
-                    PanelManager.getInstance().adjustAudio(oldValue,AudioSettings.getVolumeMusica());
-                    break;
+
                 case 1://musica
                     //System.out.println("Il valore del JSlider musica è: " + topSlider.getValue());
                     newValue=topSlider.getValue();

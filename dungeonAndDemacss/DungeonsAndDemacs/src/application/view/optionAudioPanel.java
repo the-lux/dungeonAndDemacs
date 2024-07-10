@@ -18,8 +18,6 @@ public class optionAudioPanel extends JPanel {
     private JButton exitButton;
     public optionAudioPanel () {
         opzAudioLabel = new JLabel();
-        generalSlider = new TopSlider(-80, 6);
-        generalLabel = new JLabel();
         musicLabel = new JLabel();
         musicSlider = new TopSlider(-80, 6);
         effectLabel = new JLabel();
@@ -35,16 +33,6 @@ public class optionAudioPanel extends JPanel {
         opzAudioLabel.setHorizontalAlignment(SwingConstants.CENTER);
         opzAudioLabel.setText("Opzioni audio");
         opzAudioLabel.setForeground(Color.BLACK);
-
-        generalSlider.setSnapToTicks(true);
-        generalSlider.setName("generalAudio");
-        generalSlider.setOpaque(false);
-        generalSlider.setValue(AudioSettings.getVolumeGenerale());
-        generalSlider.setType(0);
-
-        generalLabel.setFont(new Font("Algerian", 0, 36));
-        generalLabel.setText("Generale");
-        generalLabel.setForeground(Color.BLACK);
 
         musicLabel.setFont(new Font("Algerian", 0, 36));
         musicLabel.setText("Musica");
@@ -84,10 +72,8 @@ public class optionAudioPanel extends JPanel {
                                         .addComponent(effectLabel, GroupLayout.PREFERRED_SIZE, 183, GroupLayout.PREFERRED_SIZE)
                                         .addGroup(layout.createSequentialGroup()
                                                 .addGroup(layout.createParallelGroup(GroupLayout.Alignment.TRAILING, false)
-                                                        .addComponent(generalLabel, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                                         .addComponent(musicLabel, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                                                .addComponent(generalSlider, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                                )
                                         .addGroup(layout.createSequentialGroup()
                                                 .addGap(189, 189, 189)
                                                 .addGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
@@ -104,10 +90,6 @@ public class optionAudioPanel extends JPanel {
                         .addGroup(layout.createSequentialGroup()
                                 .addGap(89, 89, 89)
                                 .addComponent(opzAudioLabel)
-                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
-                                        .addComponent(generalLabel, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(generalSlider, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                 .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING, false)
                                         .addComponent(musicSlider, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -133,7 +115,6 @@ public class optionAudioPanel extends JPanel {
         g2d.fillRect(0, 0, width, height);
     }
     public void setController(OptionAudioChangeListener optionAudioChangeListener, OptionAudioActionListener optionAudioActionListener){
-        generalSlider.addChangeListener(optionAudioChangeListener);
         musicSlider.addChangeListener(optionAudioChangeListener);
         effectSlider.addChangeListener(optionAudioChangeListener);
         exitButton.addActionListener(optionAudioActionListener);
