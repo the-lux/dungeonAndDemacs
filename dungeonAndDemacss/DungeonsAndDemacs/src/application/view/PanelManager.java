@@ -59,8 +59,8 @@ public class PanelManager {
         clear();
         ControlOptionPanel cOP = new ControlOptionPanel();
         cOP.setFocusable(true);
-        //todo listener op controlli
-        //todo aggiunge il controller
+        OptionControlListener oCL = new OptionControlListener();
+        cOP.setController(oCL);
         mainFrame.add(cOP);
         mainFrame.revalidate();
         mainFrame.repaint();

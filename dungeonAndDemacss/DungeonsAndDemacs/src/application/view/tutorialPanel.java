@@ -5,12 +5,12 @@ import application.controller.CreditListener;
 import javax.swing.*;
 import java.awt.*;
 
-public class CreditPanel extends GradientPanel {
+public class tutorialPanel extends  GradientPanel{
     private final JButton exitButton;
     private final JPanel buttonPanel;
     private final JScrollPane jScrollPane;
     private final JTextArea jTextArea;
-    public CreditPanel(){
+    public tutorialPanel(){
         buttonPanel = new GradientPanel();
         exitButton = new JButton();
         jScrollPane = new JScrollPane();
@@ -55,6 +55,4 @@ public class CreditPanel extends GradientPanel {
     public void setController(CreditListener cL){
         exitButton.addActionListener(cL);
     }
-    }
-
-
+}
