@@ -1,0 +1,19 @@
+# Escludi file e directory di IntelliJ IDEA
+.idea/
+*.iml
+
+# Escludi directory di output dei file compilati
+/out/
+
+# Escludi file di log e temporanei
+*.log
+*.tmp
+*.bak
+*.swp
+
+# Escludi configurazioni specifiche del sistema operativo
+.DS_Store
+Thumbs.db
+
+# Escludi file compilati Java
+*.class
