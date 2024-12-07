@@ -17,3 +17,9 @@
 - **Caricamento audio**: Isabella Mariano Vincenzo  
 - **Design delle stanze**: Perrelli Salvatore  
 - **Caricamento delle stanze**: Perrelli Salvatore
+## Problemi
+A causa della mancanza di tempo e di un ambiente non propriamente adatto allo sviluppo di videogiochi, siamo riusciti a implementare solo le meccaniche di base.
+
+![MainMenu](https://github.com/user-attachments/assets/105edefa-b275-4ffd-a74f-a06545d80c29)
+![Game](https://github.com/user-attachments/assets/9352e18d-d21c-472f-9dfe-68924d5f1a37)
+
