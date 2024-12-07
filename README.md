@@ -1,4 +1,4 @@
-##Videogioco roguelike sviluppato come progetto accademico, che include generazione procedurale, sprite personalizzati, e un sistema di power-up.
+## Videogioco roguelike sviluppato come progetto accademico, che include generazione procedurale, sprite personalizzati, e un sistema di power-up.
 ## Caratteristiche Principali
 - Generazione procedurale delle mappe
 - Boss e nemici unici con design accattivante
