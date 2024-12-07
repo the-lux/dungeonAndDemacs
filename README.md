@@ -1,4 +1,4 @@
-## Videogioco roguelike sviluppato come progetto accademico, che include generazione procedurale, sprite personalizzati, e un sistema di power-up.
+## Videogioco roguelike sviluppato come progetto accademico. Includendo generazione procedurale, sprite personalizzati e un sistema di power-up, il progetto è stato realizzato interamente in Java Swing in poche settimane
 ## Caratteristiche Principali
 - Generazione procedurale delle mappe
 - Boss e nemici unici con design accattivante
